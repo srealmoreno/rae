@@ -322,7 +322,6 @@ if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" 
     fi
 
     if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
-        echo "$LIST_GROUP"
         advertencia "Añadiendo $SUDO_USER a los grupos necesarios"
         usermod -aG $LIST_GROUP $SUDO_USER
         clean_cache
