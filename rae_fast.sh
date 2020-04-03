@@ -325,56 +325,52 @@ else
             [ "$LIST_PACKAGES" != "" ] && LIST_PACKAGES="$LIST_PACKAGES, "
             LIST_PACKAGES="${LIST_PACKAGES}Imágenes docker de Salvador"
             ;;
+        h)
+            echo "Uso: $0 [-a instalar todo] [-d instalar docker] [-g instalar gns3] [-v instalar virtualbox] [-n instalar netgui] [-i importar images docker]"
+            exit 0
+            ;;
         *)
-            error_fatal "Uso $0 [-a Instalar todo] [-d instalar docker] [-g instalar gns3] [-v instalar virtualbox] [-n instalar netgui] [-i importar images docker]"
-            exit 1
+            error_fatal "Argumentos no validos\n$*\nUso $0 [-a Instalar todo] [-d instalar docker] [-g instalar gns3] [-v instalar virtualbox] [-n instalar netgui] [-i importar images docker]"
             ;;
         esac
     done
 fi
 
-if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" ] || [ -n "$images" ]; then
+exito "Iniciando Script de instalación"
 
-    exito "Iniciando Script de instalación"
-
-    if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
-        get_os
-        install_dependencies
-    fi
-
-    if [ -n "$virtualbox" ]; then
-        add_repository_virtualbox
-    fi
-
-    if [ -n "$gns3" ]; then
-        add_repository_gns3
-    fi
-
-    if [ -n "$docker" ]; then
-        add_repository_docker
-    fi
-
-    if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
-        install_packages
-    fi
-
-    if [ -n "$images" ]; then
-        importar_a_docker "ubuntu" "ubuntu_rae.tar" "srealmoreno/rae"
-        #Descomentar para instalar la imagen con interfaz gráfica
-        #importar_a_docker "ubuntu_graphic" "ubuntu_rae_graphic.tar" "srealmoreno/rae_graphic"
-    fi
-
-    if [ -n "$netgui" ]; then
-        install_netgui
-    fi
-
-    if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] [ -n "$netgui" ]; then
-        clean_cache
-    fi
-
-    exito "Instalación completada\nby: Salvador Real, Redes de area extensa 2020"
-
-else
-    error_fatal "Argumentos no validos\n$*\nUso $0 [-a Instalar todo] [-d instalar docker] [-g instalar gns3] [-v instalar virtualbox] [-n instalar netgui] [-i importar images docker]"
-    exit -1
+if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
+    get_os
+    install_dependencies
 fi
+
+if [ -n "$virtualbox" ]; then
+    add_repository_virtualbox
+fi
+
+if [ -n "$gns3" ]; then
+    add_repository_gns3
+fi
+
+if [ -n "$docker" ]; then
+    add_repository_docker
+fi
+
+if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
+    install_packages
+fi
+
+if [ -n "$images" ]; then
+    importar_a_docker "ubuntu" "ubuntu_rae.tar" "srealmoreno/rae"
+    #Descomentar para instalar la imagen con interfaz gráfica
+    #importar_a_docker "ubuntu_graphic" "ubuntu_rae_graphic.tar" "srealmoreno/rae_graphic"
+fi
+
+if [ -n "$netgui" ]; then
+    install_netgui
+fi
+
+if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] [ -n "$netgui" ]; then
+    clean_cache
+fi
+
+exito "Instalación completada\nby: Salvador Real, Redes de area extensa 2020"
