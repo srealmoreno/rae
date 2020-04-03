@@ -87,12 +87,12 @@ install_gns3() {
     #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F88F6D313016330404F710FC9A2FD067A2E3EF7B &&
     advertencia "Instalando Gns3"
     [ -n "$DISTRO_TMP" ] && DISTRO=$DISTRO_TMP
-    
+
     wget -q "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf88f6d313016330404f710fc9a2fd067a2e3ef7b" -O- | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\n\
         \rdeb http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main\n\
           \r#deb-src http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main" >"/etc/apt/sources.list.d/gns3-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de GNS3"
-    
+
     [ -n "$DISTRO_TMP" ] && DISTRO="eoan"
 
     dpkg --add-architecture i386 &&
@@ -125,119 +125,93 @@ install_docker() {
 
 install_netgui() {
     advertencia "Instalando netgui"
-    local NETGUI_VERSION=0.4.10
-    local HAS_UBUNTU=$(cat /etc/issue | cut -f 1 -d " " | grep -i ubuntu)
-    local HAS_LINUXMINT=$(cat /etc/issue | cut -f 2 -d " " | grep -i mint)
-    local UBUNTU_VERSION=$(($(cat /etc/issue | cut -f 2 -d " " | cut -f1 -d ".")))
-    local UBUNTU_MINORVERSION=$(($(cat /etc/issue | cut -f 2 -d " " | cut -f2 -d ".")))
-    #local LINUXMINT_VERSION=$(($(cat /etc/issue | cut -f 3 -d " " | cut -f1 -d ".")))
-    #local LINUXMINT_MINORVERSION=$(($(cat /etc/issue | cut -f 3 -d " " | cut -f2 -d ".")))
-    local HAS_64BITS=$(uname -a | grep x86_64)
+    if [ ! -d "/usr/local/netkit" ]; then
+        local NETGUI_VERSION=0.4.10
+        [ "$ID" == "ubuntu" ] && local HAS_UBUNTU="$ID"
+        [ "$ID" == "mint" ] && local HAS_LINUXMINT="$ID"
+        local UBUNTU_VERSION=${VERSION_ID%.*}
+        local LINUXMINT_VERSION=${VERSION_ID%.*}
+        local HAS_64BITS=$(uname -a | grep x86_64)
 
-    if [ ! -z "$HAS_UBUNTU" -a $UBUNTU_VERSION -gt 8 ]; then
-        AUTO=OK
-    elif [ ! -z "$HAS_LINUXMINT" -a $LINUXMINT_VERSION -ge 17 ]; then
-        AUTO=OK
-    fi
+        if [ ! -z "$HAS_UBUNTU" -a $UBUNTU_VERSION -gt 8 ]; then
+            AUTO=OK
+        elif [ ! -z "$HAS_LINUXMINT" -a $LINUXMINT_VERSION -ge 17 ]; then
+            AUTO=OK
+        fi
 
-    if [ ! -z "$AUTO" ]; then
-        apt update
-        if [ ! -z "$HAS_UBUNTU" -a $UBUNTU_VERSION -ge 16 ]; then
-            apt -y install default-jre
-            if [ ! -z "$HAS_64BITS" ]; then
-                apt -y install lib32z1 lib32ncurses5 libbz2-1.0:i386
-                apt -y install libc6-i386 lib32readline6
-            fi
-            DEBIAN_FRONTEND=noninteractive apt install -y -q wireshark
-        elif [ ! -z "$HAS_LINUXMINT" -a $LINUXMINT_VERSION -ge 18 ]; then
-            apt -y install default-jre
-            if [ ! -z "$HAS_64BITS" ]; then
-                apt -y install lib32z1 lib32ncurses5 libbz2-1.0:i386
-                apt -y install libc6-i386 lib32readline6
-            fi
-            DEBIAN_FRONTEND=noninteractive apt install -y -q wireshark
-        else
-            apt -y install openjdk-6-jre
-            apt -y install openjdk-8-jre
-            if [ -d /usr/lib/jvm ]; then
-                if [ ! -e /usr/lib/jvm/default-java ]; then
-                    if [ -e /usr/lib/jvm/java-8-openjdk-amd64 ]; then
-                        ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/default-java
-                    elif [ -e /usr/lib/jvm/java-6-openjdk-amd64 ]; then
-                        ln -s /usr/lib/jvm/java-6-openjdk-amd64 /usr/lib/jvm/default-java
+        if [ ! -z "$AUTO" ]; then
+            apt update
+            if [ ! -z "$HAS_UBUNTU" -a $UBUNTU_VERSION -ge 16 ]; then
+                apt -y install default-jre
+                if [ ! -z "$HAS_64BITS" ]; then
+                    apt -y install lib32z1 lib32ncurses5 libbz2-1.0:i386
+                    apt -y install libc6-i386 lib32readline6
+                fi
+                DEBIAN_FRONTEND=noninteractive apt install -y -q wireshark
+            elif [ ! -z "$HAS_LINUXMINT" -a $LINUXMINT_VERSION -ge 18 ]; then
+                apt -y install default-jre
+                if [ ! -z "$HAS_64BITS" ]; then
+                    apt -y install lib32z1 lib32ncurses5 libbz2-1.0:i386
+                    apt -y install libc6-i386 lib32readline6
+                fi
+                DEBIAN_FRONTEND=noninteractive apt install -y -q wireshark
+            else
+                apt -y install openjdk-6-jre
+                apt -y install openjdk-8-jre
+                if [ -d /usr/lib/jvm ]; then
+                    if [ ! -e /usr/lib/jvm/default-java ]; then
+                        if [ -e /usr/lib/jvm/java-8-openjdk-amd64 ]; then
+                            ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/default-java
+                        elif [ -e /usr/lib/jvm/java-6-openjdk-amd64 ]; then
+                            ln -s /usr/lib/jvm/java-6-openjdk-amd64 /usr/lib/jvm/default-java
+                        fi
                     fi
                 fi
+                if [ ! -z "$HAS_64BITS" ]; then
+                    apt -y install ia32-libs libc6-i386 lib32readline6
+                    apt -y install libc6-i386 lib32readline6
+                    apt -y install lib32z1 lib32ncurses5 lib32bz2-1.0
+                    apt -y install lib32bz2-1.0
+                    apt -y install libbz2-1.0:i386
+                fi
+                apt -y install wireshark
             fi
-            if [ ! -z "$HAS_64BITS" ]; then
-                apt -y install ia32-libs libc6-i386 lib32readline6
-                apt -y install libc6-i386 lib32readline6
-                apt -y install lib32z1 lib32ncurses5 lib32bz2-1.0
-                apt -y install lib32bz2-1.0
-                apt -y install libbz2-1.0:i386
+            apt -y install xterm xwit telnetd pv
+            cd /tmp
+
+            local size_tmp=$(stat --format=%s netgui-${NETGUI_VERSION}.tar.bz2 2>/dev/null)
+            local size_internet=$(curl -sI http://mobiquo.gsyc.es/netgui-${NETGUI_VERSION}/netgui-${NETGUI_VERSION}.tar.bz2 | grep Content-Length | cat -v | cut -d ' ' -f 2 | sed -e "s/\^M//")
+            if [ "$size_tmp" != "$size_internet" ]; then
+                rm -f netgui-${NETGUI_VERSION}.tar.bz2
+                advertencia "Descargando Netgui"
+                wget http://mobiquo.gsyc.es/netgui-${NETGUI_VERSION}/netgui-${NETGUI_VERSION}.tar.bz2
+            else
+                advertencia "Utilizando fichero tempral /tmp/netgui-${NETGUI_VERSION}.tar.bz2"
             fi
-            apt -y install wireshark
+            cd /usr/local
+            rm -rf netkit
+            advertencia "Desempaquetando Netgui"
+            pv /tmp/netgui-${NETGUI_VERSION}.tar.bz2 | tar -xjSf -
+            ln -fs /usr/local/netkit/netgui/bin/netgui.sh /usr/local/bin
+            ln -fs /usr/local/netkit/netgui/bin/clean-netgui.sh /usr/local/bin
+            ln -fs /usr/local/netkit/netgui/bin/clean-vm.sh /usr/local/bin
+            echo
+
+            create_launcher_shortcut_netgui
+
+            rm /etc/apt/sources.list.d/webupd8team* 2>/dev/null
+
+            exito "NetGui instalado con exíto"
+        else
+            error_fatal "autoinstall only works in Ubuntu >= 9.04 or Linux Mint >= 17, sorry"
         fi
-        apt -y install xterm xwit telnetd pv
-        cd /tmp
-        rm -f netgui-${NETGUI_VERSION}.tar.bz2
-        wget http://mobiquo.gsyc.es/netgui-${NETGUI_VERSION}/netgui-${NETGUI_VERSION}.tar.bz2
-        cd /usr/local
-        rm -rf netkit
-        pv /tmp/netgui-${NETGUI_VERSION}.tar.bz2 | tar -xjSf -
-        ln -fs /usr/local/netkit/netgui/bin/netgui.sh /usr/local/bin
-        ln -fs /usr/local/netkit/netgui/bin/clean-netgui.sh /usr/local/bin
-        ln -fs /usr/local/netkit/netgui/bin/clean-vm.sh /usr/local/bin
-        echo
-        apt install -y imagemagick
-        if [ "$?" == 0 ]; then
-            wget https://raw.githubusercontent.com/srealmoreno/rae/master/netgui.png -O /tmp/netgui.png
-            for i in "256" "128" "96" "72" "64" "48" "32" "24" "16"; do
-                convert "/tmp/netgui.png" -resize ${i}x${i} "/usr/share/icons/hicolor/${i}x${i}/apps/netgui.png"
-                ln -sf "/usr/share/icons/hicolor/${i}x${i}/apps/netgui.png" "/usr/share/icons/hicolor/${i}x${i}/mimetypes/netgui.png"
-            done
-            update-icon-caches /usr/share/icons/hicolor
-
-            echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<mime-info xmlns=\"http://www.freedesktop.org/standards/shared-mime-info\">
-   <mime-type type=\"application/x-nkp\">
-     <comment>Netgui Project File</comment>
-     <glob pattern=\"*.nkp\"/>
-     <icon name=\"netgui\"/>
-   </mime-type>
-</mime-info>" >/usr/share/mime/packages/netgui.xml
-
-            update-mime-database /usr/share/mime
-
-            echo "[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=false
-Exec=netgui.sh %f
-Name=Netgui
-Comment=Netgui Graphical Network Simulator
-Icon=netgui
-Categories=Education;Network;
-MimeType=application/x-nkp;
-Keywords=simulator;network;netsim;" >/usr/share/applications/netgui.desktop
-
-            echo "[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=true
-Exec=clean-netgui.sh %f
-Name=Clean-Netgui
-Comment=Clean Netgui
-Icon=netgui" >/usr/share/applications/clean_netgui.desktop
-
-        fi
-
-        rm /etc/apt/sources.list.d/webupd8team*
-
-        exito "NetGui instalado con exíto"
     else
-        error_fatal "autoinstall only works in Ubuntu >= 9.04 or Linux Mint >= 17, sorry"
+        exito "Netgui ya se encuentra instalado"
+        create_launcher_shortcut_netgui
     fi
+
 }
+
 
 importar_a_docker() {
     advertencia "Instalando imagen docker $1 de Salvador"
@@ -306,7 +280,7 @@ fi
 
 exito "Iniciando Script de instalación"
 
-if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
+if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" ]; then
     get_os
     install_dependencies
 fi
