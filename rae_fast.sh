@@ -51,7 +51,13 @@ get_os() {
         advertencia "Este es una implementación de rapida instalación de los paquetes: $LIST_PACKAGES\nSalvador no se hace responsable de ningún daño a tu maquina. :D"
         read -n 1 -s -r -p "Presiona cualquier tecla para continuar"
         echo ""
+
         [ "$ID" == "ubuntu" ] && DISTRO=$VERSION_CODENAME || DISTRO=$UBUNTU_CODENAME
+
+        if [ "$DISTRO" == "focal" ]; then
+            DISTRO="eoan"
+            DISTRO_TMP="focal"
+        fi
 
         [ "$DISTRO" == "" ] && DISTRO="bionic"
     else
@@ -85,10 +91,13 @@ add_repository_virtualbox() {
 add_repository_gns3() {
     #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F88F6D313016330404F710FC9A2FD067A2E3EF7B &&
     advertencia "Agregando repositorio de GNS3"
+    [ -n "$DISTRO_TMP" ] && DISTRO=$DISTRO_TMP
     wget -q "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf88f6d313016330404f710fc9a2fd067a2e3ef7b" -O- | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\n\
         \rdeb http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main\n\
           \r#deb-src http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main" >"/etc/apt/sources.list.d/gns3-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de GNS3"
+
+    [ -n "$DISTRO_TMP" ] && DISTRO="eoan"
 
     dpkg --add-architecture i386
 
@@ -257,8 +266,15 @@ importar_a_docker() {
 }
 
 install_packages() {
-    echo "apt install -y $LIST_INSTALL"
-    apt update && apt install -y $LIST_INSTALL && exito "$LIST_PACKAGES instlado(s) con exíto" || error_fatal "No se pudo instalar $LIST_PACKAGES"
+    local LIST_PACKAGES_INSTALLED=""
+    for i in virtualbox gns3 docker; do
+        if [ -n "${!i}" ]; then
+            [ "$LIST_PACKAGES_INSTALLED" != "" ] && LIST_PACKAGES_INSTALLED="$LIST_PACKAGES_INSTALLED, "
+            LIST_PACKAGES_INSTALLED="${LIST_PACKAGES_INSTALLED}${i^}"
+        fi
+    done
+
+    apt update && apt install -y $LIST_INSTALL && exito "$LIST_PACKAGES_INSTALLED instalado(s) con exíto" || error_fatal "No se pudo instalar $LIST_PACKAGES"
     if [ -n "$gns3" ]; then
         advertencia "Reparando errores de GNS3"
         pip3 install pyqt5==5.13.1 && exito "GNS3 reparando con exíto"
@@ -369,7 +385,7 @@ if [ -n "$netgui" ]; then
     install_netgui
 fi
 
-if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] [ -n "$netgui" ]; then
+if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" ]; then
     clean_cache
 fi
 

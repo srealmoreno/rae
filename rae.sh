@@ -49,6 +49,13 @@ get_os() {
         advertencia "Salvador no se hace responsable de ningún daño a tu maquina. :D"
         read -n 1 -s -r -p "Presiona cualquier tecla para continuar"
         echo ""
+
+        [ "$ID" == "ubuntu" ] && DISTRO=$VERSION_CODENAME || DISTRO=$UBUNTU_CODENAME
+
+        if [ "$DISTRO" == "focal" ]; then
+            DISTRO="eoan"
+            DISTRO_TMP="focal"
+        fi
         [ "$ID" == "ubuntu" ] && DISTRO=$VERSION_CODENAME || DISTRO=$UBUNTU_CODENAME
 
         [ "$DISTRO" == "" ] && DISTRO="bionic"
@@ -79,10 +86,14 @@ install_virtualbox() {
 install_gns3() {
     #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F88F6D313016330404F710FC9A2FD067A2E3EF7B &&
     advertencia "Instalando Gns3"
+    [ -n "$DISTRO_TMP" ] && DISTRO=$DISTRO_TMP
+    
     wget -q "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf88f6d313016330404f710fc9a2fd067a2e3ef7b" -O- | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\n\
         \rdeb http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main\n\
           \r#deb-src http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main" >"/etc/apt/sources.list.d/gns3-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de GNS3"
+    
+    [ -n "$DISTRO_TMP" ] && DISTRO="eoan"
 
     dpkg --add-architecture i386 &&
         apt update &&
