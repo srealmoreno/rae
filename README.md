@@ -109,6 +109,18 @@ Click en existente
 Selecciona la imagen `srealmoreno/rae:latest`
 <img src="/.assets/gns3_8.png">  
 
-Cambia el nombre a 'ubuntu' o 'pc'
+Cambia el nombre a 'ubuntu' o 'pc'  
 <img src="/.assets/gns3_9.png">  
+
+Dejas la cantidad de adaptadores que gustes (adaptadores de red)  
+<img src="/.assets/gns3_10.png">  
+
+Comando de inicio lo dejas vacío  
+<img src="/.assets/gns3_11.png">  
+
+Tipo de consola: Telnet ya que es en modo texto  
+<img src="/.assets/gns3_12.png">
+
+Variables de entorno lo dejas vacío  
+<img src="/.assets/gns3_13.png">
 ---
