@@ -97,7 +97,7 @@ install_gns3() {
 
     dpkg --add-architecture i386 &&
         apt update &&
-        apt install -y gns3-gui gns3-server &&
+        apt install -y gns3-gui gns3-server vinagre &&
         exito "Gns3 instalado con exito" || advertencia "No se pudo instalar GNS3"
 
     advertencia "Reparando errores de GNS3"

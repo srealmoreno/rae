@@ -10,9 +10,9 @@
 	* Imágenes Ubuntu elaboradas para el uso de Redes
 
 - <a href="#gns3"> Integración de imágenes Docker a GNS3 para: </a>
-	* Uso como máquina host
-	* Uso como Router
-	* Uso como Switch
+	* <a href="#ubuntu_host"> Uso como máquina host </a>
+	* <a href="#ubuntu_router"> Uso como Router </a>
+	* <a href="#ubuntu_switch"> Uso como Switch </a>
 
 ### Requisitos
 * Sistema operativo: Ubuntu o derivados 
@@ -87,6 +87,7 @@ Dejar sin cambios.
 ¡Listo!  
 <img src="assets/gns3_3.png"><img src="assets/gns3_4.png">
 
+<a name="consola" id="consola"></a>
 
 * **Corrigiendo / Cambiando consola predeterminada**  
 Ir a Edición -> Preferencias.  
@@ -100,8 +101,11 @@ Elegir la predeterminada del sistema o la que más te guste.
 <img src="assets/gns3_console_2.png">
 
 Luego Aplicar cambios y listo.  
+Nota: Si se desea ejecutar una imagen con entorno gráfico, ir al apartado de 'VNC' y elegir la que más te guste. Por ejemplo *vinagre*
 
 * **Agregar imágenes Ubuntu a GNS3**
+
+<a name="ubuntu_host" id="ubuntu_host"></a>
 
 *Plantilla de maquina host*  
 
@@ -128,7 +132,7 @@ Dejas la cantidad de adaptadores que gustes (adaptadores de red)
 Comando de inicio lo dejas vacío  
 <img src="assets/gns3_11.png">
 
-Tipo de consola: Telnet ya que es en modo texto  
+Tipo de consola: `telnet` ya que es en modo texto, si se desea agregar una con entorno gráfico elegir `vnc`  
 <img src="assets/gns3_12.png">
 
 Variables de entorno lo dejas vacío    
@@ -144,6 +148,8 @@ Click en 'Browse' para cambiar el icono
 
 Filtras por la palabra 'Computer'  
 <img src="assets/gns3_16.png">
+
+<a name="volumen_persistente" id="volumen_persistente"></a>
 
 Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto (volúmenes persistentes)  
 ```
@@ -173,6 +179,8 @@ Listo, se agrego el icono.
 
 ¡Listo!
 
+
+<a name="ubuntu_router" id="ubuntu_router"></a>
 *Plantilla de router*  
 
 Para plantilla de router es el mismo procedimiento pero con algunas modificaciones.  
@@ -211,6 +219,9 @@ y por ultimo se agregan 2 rutas a los volúmenes persistentes
 
 ¡Listo!
 
+
+<a name="ubuntu_switch" id="ubuntu_switch"></a>
+
 *Plantilla de Switch*
 
 La plantilla para usar la imagen como switch es similar a la plantilla de Host
@@ -220,7 +231,7 @@ Cambia el nombre a 'Switch'
 <img src="assets/gns3_25.png">
 
 
-Cambia la categoría de 'End devices' a 'Switch'  
+Cambia la categoría de 'End devices' a 'Switches'  
 Cambia el icono  
 Cambia el número de adaptadores      
 <img src="assets/gns3_26.png">

@@ -105,7 +105,7 @@ add_repository_gns3() {
 
     LIST_GROUP="${LIST_GROUP}libvirt,kvm,wireshark,ubridge"
 
-    LIST_INSTALL="${LIST_INSTALL} gns3-gui gns3-server gns3-iou python3-pip"
+    LIST_INSTALL="${LIST_INSTALL} gns3-gui gns3-server gns3-iou vinagre python3-pip"
 
     #dpkg --add-architecture i386 &&
     #    apt update &&
