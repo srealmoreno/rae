@@ -33,10 +33,12 @@ El script te da a escoger que paquetes deseas instalar. Cada paquete es la inici
 Descarga:
 Puedes descargar el script desde la línea de ordenes o desde tu navegador favorito.
 
+Descargar desde el navegador:  
+Click derecho -> Guardar Como  
 Descargar [rae.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae.sh)  
 Descargar [rae_fast.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh)
 
-Click derecho -> Guardar Como  
+Descargar desde línea de ordenes:
 ```
 wget https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh
 ```
@@ -155,8 +157,11 @@ Filtras por la palabra 'Computer'
 Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto (volúmenes persistentes)  
 ```
 /save/
+/etc/sysctl.conf
 /etc/network
 /etc/hosts
+/etc/default
+/etc/dhcp
 /root/.bash_history
 /root/.bashsrc
 ```
@@ -211,8 +216,11 @@ y por ultimo se agregan 2 rutas a los volúmenes persistentes
 
 ```
 /save/
+/etc/sysctl.conf
 /etc/network
 /etc/hosts
+/etc/default
+/etc/dhcp
 /root/.bash_history
 /root/.bashsrc
 /root/.history_frr

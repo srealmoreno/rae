@@ -46,7 +46,10 @@ RUN apt-get update && apt-get install -y --no-install-suggests --no-install-reco
     traceroute\
     vlan\
     whois\
-    wget &&\
+    wget\
+    #wireshark\
+    #lxde\
+    &&\ 
     apt-get auto-remove &&\
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean
     
@@ -58,13 +61,9 @@ RUN sed -i "39b0; 97,99b0; b ;:0 ;s/.//" .bashrc
 
 CMD [ "bash" ]
 
-#RUN sed -i "60s/32m/31m/; 46s/.//" /etc/skel/.bashrc && cp /etc/skel/.bashrc /root/.bashrc #cambio de color
-#RUN sed -i "35,41s/.//" /etc/bash.bashrc
+#CMD [ "startlxde" ]
 
-
-
-
-#RUN sed -i "53s/32m/31m/; 39b0; 97,99b0; b ;:0 ;s/.//" .bashrc
-##sed -i "60s/32m/31m/; 46b0; 111,117b0; b ;:0 ;s/#//" /etc/skel/.bashrc  ##Por si el bash_completion esta comentado
-
-
+# Para tener entorno gráfico:
+# Descomentar Wireshark y lxde
+# Comentar 'CMD[ "bash" ]'
+# Descomentar '#CMD[ "startlxde" ]
