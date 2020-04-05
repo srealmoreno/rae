@@ -158,7 +158,7 @@ De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que 
 Nota importante: 
 **JAMÁS agregues todo el sistema de ficheros o `/` porque puede dañar la maquina física.**
 
-[Ver_más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)
+[Ver_más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
 
 Listo, se agrego el icono.
 <img src="/.assets/gns3_18.png">  
@@ -170,7 +170,7 @@ Para plantilla de router es el mismo procedimiento pero con algunas modificacion
 Cambia el nombre  
 <img src="/.assets/gns3_19.png">  
 
-Número de adaptadores
+Número de adaptadores  
 <img src="/.assets/gns3_20.png">  
 
 Comando de inicio  
