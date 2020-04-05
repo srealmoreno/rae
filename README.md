@@ -82,11 +82,10 @@ Este es el código que necesita para alinear las imágenes a la izquierda:
 <img align = "left" width = "100" height = "100" src = "http://www.fillmurray.com/100/100">
 ```
 
-<img align="right" src="/.assets/gns3_1.png">
-
-```
-Seleccionar la opción 2.
-```
+<p height="200px">
+	<img align="right" src="/.assets/gns3_1.png">
+	Seleccionar la opción 2.
+</p>
 
 <img align="left"  src="/.assets/gns3_2.png">
 
