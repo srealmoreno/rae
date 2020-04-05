@@ -58,7 +58,7 @@ sudo ./rae_fast.sh -h
 
 Nota: Si no se pasa ningún parámetro, se  instalan todos los paquetes dichos.
 
-<img  src=".assets/ejemplo_1.png"> </img>
+<img  src="assets/ejemplo_1.png">
 
 Por ejemplo si solo se desea instalar Docker e importar imágenes:
 
@@ -70,7 +70,7 @@ Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones 
 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
-<img src=".assets/ejemplo_2.png"> </img>
+<img src="assets/ejemplo_2.png">
 
 <a name="gns3" id="gns3"></a>
 
@@ -79,25 +79,25 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 * **Configuración inicial de GNS3**
 
 Seleccionar la opción 2.  
-<img src=".assets/gns3_1.png">
+<img src="assets/gns3_1.png">
 
 Dejar sin cambios.  
-<img src=".assets/gns3_2.png">
+<img src="assets/gns3_2.png">
 
 ¡Listo!  
-<img src=".assets/gns3_3.png"><img src=".assets/gns3_4.png">
+<img src="assets/gns3_3.png"><img src="assets/gns3_4.png">
 
 
 * **Corrigiendo / Cambiando consola predeterminada**  
 Ir a Edición -> Preferencias.  
 Click en Aplicaciones de consola (Console applications)  
 Click en Editar (Edit)  
-<img  src=".assets/gns3_console_1.png">
+<img  src="assets/gns3_console_1.png">
 
 Elegir la predeterminada del sistema o la que más te guste.  
 **Ubuntu** (gnome) utiliza gnome-terminal  
 **Kubuntu** (kde plasma) utiliza Konsole  
-<img src=".assets/gns3_console_2.png">
+<img src="assets/gns3_console_2.png">
 
 Luego Aplicar cambios y listo.  
 
@@ -107,43 +107,43 @@ Luego Aplicar cambios y listo.
 
 Click en Nueva plantilla (new template)  
 
-<img src=".assets/gns3_5.png">
+<img src="assets/gns3_5.png">
 
 Seleccionar la opción 3.  
-<img src=".assets/gns3_6.png">
+<img src="assets/gns3_6.png">
 
 Click en Nuevo (new)  
-<img src=".assets/gns3_7.png">
+<img src="assets/gns3_7.png">
 
 Click en existente  
 Selecciona la imagen `srealmoreno/rae:latest`  
-<img src=".assets/gns3_8.png">
+<img src="assets/gns3_8.png">
 
 Cambia el nombre a 'ubuntu' o 'pc'  
-<img src=".assets/gns3_9.png">
+<img src="assets/gns3_9.png">
 
 Dejas la cantidad de adaptadores que gustes (adaptadores de red)  
-<img src=".assets/gns3_10.png">
+<img src="assets/gns3_10.png">
 
 Comando de inicio lo dejas vacío  
-<img src=".assets/gns3_11.png">
+<img src="assets/gns3_11.png">
 
 Tipo de consola: Telnet ya que es en modo texto  
-<img src=".assets/gns3_12.png">
+<img src="assets/gns3_12.png">
 
 Variables de entorno lo dejas vacío    
-<img src=".assets/gns3_13.png">
+<img src="assets/gns3_13.png">
 
 Ya que se lo hayas añadido  
 Click en editar  
-<img src=".assets/gns3_14.png">
+<img src="assets/gns3_14.png">
 
 Marca la opción de 'Auto start console'  
 Click en 'Browse' para cambiar el icono  
-<img src=".assets/gns3_15.png">
+<img src="assets/gns3_15.png">
 
 Filtras por la palabra 'Computer'  
-<img src=".assets/gns3_16.png">
+<img src="assets/gns3_16.png">
 
 Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto (volúmenes persistentes)  
 ```
@@ -153,7 +153,7 @@ Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto 
 /root/.bash_history
 /root/.bashsrc
 ```
-<img src=".assets/gns3_17.png">
+<img src="assets/gns3_17.png">
 
 GNS3 + Docker está pensado para gastar lo menos recursos posibles. Ya sea memoria Ram y Disco duro.
 **Cada vez que se cierra un contenedor de docker todos los ficheros _eliminan_**  
@@ -169,7 +169,7 @@ Nota importante:
 [leer_más  ](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
 
 Listo, se agrego el icono.  
-<img src=".assets/gns3_18.png">
+<img src="assets/gns3_18.png">
 
 ¡Listo!
 
@@ -178,23 +178,23 @@ Listo, se agrego el icono.
 Para plantilla de router es el mismo procedimiento pero con algunas modificaciones.  
 
 Cambia el nombre  
-<img src=".assets/gns3_19.png">
+<img src="assets/gns3_19.png">
 
 Número de adaptadores  
-<img src=".assets/gns3_20.png">
+<img src="assets/gns3_20.png">
 
 Comando de inicio  
 ```
 bash -c "/etc/init.d/frr start; vtysh; bash"
 ```
-<img src=".assets/gns3_21.png">
+<img src="assets/gns3_21.png">
 De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo Cisco automáticamente  
 
 Cambia la categoría de 'End devices' a 'Router'  
-<img src=".assets/gns3_22.png">
+<img src="assets/gns3_22.png">
 
 Cambia el icono  
-<img src=".assets/gns3_23.png"> 
+<img src="assets/gns3_23.png"> 
 
 y por ultimo se agregan 2 rutas a los volúmenes persistentes  
 
@@ -207,7 +207,7 @@ y por ultimo se agregan 2 rutas a los volúmenes persistentes
 /root/.history_frr
 /etc/frr
 ```
-<img src=".assets/gns3_24.png">
+<img src="assets/gns3_24.png">
 
 ¡Listo!
 
@@ -217,18 +217,18 @@ La plantilla para usar la imagen como switch es similar a la plantilla de Host
 Simplemente clona la plantilla
 
 Cambia el nombre a 'Switch'  
-<img src=".assets/gns3_25.png">
+<img src="assets/gns3_25.png">
 
 
 Cambia la categoría de 'End devices' a 'Switch'  
 Cambia el icono  
 Cambia el número de adaptadores      
-<img src=".assets/gns3_26.png">
+<img src="assets/gns3_26.png">
 
 ¡Listo!
 
 **Topología de prueba**  
-<img src=".assets/gns3_27.png"><img src=".assets/gns3_28.png">
+<img src="assets/gns3_27.png"><img src="assets/gns3_28.png">
 
 Para ver el consumo de los contenedores:
 ```
@@ -236,7 +236,7 @@ docker stats
 ```
 ¡WOW, Cada contenedor consume 4MiB de memoria RAM!  
 
-<img src=".assets/gns3_29.png">
+<img src="assets/gns3_29.png">
 
 * **Tips de GNS3**  
 Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
