@@ -62,7 +62,7 @@ Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones 
 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
-<img align="left" src="/.assets/ejemplo_2.png"> </img>\
+<p><img align="left" src="/.assets/ejemplo_2.png"> </img></p>
 
 <a name="gns3" id="gns3"></a>
 
