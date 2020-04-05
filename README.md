@@ -50,7 +50,7 @@ sudo ./rae_fast.sh -h
 
 Nota: Si no se pasa ningún parametro, se  instalan todos los paquetes dichos.
 
-<img src="/.assets/ejemplo_1.png"/>
+<img align="left" src="/.assets/ejemplo_1.png"/>
 
 Por ejemplo si solo se desea instalar Docker e importar imágenes:
 
@@ -62,7 +62,7 @@ Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones 
 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
-<img src="/.assets/ejemplo_2.png"/>
+<img align="left" src="/.assets/ejemplo_2.png"/>
 
 <a name="gns3" id="gns3"></a>
 
@@ -71,33 +71,33 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 **Configuración inicial de GNS3.**
 
 Seleccionar la opción 2.
-<img src="/.assets/gns3_1.png"/>
+<img align="left" src="/.assets/gns3_1.png"/>
 
 Dejar sin cambios.
-<img src="/.assets/gns3_2.png"/>
+<img align="left" src="/.assets/gns3_2.png"/>
 
 ¡Listo!
-<img src="/.assets/gns3_3.png"/>
-<img src="/.assets/gns3_4.png"/>
+<img align="left" src="/.assets/gns3_3.png"/>
+<img align="left" src="/.assets/gns3_4.png"/>
 
 _**Corrigiendo / Cambiando consola predeterminada.**_
 Ir a Edición -> Preferencias.
 Click en Aplicaciones de consola (Console applications)
 Click en Editar (Edit)
-<img src="/.assets/gns3_console_1.png"/>
+<img align="left" src="/.assets/gns3_console_1.png"/>
 
 Elegir la predeterminada del sistema o la que más te guste.
 **Ubuntu** (gnome) utiliza gnome-terminal
 **Kubuntu** (kde plasma) utliza Konsole
-<img src="/.assets/gns3_console_2.png"/>
+<img align="left" src="/.assets/gns3_console_2.png"/>
 
 Luego Aplicar cambios y listo.
 
 **Agregar imágenes Ubuntu a GNS3.**
 
 Click en Nueva plantilla (new template)
-<img src="/.assets/gns3_5.png"/>
+<img align="left" src="/.assets/gns3_5.png"/>
 
 Selecionar la opción 3.
-<img src="/.assets/gns3_6.png"/>
+<img align="left" src="/.assets/gns3_6.png"/>
 ---
