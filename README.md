@@ -96,7 +96,8 @@ Luego Aplicar cambios y listo.
 
 * **Agregar imágenes Ubuntu a GNS3**
 
-- Plantilla de maquina host
+_Plantilla de maquina host_  
+
 Click en Nueva plantilla (new template)  
 <img src="/.assets/gns3_5.png">  
 
@@ -149,10 +150,11 @@ Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto 
 GNS3 + Docker está pensado para gastar lo menos recursos posibles. Ya sea memoria Ram y Disco duro.
 **Cada vez que se cierra un contenedor de docker todos los ficheros _eliminan_**  
 Estas rutas a ficheros y carpetas quedarán **guardadas** aunque el contenedor se cierre.
-**Si quieres guardar un script hazlo en el directorio _/save/_**
+**Si quieres guardar un script hazlo en el directorio */save/***
 Si quieres que otro fichero o carpeta se guarde, simplemente agrega la ruta **absoluta**.
 
 De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que es muy pesado en Disco.
 
-Nota IMPORTANTE: **JAMÁS agregues todo el sistema de ficheros o _/_ porque puede dañar la maquina física.**
+Nota IMPORTANTE: **JAMÁS agregues todo el sistema de ficheros o */* porque puede dañar la maquina física.**
+
 ---
