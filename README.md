@@ -2,24 +2,24 @@
 ===================================
 
 ### Se explicará:
-1. Uso del script de instalación para:
+- Uso del script de instalación para:
 	* VirtualBox
 	* GNS3
 	* Docker
 	* Netgui
 	* Imáganes Ubuntu elaboradas para el uso de Redes
 
-2. Integración de imágenes Docker a GNS3 para:
+- Integración de imágenes Docker a GNS3 para:
 	* Uso como máquina host
 	* Uso como Router
 	* Uso como Switch
 
 ### Requisitos
-	* Sistema operativo: Ubuntu o derviados 
-	* Conexción a Internet.
-	* apt como gestor de paquetes.
+* Sistema operativo: Ubuntu o derviados 
+* Conexión a Internet.
+* apt como gestor de paquetes.
 
-### Uso del script de instalación
+## Uso del script de instalación
 Hay 2 versiones del script. una lenta pero segura (rae.sh) y otra más rápida pero no tan segura (rae_fast.sh) yo probé ambos scripts en máquinas virtuales. Recomiendo usar rae_fast.sh y si da algún error usa rae.sh
 
 El script te da a escoger que paquetes deseas instalar. Cada paquete es la inicial de su nombre.
@@ -56,8 +56,8 @@ Por ejemplo si solo se desea instalar Docker e importar imágenes:
 sudo ./rae_fast.sh -d -i
 ```
 
-Al finalizar debes de cerrar sesión y notáras que los iconos de las aplicaciones se agregarón.
+Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregarón. [(Docker no es GUI)] (https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
 <img src="/.assets/ejemplo_2.png"/>
 
-
+## Integración de GNS3 con Docker 
