@@ -123,4 +123,15 @@ Tipo de consola: Telnet ya que es en modo texto
 
 Variables de entorno lo dejas vacío  
 <img src="/.assets/gns3_13.png">
+
+Ya que se lo hayas añadido
+Click en editar
+<img src="/.assets/gns3_14.png">
+
+Marca la opción de 'Auto start console'
+Click en 'Browse' para cambiar el icono
+<img src="/.assets/gns3_14.png">
+
+Buscas por la palbra 'Computer'
+<img src="/.assets/gns3_15.png">
 ---
