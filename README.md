@@ -35,8 +35,8 @@ Puedes descargar el script desde la línea de ordenes o desde tu navegador favor
 
 Descargar desde el navegador:  
 Click derecho -> Guardar Como  
-Descargar [rae.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae.sh)  
-Descargar [rae_fast.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh)
+Descargar [rae.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae.sh){:target="_blank" rel="noopener"}  
+Descargar [rae_fast.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh){:target="_blank" rel="noopener"}  
 
 Descargar desde línea de ordenes:
 ```
@@ -70,7 +70,7 @@ sudo ./rae_fast.sh -d -i
 
 Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregaron.
 
-Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
+Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario){:target="_blank" rel="noopener"}
 
 <img src="assets/ejemplo_2.png">
 
@@ -176,7 +176,7 @@ De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que 
 Nota importante: 
 **JAMÁS agregues todo el sistema de ficheros o `/` porque puede dañar la maquina física.**
 
-[leer_más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
+[leer_más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv){:target="_blank" rel="noopener"}  
 <img src="assets/gns3_17.png">
 
 Listo, se agrego el icono.  
@@ -261,29 +261,29 @@ docker stats
 <img src="assets/gns3_29.png">
 
 * **Tips de GNS3**  
-Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
+Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A){:target="_blank" rel="noopener"}
 
 * **DockerFile**  
-Puedes [ver](https://github.com/srealmoreno/rae/blob/master/dockerfile) el archivo [DockerFile](https://raw.githubusercontent.com/srealmoreno/rae/master/dockerfile) que construye la imagen base  
+Puedes [ver](https://github.com/srealmoreno/rae/blob/master/dockerfile){:target="_blank" rel="noopener"} el archivo [DockerFile](https://raw.githubusercontent.com/srealmoreno/rae/master/dockerfile){:target="_blank" rel="noopener"} que construye la imagen base  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
 Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
-Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   
+Ver [video](https://youtu.be/a8sf54TCRN4){:target="_blank" rel="noopener"} tutorial construir una imagen   
 
 ## Wiki  
 - Documentación oficial de [Docker](https://docs.docker.com/)  
-<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/"> Guía de instalación de Docker</a>  
+<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank"> Guía de instalación de Docker</a>  
 - Documentación oficial de [Gns3](https://docs.gns3.com/)  
-<a href="https://docs.gns3.com/1QXVIihk7dsOL7Xr7Bmz4zRzTsJ02wklfImGuHwTlaA4/"> Guía de instalación de Gns3</a>  
+<a href="https://docs.gns3.com/1QXVIihk7dsOL7Xr7Bmz4zRzTsJ02wklfImGuHwTlaA4/" target="_blank"> Guía de instalación de Gns3</a>  
 - Documentación oficial de [VirtualBox](https://www.virtualbox.org/wiki/Documentation)  
-<a href="https://www.virtualbox.org/wiki/Linux_Downloads"> Guía de instalación de VirtualBox</a>  
+<a href="https://www.virtualbox.org/wiki/Linux_Downloads" target="_blank"> Guía de instalación de VirtualBox</a>  
 
-- [Netgui](http://mobiquo.gsyc.es/netgui/)
+- [Netgui](http://mobiquo.gsyc.es/netgui/){:target="_blank" rel="noopener"}
 
 ## Autores  
 
-* **Salvador Real** - [srealmoreno](https://github.com/srealmoreno)
+* **Salvador Real** - [srealmoreno](https://github.com/srealmoreno){:target="_blank" rel="noopener"}
 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/srealmoreno/rae/contributors) quíenes han participado en este proyecto.
+También puedes mirar la lista de todos los [contribuyentes](https://github.com/srealmoreno/rae/contributors){:target="_blank" rel="noopener"} quíenes han participado en este proyecto.
 
 ## Licencia
 
