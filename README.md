@@ -266,15 +266,15 @@ Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UC
 * **DockerFile**  
 Puedes [ver](https://github.com/srealmoreno/rae/blob/master/dockerfile){:target="_blank" rel="noopener"} el archivo [DockerFile](https://raw.githubusercontent.com/srealmoreno/rae/master/dockerfile){:target="_blank" rel="noopener"} que construye la imagen base  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
-Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
+Leer [tutorial](https://docs.docker.com/get-started/part2/){:target="_blank" rel="noopener"} oficial de Docker para construir una imagen  
 Ver [video](https://youtu.be/a8sf54TCRN4){:target="_blank" rel="noopener"} tutorial construir una imagen   
 
 ## Wiki  
-- Documentación oficial de [Docker](https://docs.docker.com/)  
+- Documentación oficial de [Docker](https://docs.docker.com/){:target="_blank" rel="noopener"}  
 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank"> Guía de instalación de Docker</a>  
-- Documentación oficial de [Gns3](https://docs.gns3.com/)  
+- Documentación oficial de [Gns3](https://docs.gns3.com/){:target="_blank" rel="noopener"}  
 <a href="https://docs.gns3.com/1QXVIihk7dsOL7Xr7Bmz4zRzTsJ02wklfImGuHwTlaA4/" target="_blank"> Guía de instalación de Gns3</a>  
-- Documentación oficial de [VirtualBox](https://www.virtualbox.org/wiki/Documentation)  
+- Documentación oficial de [VirtualBox](https://www.virtualbox.org/wiki/Documentation){:target="_blank" rel="noopener"}  
 <a href="https://www.virtualbox.org/wiki/Linux_Downloads" target="_blank"> Guía de instalación de VirtualBox</a>  
 
 - [Netgui](http://mobiquo.gsyc.es/netgui/){:target="_blank" rel="noopener"}
@@ -287,7 +287,7 @@ También puedes mirar la lista de todos los [contribuyentes](https://github.com/
 
 ## Licencia
 
-Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el archivo [LICENSE.md](LICENSE.md) para detalles
+Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el archivo [LICENSE.md](LICENSE.md){:target="_blank" rel="noopener"} para detalles
 
 ---
 Redes de área extensa 2020 - Salvador real
