@@ -58,7 +58,7 @@ Por ejemplo si solo se desea instalar Docker e importar imágenes:
 sudo ./rae_fast.sh -d -i
 ```
 
-Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregarón.
+Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregaron.
 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
@@ -81,7 +81,7 @@ Dejar sin cambios.
 <img src="/.assets/gns3_4.png">  
 
 
-* **Corrigiendo / Cambiando consola predeterminada**
+* **Corrigiendo / Cambiando consola predeterminada**  
 Ir a Edición -> Preferencias.  
 Click en Aplicaciones de consola (Console applications)  
 Click en Editar (Edit)  
@@ -102,4 +102,13 @@ Click en Nueva plantilla (new template)
 Selecionar la opción 3.  
 <img src="/.assets/gns3_6.png">  
 
+Click en Nuevo (new)
+<img src="/.assets/gns3_7.png">  
+
+Click en existente  
+Selecciona la imagen `srealmoreno/rae:latest`
+<img src="/.assets/gns3_8.png">  
+
+Cambia el nombre a 'ubuntu' o 'pc'
+<img src="/.assets/gns3_9.png">  
 ---
