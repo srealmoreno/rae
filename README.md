@@ -220,7 +220,7 @@ Cambia el número de adaptadores
 ¡Listo!
 
 **Topología de prueba**
-<img align="left" src="/.assets/gns3_27.png">  
-<img align="right" src="/.assets/gns3_28.png">  
+<img src="/.assets/gns3_27.png">  
+<img src="/.assets/gns3_28.png">  
 
 ---
