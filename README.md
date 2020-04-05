@@ -7,7 +7,7 @@
 	* GNS3
 	* Docker
 	* Netgui
-	* Imáganes Ubuntu elaboradas para el uso de Redes
+	* Imágenes Ubuntu elaboradas para el uso de Redes
 
 - <a href="#gns3"> Integración de imágenes Docker a GNS3 para: </a>
 	* Uso como máquina host
@@ -15,7 +15,7 @@
 	* Uso como Switch
 
 ### Requisitos
-* Sistema operativo: Ubuntu o derviados 
+* Sistema operativo: Ubuntu o derivados 
 * Conexión a Internet.
 * apt como gestor de paquetes.
 
@@ -48,7 +48,7 @@ Para ver ayuda -h (help en inglés)
 sudo ./rae_fast.sh -h
 ```
 
-Nota: Si no se pasa ningún parametro, se  instalan todos los paquetes dichos.
+Nota: Si no se pasa ningún parámetro, se  instalan todos los paquetes dichos.
 
 <img  src=".assets/ejemplo_1.png"> </img>
 
@@ -89,7 +89,7 @@ Click en Editar (Edit)
 
 Elegir la predeterminada del sistema o la que más te guste.  
 **Ubuntu** (gnome) utiliza gnome-terminal  
-**Kubuntu** (kde plasma) utliza Konsole  
+**Kubuntu** (kde plasma) utiliza Konsole  
 <img src=".assets/gns3_console_2.png">
 
 Luego Aplicar cambios y listo.  
@@ -102,7 +102,7 @@ Click en Nueva plantilla (new template)
 
 <img src=".assets/gns3_5.png">
 
-Selecionar la opción 3.  
+Seleccionar la opción 3.  
 <img src=".assets/gns3_6.png">
 
 Click en Nuevo (new)  
@@ -138,7 +138,7 @@ Click en 'Browse' para cambiar el icono
 Filtras por la palabra 'Computer'  
 <img src=".assets/gns3_16.png">
 
-Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto (volumenes persistentes)  
+Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto (volúmenes persistentes)  
 ```
 /save/
 /etc/network
@@ -181,7 +181,7 @@ Comando de inicio
 bash -c "/etc/init.d/frr start; vtysh; bash"
 ```
 <img src=".assets/gns3_21.png">
-De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo Cisco automaticamente  
+De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo Cisco automáticamente  
 
 Cambia la categoría de 'End devices' a 'Router'  
 <img src=".assets/gns3_22.png">
@@ -189,7 +189,7 @@ Cambia la categoría de 'End devices' a 'Router'
 Cambia el icono  
 <img src=".assets/gns3_23.png"> 
 
-y por ultimo se agregan 2 rutas a los volumenes persistentes  
+y por ultimo se agregan 2 rutas a los volúmenes persistentes  
 
 ```
 /save/
@@ -224,16 +224,16 @@ Cambia el número de adaptadores
 <img src=".assets/gns3_27.png">
 <img src=".assets/gns3_28.png">
 
-Para ver el cosumo de los contenedores:
+Para ver el consumo de los contenedores:
 ```
 docker stats
 ```
-¡WOW, Cada contenedor cosume 4MiB de memoria RAM!  
+¡WOW, Cada contenedor consume 4MiB de memoria RAM!  
 
 <img src=".assets/gns3_29.png">
 
 * **Tips de GNS3**  
-Video de tips de GNS3 proximamante / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
+Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
 
 * **DockerFile**  
 Puedes ver el archivo docker file que construye la imagen base  
@@ -243,4 +243,4 @@ Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.
 [Video_Tutorial](https://youtu.be/a8sf54TCRN4)  
 
 ---
-Redes de Area extensa 2020 - Salvador real
+Redes de área extensa 2020 - Salvador real
