@@ -16,10 +16,10 @@
 
 ### Requisitos
 * Sistema operativo: Ubuntu o derivados 
--	Focal 20.0 (LTS)
--	Eoan 19.10
--	Bionic 18.04 (LTS)
--	Xenial 16.04 (LTS)
+	- Focal 20.0 (LTS)
+	- Eoan 19.10
+	- Bionic 18.04 (LTS)
+	- Xenial 16.04 (LTS)
 * Conexión a Internet.
 * apt como gestor de paquetes.
 
