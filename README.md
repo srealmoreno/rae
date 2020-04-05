@@ -62,7 +62,7 @@ Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones 
 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
-<img align="left" src="/.assets/ejemplo_2.png"> </img>
+<img align="left" src="/.assets/ejemplo_2.png"> </img>\
 
 <a name="gns3" id="gns3"></a>
 
@@ -71,13 +71,13 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 **Configuración inicial de GNS3.**
 
 Seleccionar la opción 2.  
-<img align="left" src="/.assets/gns3_1.png"> </img>  
+<img align="left" src="/.assets/gns3_1.png"> </img>\
 
 Dejar sin cambios.
-<img align="left" src="/.assets/gns3_2.png"> </img>  
+<img align="left" src="/.assets/gns3_2.png"> </img>\
 
 ¡Listo!
-<img align="left" src="/.assets/gns3_3.png"> </img>  
+<img align="left" src="/.assets/gns3_3.png"> </img>\
 <img align="left" src="/.assets/gns3_4.png"> </img>  
 
 _**Corrigiendo / Cambiando consola predeterminada.**_
