@@ -165,9 +165,7 @@ Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto 
 /root/.bash_history
 /root/.bashsrc
 ```
-<img src="assets/gns3_17.png">
-
-GNS3 + Docker está pensado para gastar lo menos recursos posibles. Ya sea memoria Ram y Disco duro.
+GNS3 + Docker está pensado para gastar los menos recursos posibles. Ya sea memoria Ram y Disco duro.
 **Cada vez que se cierra un contenedor de docker todos los ficheros _eliminan_**  
 Estas rutas a ficheros y carpetas quedarán **guardadas** aunque el contenedor se cierre.
 **Si quieres guardar un script hazlo en el directorio `/save/`**
@@ -178,7 +176,8 @@ De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que 
 Nota importante: 
 **JAMÁS agregues todo el sistema de ficheros o `/` porque puede dañar la maquina física.**
 
-[leer_más  ](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
+[leer_más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
+<img src="assets/gns3_17.png">
 
 Listo, se agrego el icono.  
 <img src="assets/gns3_18.png">
@@ -201,8 +200,9 @@ Comando de inicio
 ```
 bash -c "/etc/init.d/frr start; vtysh; bash"
 ```
-<img src="assets/gns3_21.png">
 De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo Cisco automáticamente  
+
+<img src="assets/gns3_21.png">
 
 Cambia la categoría de 'End devices' a 'Router'  
 <img src="assets/gns3_22.png">
