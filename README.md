@@ -158,9 +158,9 @@ De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que 
 Nota importante: 
 **JAMÁS agregues todo el sistema de ficheros o `/` porque puede dañar la maquina física.**
 
-[Ver_más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
+[leer_más  ](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
 
-Listo, se agrego el icono.
+Listo, se agrego el icono.  
 <img src="/.assets/gns3_18.png">  
 
 *Plantilla de router*  
@@ -174,10 +174,28 @@ Número de adaptadores
 <img src="/.assets/gns3_20.png">  
 
 Comando de inicio  
-'''
+```
 bash -c "/etc/init.d/frr start; vtysh; bash"
-'''
+```
 <img src="/.assets/gns3_21.png">  
-De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo cisco automaticamente  
+De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo Cisco automaticamente  
+
+Cambia la categoría de 'End devices' a 'Router'
+<img src="/.assets/gns3_22.png">
+
+Cambia el icono
+<img src="/.assets/gns3_23.png">  
+
+y por ultimo se agregan 2 rutas a los volumenes persistentes  
+```
+/save/
+/etc/network
+/etc/hosts
+/root/.bash_history
+/root/.bashsrc
+/root/.history_frr
+/etc/frr
+```
+<img src="/.assets/gns3_24.png">  
 
 ---
