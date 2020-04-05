@@ -71,21 +71,32 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 #### Configuración inicial de GNS3.
 
 <img src="/.assets/gns3_1.png"/>
-Seleccionar la opción 2.
+	Seleccionar la opción 2.
 
 <img src="/.assets/gns3_2.png"/>
-Dejar sin cambios.
+	Dejar sin cambios.
 
 <img src="/.assets/gns3_3.png"/>
 <img src="/.assets/gns3_4.png"/>
-¡Listo!
+	¡Listo!
+
+### Corrigiendo / Cambiando consola predeterminada.
+	Ir a Edición -> Preferencias.
+<img src="/.assets/gns3_console_1.png"/>
+	Click en Aplicaciones de consola (Console applications)
+	Click en Editar (Edit)
+
+<img src="/.assets/gns3_console_2.png"/>
+	Elegir la predeterminada del sistema o la que más te guste.
+	Ubuntu (gnome) utiliza gnome-terminal
+	Kubuntu (kde plasma) utliza Konsole
 
 #### Agregar imágenes Ubuntu a GNS3.
 
 <img src="/.assets/gns3_5.png"/>
-Click en Nueva plantilla (new template)
+	Click en Nueva plantilla (new template)
 
 <img src="/.assets/gns3_6.png"/>
-Selecionar la opción 3.
+	Selecionar la opción 3.
 
 
