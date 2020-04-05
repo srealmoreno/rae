@@ -219,8 +219,15 @@ Cambia el número de adaptadores
 
 ¡Listo!
 
-**Topología de prueba**
+**Topología de prueba**  
 <img src="/.assets/gns3_27.png">  
 <img src="/.assets/gns3_28.png">  
+
+Para ver el cosumo de los contenedores:
+```
+docker stats
+```
+¡WOW, Cada contenedor cosume 4MiB de memoria RAM!
+<img src="/.assets/gns3_29.png">  
 
 ---
