@@ -2,14 +2,14 @@
 ===================================
 
 ### Se explicará:
-- Uso del script de instalación para:
+1. Uso del script de instalación para:
 * VirtualBox
 * GNS3
 * Docker
 * Netgui
 * Imáganes Ubuntu elaboradas para el uso de Redes
 
-- Integración de imágenes Docker a GNS3 para:
+2. Integración de imágenes Docker a GNS3 para:
 * Uso como máquina host
 * Uso como Router
 * Uso como Switch
@@ -27,27 +27,28 @@ El script te da a escoger que paquetes deseas instalar. Cada paquete es la inici
 Descarga:
 Puedes descargar el script desde la línea de ordenes o desde tu navegador favorito.
 
-`` `
+```
 wget https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh
-`` `
+```
 
 Dar permisos de ejecución
-`` `
+```
 chmod +x rae_fast.sh
-`` `
+```
 
 Ejecución del script
-`` `
+```
 sudo ./rae_fast.sh
-`` `
+```
 
 Para ver ayuda -h (help en inglés)
-`` `
+```
 sudo ./rae_fast.sh -h
-`` `
+```
+
 Nota: Si no se pasa ningún parametro, se  instalan todos los paquetes dichos.
 
-<img src="./assets/ejemplo_1.png" width="100"/>
+<img src="/.assets/ejemplo_1.png" width="100"/>
 
 
 
