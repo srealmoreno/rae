@@ -70,23 +70,26 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 
 **Configuración inicial de GNS3.**
 
-## Consejos de formato avanzado
+<img align="right" src="/.assets/gns3_1.png">
+Seleccionar la opción 2.
 
-### alineación `left`
 
-<img align = "left" width = "100" height = "100" src = "http://www.fillmurray.com/100/100">
 
-Este es el código que necesita para alinear las imágenes a la izquierda:
 
-```
-<img align = "left" width = "100" height = "100" src = "http://www.fillmurray.com/100/100">
-```
 
-<p height="200px">
-	<img align="right" src="/.assets/gns3_1.png">
-	Seleccionar la opción 2.
-</p>
 
+
+
+
+
+
+
+
+
+
+
+
+ṕ
 <img align="left"  src="/.assets/gns3_2.png">
 
 ```
