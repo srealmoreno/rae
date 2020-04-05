@@ -89,6 +89,8 @@ Seleccionar la opción 2.
 
 
 
+
+
 ṕ
 <img align="left"  src="/.assets/gns3_2.png">
 
