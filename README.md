@@ -167,14 +167,17 @@ Listo, se agrego el icono.
 
 Para plantilla de router es el mismo procedimiento pero con algunas modificaciones.  
 
-Cambia el nombre
+Cambia el nombre  
 <img src="/.assets/gns3_19.png">  
 
 Número de adaptadores
 <img src="/.assets/gns3_20.png">  
 
 Comando de inicio  
-`bash -c "/etc/init.d/frr start; vtysh; bash"`  
+'''
+bash -c "/etc/init.d/frr start; vtysh; bash"
+'''
 <img src="/.assets/gns3_21.png">  
-De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo cisco automaticamente
+De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo cisco automaticamente  
+
 ---
