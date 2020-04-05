@@ -39,22 +39,22 @@ Descargar [rae.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae.
 Descargar [rae_fast.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh){:target="_blank" rel="noopener"}  
 
 Descargar desde línea de ordenes:
-```
+```bash
 wget https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh
 ```
 
 Dar permisos de ejecución
-```
+```bash
 chmod +x rae_fast.sh
 ```
 
 Ejecución del script
-```
+```bash
 sudo ./rae_fast.sh
 ```
 
 Para ver ayuda -h (help en inglés)
-```
+```bash
 sudo ./rae_fast.sh -h
 ```
 
@@ -64,7 +64,7 @@ Nota: Si no se pasa ningún parámetro, se  instalan todos los paquetes dichos.
 
 Por ejemplo si solo se desea instalar Docker e importar imágenes:
 
-```
+```bash
 sudo ./rae_fast.sh -d -i
 ```
 
@@ -197,7 +197,7 @@ Número de adaptadores
 <img src="assets/gns3_20.png">
 
 Comando de inicio  
-```
+```bash
 bash -c "/etc/init.d/frr start; vtysh; bash"
 ```
 De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo Cisco automáticamente  
@@ -253,7 +253,7 @@ Cambia el número de adaptadores
 <img src="assets/gns3_27.png"><img src="assets/gns3_28.png">
 
 Para ver el consumo de los contenedores:
-```
+```bash
 docker stats
 ```
 ¡WOW, Cada contenedor consume 4MiB de memoria RAM!  
