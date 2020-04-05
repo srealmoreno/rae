@@ -128,20 +128,21 @@ Ya que se lo hayas añadido
 Click en editar
 <img src="/.assets/gns3_14.png">
 
-Marca la opción de 'Auto start console'
-Click en 'Browse' para cambiar el icono
-<img src="/.assets/gns3_15.png">
+Marca la opción de 'Auto start console'  
+Click en 'Browse' para cambiar el icono  
+<img src="/.assets/gns3_15.png">  
 
-Buscas por la palbra 'Computer'
-<img src="/.assets/gns3_16.png">
+Filtras por la palabra 'Computer'    
+<img src="/.assets/gns3_16.png">  
 
-Ahora ve a avanzado y agrega las siguientes líneas
-`/save/
+Ahora ve a avanzado y agrega las siguientes líneas  
+```
+/save/
 /etc/network
 /etc/hosts
 /root/.bash_history
 /root/.bashsrc
-`
-<img src="/.assets/gns3_17.png">
+```
+<img src="/.assets/gns3_17.png">  
 
 ---
