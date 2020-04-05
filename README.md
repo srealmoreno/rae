@@ -180,13 +180,14 @@ bash -c "/etc/init.d/frr start; vtysh; bash"
 <img src="/.assets/gns3_21.png">  
 De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo Cisco automaticamente  
 
-Cambia la categoría de 'End devices' a 'Router'
-<img src="/.assets/gns3_22.png">
+Cambia la categoría de 'End devices' a 'Router'  
+<img src="/.assets/gns3_22.png">  
 
-Cambia el icono
-<img src="/.assets/gns3_23.png">  
+Cambia el icono  
+<img src="/.assets/gns3_23.png">   
 
 y por ultimo se agregan 2 rutas a los volumenes persistentes  
+
 ```
 /save/
 /etc/network
@@ -197,5 +198,19 @@ y por ultimo se agregan 2 rutas a los volumenes persistentes
 /etc/frr
 ```
 <img src="/.assets/gns3_24.png">  
+
+*Plantilla de Switch*
+
+La plantilla para usar la imagen como switch es similar a la plantilla de Host
+Simplemente clona la plantilla
+
+Cambia el nombre a 'Switch'  
+<img src="/.assets/gns3_25.png">    
+
+
+Cambia la categoría de 'End devices' a 'Switch'  
+Cambia el icono  
+Cambia el número de adaptadores      
+<img src="/.assets/gns3_26.png">    
 
 ---
