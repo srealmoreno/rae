@@ -80,14 +80,22 @@ Seleccionar la opción 2.
 <br/>
 <br/>
 <br/>
-33
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <img align="left"  src="/.assets/gns3_2.png">
-
-```
 Dejar sin cambios.
-```
-
-
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <img align="left" src="/.assets/gns3_3.png">
 <img align="left" src="/.assets/gns3_4.png">
 ```
