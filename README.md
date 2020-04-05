@@ -20,6 +20,7 @@
 * apt como gestor de paquetes.
 
 <a name="script" id="script"></a>
+
 ## Uso del script de instalación
 Hay 2 versiones del script. una lenta pero segura (rae.sh) y otra más rápida pero no tan segura (rae_fast.sh) yo probé ambos scripts en máquinas virtuales. Recomiendo usar rae_fast.sh y si da algún error usa rae.sh
 
@@ -61,10 +62,25 @@ Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones 
 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
-[GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
-[video](https://youtu.be/vjnOIE-CwMU)
-
 <img src="/.assets/ejemplo_2.png"/>
 
 <a name="gns3" id="gns3"></a>
-## Integración de GNS3 con Docker 
+
+## Integración de GNS3 con Docker
+
+* Configuración inicial de GNS3.
+
+<img src="/.assets/gns3_1.png"/>
+
+Seleccionar la opción 2.
+
+<img src="/.assets/gns3_2.png"/>
+
+Dejar sin cambios.
+
+<img src="/.assets/gns3_3.png"/>
+
+
+<img src="/.assets/gns3_4.png"/>
+
+¡Listo!.
