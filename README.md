@@ -71,7 +71,7 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 **Configuración inicial de GNS3.**
 
 
-Seleccionar la opción 2.  <img src="/.assets/gns3_1.png"> </img>
+Seleccionar la opción 2. <img float="left" src="/.assets/gns3_1.png"> </img>
 
 <img  src="/.assets/gns3_2.png"> </img> Dejar sin cambios.
 
