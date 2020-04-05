@@ -71,14 +71,13 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 **Configuración inicial de GNS3.**
 
 Seleccionar la opción 2.  
-<img align="left" src="/.assets/gns3_1.png"> </img>\
+<p><img align="left" src="/.assets/gns3_1.png"> </img></p>
 
 Dejar sin cambios.
-<img align="left" src="/.assets/gns3_2.png"> </img>\
-
+<p><img align="left" src="/.assets/gns3_2.png"> </img></p>
 ¡Listo!
-<img align="left" src="/.assets/gns3_3.png"> </img>\
-<img align="left" src="/.assets/gns3_4.png"> </img>  
+<p><img align="left" src="/.assets/gns3_3.png"> </img></p>
+<p><img align="left" src="/.assets/gns3_4.png"> </img></p>
 
 _**Corrigiendo / Cambiando consola predeterminada.**_
 Ir a Edición -> Preferencias.  
