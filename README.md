@@ -231,14 +231,14 @@ docker stats
 <img src="/.assets/gns3_29.png">  
 
 * **Tips de GNS3**
-Video de tips de GNS3 proximamante / [video] (https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
+Video de tips de GNS3 proximamante / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
 
 * **DockerFile**
 Puedes ver el archivo docker file que construye la imagen base  
-[DockerFile] (https://github.com/srealmoreno/rae/blob/master/dockerfile)  
+[DockerFile](https://github.com/srealmoreno/rae/blob/master/dockerfile)  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
-[Tutorial] (https://docs.docker.com/get-started/part2/)  
-[Video_Tutorial] (https://youtu.be/a8sf54TCRN4)  
+[Tutorial](https://docs.docker.com/get-started/part2/)  
+[Video_Tutorial](https://youtu.be/a8sf54TCRN4)  
 
 ---
 Redes de Area extensa 2020 - Salvador real
