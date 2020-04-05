@@ -83,15 +83,21 @@ Este es el código que necesita para alinear las imágenes a la izquierda:
 ```
 
 <img align="right" src="/.assets/gns3_1.png">
+```
 Seleccionar la opción 2.
+```
 
 <img align="left"  src="/.assets/gns3_2.png">
+```
 Dejar sin cambios.
+```
 
 
 <img align="left" src="/.assets/gns3_3.png">
 <img align="left" src="/.assets/gns3_4.png">
+```
 ¡Listo!
+```
 
 
 _**Corrigiendo / Cambiando consola predeterminada.**_
