@@ -2,7 +2,7 @@
 ===================================
 
 ### Se explicará:
-- Uso del script de instalación para:
+- <a href="#script"> Uso del script de instalación para: </a>
 	* VirtualBox
 	* GNS3
 	* Docker
@@ -19,6 +19,7 @@
 * Conexión a Internet.
 * apt como gestor de paquetes.
 
+<a name="script" id="script"></a>
 ## Uso del script de instalación
 Hay 2 versiones del script. una lenta pero segura (rae.sh) y otra más rápida pero no tan segura (rae_fast.sh) yo probé ambos scripts en máquinas virtuales. Recomiendo usar rae_fast.sh y si da algún error usa rae.sh
 
@@ -56,7 +57,7 @@ Por ejemplo si solo se desea instalar Docker e importar imágenes:
 sudo ./rae_fast.sh -d -i
 ```
 
-Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregarón. [(Docker no es GUI)] (https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
+Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregarón. (Docker no es [GUI]) (https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
 <img src="/.assets/ejemplo_2.png"/>
 
