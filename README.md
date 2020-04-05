@@ -72,26 +72,15 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 
 <img align="right" src="/.assets/gns3_1.png">
 Seleccionar la opción 2.
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-l
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+33
 <img align="left"  src="/.assets/gns3_2.png">
 
 ```
