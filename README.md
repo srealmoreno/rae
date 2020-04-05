@@ -9,7 +9,7 @@
 	* Netgui
 	* Imáganes Ubuntu elaboradas para el uso de Redes
 
-- Integración de imágenes Docker a GNS3 para:
+- <a href="#gns3"> Integración de imágenes Docker a GNS3 para: </a>
 	* Uso como máquina host
 	* Uso como Router
 	* Uso como Switch
@@ -57,8 +57,9 @@ Por ejemplo si solo se desea instalar Docker e importar imágenes:
 sudo ./rae_fast.sh -d -i
 ```
 
-Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregarón. (Docker no es [GUI]) (https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
+Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregarón. (Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario))
 
 <img src="/.assets/ejemplo_2.png"/>
 
+<a name="gns3" id="gns3"></a>
 ## Integración de GNS3 con Docker 
