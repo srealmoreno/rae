@@ -163,6 +163,8 @@ Nota importante:
 Listo, se agrego el icono.  
 <img src="/.assets/gns3_18.png">  
 
+¡Listo!
+
 *Plantilla de router*  
 
 Para plantilla de router es el mismo procedimiento pero con algunas modificaciones.  
@@ -199,6 +201,8 @@ y por ultimo se agregan 2 rutas a los volumenes persistentes
 ```
 <img src="/.assets/gns3_24.png">  
 
+¡Listo!
+
 *Plantilla de Switch*
 
 La plantilla para usar la imagen como switch es similar a la plantilla de Host
@@ -212,5 +216,11 @@ Cambia la categoría de 'End devices' a 'Switch'
 Cambia el icono  
 Cambia el número de adaptadores      
 <img src="/.assets/gns3_26.png">    
+
+¡Listo!
+
+**Topología de prueba**
+<img align="left" src="/.assets/gns3_27.png">  
+<img align="right" src="/.assets/gns3_28.png">  
 
 ---
