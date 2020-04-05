@@ -149,6 +149,7 @@ Click en 'Browse' para cambiar el icono
 Filtras por la palabra 'Computer'  
 <img src="assets/gns3_16.png">
 
+**Volumen persistentes**
 <a name="volumen_persistente" id="volumen_persistente"></a>
 
 Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto (volúmenes persistentes)  
