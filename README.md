@@ -149,8 +149,8 @@ Click en 'Browse' para cambiar el icono
 Filtras por la palabra 'Computer'  
 <img src="assets/gns3_16.png">
 
-**Volumen persistentes**
-<a name="volumen_persistente" id="volumen_persistente"></a>
+**Volúmenes persistentes**
+<a name="volumen_persistente_host" id="volumen_persistente_host"></a>
 
 Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto (volúmenes persistentes)  
 ```
@@ -204,6 +204,8 @@ Cambia la categoría de 'End devices' a 'Router'
 
 Cambia el icono  
 <img src="assets/gns3_23.png"> 
+
+<a name="volumen_persistente_router" id="volumen_persistente_router"></a>
 
 y por ultimo se agregan 2 rutas a los volúmenes persistentes  
 
