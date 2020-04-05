@@ -29,6 +29,10 @@ El script te da a escoger que paquetes deseas instalar. Cada paquete es la inici
 Descarga:
 Puedes descargar el script desde la línea de ordenes o desde tu navegador favorito.
 
+Descargar [rae.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae.sh)  
+Descargar [rae_fast.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh)
+
+Click derecho -> Guardar Como  
 ```
 wget https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh
 ```
@@ -77,8 +81,7 @@ Dejar sin cambios.
 <img src=".assets/gns3_2.png">
 
 ¡Listo!  
-<img src=".assets/gns3_3.png">
-<img src=".assets/gns3_4.png">
+<img src=".assets/gns3_3.png"><img src=".assets/gns3_4.png">
 
 
 * **Corrigiendo / Cambiando consola predeterminada**  
@@ -221,8 +224,7 @@ Cambia el número de adaptadores
 ¡Listo!
 
 **Topología de prueba**  
-<img src=".assets/gns3_27.png">
-<img src=".assets/gns3_28.png">
+<img src=".assets/gns3_27.png"><img src=".assets/gns3_28.png">
 
 Para ver el consumo de los contenedores:
 ```
