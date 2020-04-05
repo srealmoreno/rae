@@ -68,19 +68,24 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 
 ## Integración de GNS3 con Docker
 
-* Configuración inicial de GNS3.
+#### Configuración inicial de GNS3.
 
 <img src="/.assets/gns3_1.png"/>
-
 Seleccionar la opción 2.
 
 <img src="/.assets/gns3_2.png"/>
-
 Dejar sin cambios.
 
 <img src="/.assets/gns3_3.png"/>
-
-
 <img src="/.assets/gns3_4.png"/>
+¡Listo!
 
-¡Listo!.
+#### Agregar imágenes Ubuntu a GNS3.
+
+<img src="/.assets/gns3_5.png"/>
+Click en Nueva plantilla (new template)
+
+<img src="/.assets/gns3_6.png"/>
+Selecionar la opción 3.
+
+
