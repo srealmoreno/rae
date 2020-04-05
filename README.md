@@ -59,6 +59,8 @@ sudo ./rae_fast.sh -d -i
 
 Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregarón. Docker no es [GUI] (https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
+[video](https://youtu.be/vjnOIE-CwMU)
+
 <img src="/.assets/ejemplo_2.png"/>
 
 <a name="gns3" id="gns3"></a>
