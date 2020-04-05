@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+title: Manual de uso
+description: Como usar el scirpt de instalación e integrar GNS3 con Docker
+show_downloads: True
