@@ -39,8 +39,8 @@ Puedes descargar el script desde la línea de ordenes o desde tu navegador favor
 
 Descargar desde el navegador:  
 Click derecho -> Guardar Como  
-Descargar [rae.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae.sh)  
-Descargar [rae_fast.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh)  
+Descargar [rae.sh](rae.sh)  
+Descargar [rae_fast.sh](rae_fast.sh)  
 
 Descargar desde línea de ordenes:
 ```bash
