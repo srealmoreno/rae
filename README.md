@@ -91,7 +91,7 @@ Dejar sin cambios.
 <img src="assets/gns3_2.png">
 
 ¡Listo!  
-<img src="assets/gns3_3.png"><img src="assets/gns3_4.png">
+<img src="assets/gns3_3.png" height="400px"><img src="assets/gns3_4.png" height="400px">
 
 <a name="consola" id="consola"></a>
 
@@ -166,8 +166,7 @@ Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto 
 /etc/hosts
 /etc/default
 /etc/dhcp
-/root/.bash_history
-/root/.bashsrc
+/root/
 ```
 GNS3 + Docker está pensado para gastar los menos recursos posibles. Ya sea memoria Ram y Disco duro.
 **Cada vez que se cierra un contenedor de docker todos los ficheros _eliminan_**  
@@ -216,7 +215,7 @@ Cambia el icono
 
 <a name="volumen_persistente_router" id="volumen_persistente_router"></a>
 
-y por ultimo se agregan 2 rutas a los volúmenes persistentes  
+y por ultimo se agregan los volúmenes persistentes  
 
 ```
 /save/
@@ -225,10 +224,8 @@ y por ultimo se agregan 2 rutas a los volúmenes persistentes
 /etc/hosts
 /etc/default
 /etc/dhcp
-/root/.bash_history
-/root/.bashsrc
-/root/.history_frr
 /etc/frr
+/root/
 ```
 <img src="assets/gns3_24.png">
 
@@ -254,7 +251,7 @@ Cambia el número de adaptadores
 ¡Listo!
 
 **Topología de prueba**  
-<img src="assets/gns3_27.png"><img src="assets/gns3_28.png">
+<img src="assets/gns3_27.png"><img src="assets/gns3_28.png" height="330px">
 
 Para ver el consumo de los contenedores:
 ```bash
@@ -302,4 +299,6 @@ Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el a
 
 ---
 Redes de área extensa 2020 - Salvador real   
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/UNAN.png" height="50px" align="right">
+
 <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE." target="_blank"> <img src="https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail"></a><a href="https://facebook.com/srealmoreno" target="_blank"> <img src="https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook"></a><a href="https://github.com/srealmoreno/" target="_blank"> <img src="https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social"></a>
