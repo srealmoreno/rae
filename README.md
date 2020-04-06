@@ -1,3 +1,12 @@
+
+<img src="https://img.shields.io/badge/%20-Bash-grey">
+<img src="https://img.shields.io/badge/%20-Docker-blue">
+<img src="https://img.shields.io/badge/%20-GNS3-green">
+<img src="https://img.shields.io/badge/%20-Netgui-lightgrey">
+<img src="https://img.shields.io/badge/%20-VirtalBox-lightblue">
+<img src="https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github">
+
+
 # Manual de Uso
 ===================================
 
@@ -35,8 +44,8 @@ Puedes descargar el script desde la línea de ordenes o desde tu navegador favor
 
 Descargar desde el navegador:  
 Click derecho -> Guardar Como  
-Descargar [rae.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae.sh){:target="_blank" rel="noopener"}  
-Descargar [rae_fast.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh){:target="_blank" rel="noopener"}  
+Descargar [rae.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae.sh)  
+Descargar [rae_fast.sh](https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh)  
 
 Descargar desde línea de ordenes:
 ```bash
@@ -70,7 +79,7 @@ sudo ./rae_fast.sh -d -i
 
 Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregaron.
 
-Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario){:target="_blank" rel="noopener"}
+Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
 <img src="assets/ejemplo_2.png">
 
@@ -176,7 +185,7 @@ De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que 
 Nota importante: 
 **JAMÁS agregues todo el sistema de ficheros o `/` porque puede dañar la maquina física.**
 
-[leer_más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv){:target="_blank" rel="noopener"}  
+[leer_más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
 <img src="assets/gns3_17.png">
 
 Listo, se agrego el icono.  
@@ -261,33 +270,34 @@ docker stats
 <img src="assets/gns3_29.png">
 
 * **Tips de GNS3**  
-Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A){:target="_blank" rel="noopener"}
+Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
 
 * **DockerFile**  
-Puedes [ver](https://github.com/srealmoreno/rae/blob/master/dockerfile){:target="_blank" rel="noopener"} el archivo [DockerFile](https://raw.githubusercontent.com/srealmoreno/rae/master/dockerfile){:target="_blank" rel="noopener"} que construye la imagen base  
+Puedes [ver](https://github.com/srealmoreno/rae/blob/master/dockerfile) el archivo [DockerFile](https://raw.githubusercontent.com/srealmoreno/rae/master/dockerfile) que construye la imagen base  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
-Leer [tutorial](https://docs.docker.com/get-started/part2/){:target="_blank" rel="noopener"} oficial de Docker para construir una imagen  
-Ver [video](https://youtu.be/a8sf54TCRN4){:target="_blank" rel="noopener"} tutorial construir una imagen   
+Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
+Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   
 
 ## Wiki  
-- Documentación oficial de [Docker](https://docs.docker.com/){:target="_blank" rel="noopener"}  
+- Documentación oficial de [Docker](https://docs.docker.com/)  
 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank"> Guía de instalación de Docker</a>  
-- Documentación oficial de [Gns3](https://docs.gns3.com/){:target="_blank" rel="noopener"}  
+- Documentación oficial de [Gns3](https://docs.gns3.com/)  
 <a href="https://docs.gns3.com/1QXVIihk7dsOL7Xr7Bmz4zRzTsJ02wklfImGuHwTlaA4/" target="_blank"> Guía de instalación de Gns3</a>  
-- Documentación oficial de [VirtualBox](https://www.virtualbox.org/wiki/Documentation){:target="_blank" rel="noopener"}  
-<a href="https://www.virtualbox.org/wiki/Linux_Downloads" target="_blank"> Guía de instalación de VirtualBox</a>  
+- Documentación oficial de [VirtualBox](https://www.virtualbox.org/wiki/Documentation)  
+<a href="https://www.virtualbox.org/wiki/Linux_Downloads"> Guía de instalación de VirtualBox</a>  
 
-- [Netgui](http://mobiquo.gsyc.es/netgui/){:target="_blank" rel="noopener"}
+- [Netgui](http://mobiquo.gsyc.es/netgui/)
 
 ## Autores  
 
-* **Salvador Real** - [srealmoreno](https://github.com/srealmoreno){:target="_blank" rel="noopener"}
+* **Salvador Real** - [srealmoreno](https://github.com/srealmoreno)
 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/srealmoreno/rae/contributors){:target="_blank" rel="noopener"} quíenes han participado en este proyecto.
+También puedes mirar la lista de todos los [contribuyentes](https://github.com/srealmoreno/rae/contributors) quíenes han participado en este proyecto.
 
 ## Licencia
 
-Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el archivo [LICENSE.md](LICENSE.md){:target="_blank" rel="noopener"} para detalles
+Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el archivo [LICENSE.md](LICENSE.md) para más detalles
 
 ---
-Redes de área extensa 2020 - Salvador real
+Redes de área extensa 2020 - Salvador real   
+<a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE." target="_blank"> <img src="https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail"></a><a href="https://facebook.com/srealmoreno" target="_blank"> <img src="https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook"></a><a href="https://github.com/srealmoreno/" target="_blank"> <img src="https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social"></a>
