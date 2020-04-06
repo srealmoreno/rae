@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install -y --no-install-suggests --no-install-reco
     sed -i 's:^path-exclude=/usr/share/man:#path-exclude=/usr/share/man:' /etc/dpkg/dpkg.cfg.d/excludes &&\
     apt-get update && env DEBIAN_FRONTEND=noninteractive\
     apt-get install -y --no-install-suggests --no-install-recommends\
+    language-pack-es\
     man\
+    manpages-es\
     manpages-posix\
     bind9\
     bridge-utils\
@@ -49,15 +51,23 @@ RUN apt-get update && apt-get install -y --no-install-suggests --no-install-reco
     wget\
     #wireshark\
     #lxde\
-    &&\ 
+    &&\
+    rm -r /usr/lib/locale/* &&\
+    echo "es_NI.UTF-8 UTF-8" > /var/lib/locales/supported.d/es &&\
+    echo -e "LANG=\"es_NI.UTF-8\"\nLANGUAGE=\"es_NI:es\"" >> /etc/default/locale &&\
+    locale-gen --purge &&\
     apt-get auto-remove &&\
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean
     
+ENV LANG es_NI.UTF-8
+ENV LANGUAGE es_NI:es 
+ENV LC_ALL es_NI.UTF-8
+ENV PROMPT_COMMAND 'history -a'
 RUN echo "by: Srealmoreno" > .bash_history
 RUN sed -i "17,32s/no/yes/" /etc/frr/daemons
 RUN sed -i "46s/.//"        /etc/skel/.bashrc 
 RUN sed -i "35,41s/.//"     /etc/bash.bashrc
-RUN sed -i "39b0; 97,99b0; b ;:0 ;s/.//" .bashrc
+RUN sed -i "39b0; 97,99b0; b ;:0 ;s/.//" .bashrc && echo "cd \$PWD" >> .bashrc
 
 CMD [ "bash" ]
 
