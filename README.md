@@ -264,31 +264,38 @@ docker stats
 
 <img src="assets/gns3_29.png">
 
+<a name="tipsgns3" id="tipsgns3"></a>
 * **Tips de GNS3**  
 Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
 
+<a name="dockerfile" id="dockerfile"></a>
 * **DockerFile**  
 Puedes [ver](https://github.com/srealmoreno/rae/blob/master/dockerfile) el archivo [DockerFile](https://raw.githubusercontent.com/srealmoreno/rae/master/dockerfile) que construye la imagen base  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
 Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
 Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   
 
+<a name="wiki" id="wiki"></a>
 ## Wiki  
 - Documentación oficial de [Docker](https://docs.docker.com/)  
 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank"> Guía de instalación de Docker</a>  
+
 - Documentación oficial de [Gns3](https://docs.gns3.com/)  
 <a href="https://docs.gns3.com/1QXVIihk7dsOL7Xr7Bmz4zRzTsJ02wklfImGuHwTlaA4/" target="_blank"> Guía de instalación de Gns3</a>  
+
 - Documentación oficial de [VirtualBox](https://www.virtualbox.org/wiki/Documentation)  
 <a href="https://www.virtualbox.org/wiki/Linux_Downloads"> Guía de instalación de VirtualBox</a>  
 
 - [Netgui](http://mobiquo.gsyc.es/netgui/)
 
+<a name="autores" id="autores"></a>
 ## Autores  
 
 * **Salvador Real** - [srealmoreno](https://github.com/srealmoreno)
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/srealmoreno/rae/contributors) quíenes han participado en este proyecto.
 
+<a name="licencia" id="licencia"></a>
 ## Licencia
 
 Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el archivo [LICENSE.md](LICENSE.md) para más detalles
