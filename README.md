@@ -1,7 +1,5 @@
 
-<img src="https://img.shields.io/badge/%20-Bash-grey"><img src="https://img.shields.io/badge/%20-Docker-blue">
-<img src="https://img.shields.io/badge/%20-GNS3-green"><img src="https://img.shields.io/badge/%20-Netgui-lightgrey">
-<img src="https://img.shields.io/badge/%20-VirtalBox-lightblue"><img src="https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github">
+<img src="https://img.shields.io/badge/%20-Bash-grey"> <img src="https://img.shields.io/badge/%20-Docker-blue"> <img src="https://img.shields.io/badge/%20-GNS3-green"> <img src="https://img.shields.io/badge/%20-Netgui-lightgrey"> <img src="https://img.shields.io/badge/%20-VirtalBox-lightblue"> <img src="https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github">
 
 
 # Manual de Uso
