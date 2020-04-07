@@ -1,5 +1,5 @@
 
-<img src="https://img.shields.io/badge/%20-Bash-grey"> <img src="https://img.shields.io/badge/%20-Docker-blue"> <img src="https://img.shields.io/badge/%20-GNS3-green"> <img src="https://img.shields.io/badge/%20-Netgui-lightgrey"> <img src="https://img.shields.io/badge/%20-VirtalBox-lightblue"> <img src="https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github">
+![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
 
 # Manual de Uso
@@ -30,7 +30,7 @@
 <a name="script" id="script"></a>
 
 ## Uso del script de instalación
-Hay 2 versiones del script. una lenta pero segura (rae.sh) y otra más rápida pero no tan segura (rae_fast.sh) yo probé ambos scripts en máquinas virtuales. Recomiendo usar rae_fast.sh y si da algún error usa rae.sh
+Hay 2 versiones del script. una lenta pero segura `rae.sh` y otra más rápida pero no tan segura `rae_fast.sh` yo probé ambos scripts en máquinas virtuales. Recomiendo usar `rae_fast.sh` y si da algún error usa `rae.sh`
 
 El script te da a escoger que paquetes deseas instalar. Cada paquete es la inicial de su nombre.
 
@@ -64,7 +64,7 @@ sudo ./rae_fast.sh -h
 
 Nota: Si no se pasa ningún parámetro, se  instalan todos los paquetes dichos.
 
-<img  src="assets/ejemplo_1.png">
+![](assets/ejemplo_1.png "Ejemplo de salida del script")
 
 Por ejemplo si solo se desea instalar Docker e importar imágenes:
 
@@ -76,7 +76,7 @@ Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones 
 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
-<img src="assets/ejemplo_2.png">
+![](assets/ejemplo_2.png "Menú de aplicaciones")  
 
 <a name="gns3" id="gns3"></a>
 
@@ -85,13 +85,13 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 * **Configuración inicial de GNS3**
 
 Seleccionar la opción 2.  
-<img src="assets/gns3_1.png">
+![](assets/gns3_1.png "Correr la topología en la computadora local")
 
 Dejar sin cambios.  
-<img src="assets/gns3_2.png">
+![](assets/gns3_2.png "Establecer parámetros del servidor")
 
 ¡Listo!  
-<img src="assets/gns3_3.png" height="400px"><img src="assets/gns3_4.png" height="400px">
+![](assets/gns3_3.png "Conexión a servidor") ![](assets/gns3_4.png "Finalizando")
 
 <a name="consola" id="consola"></a>
 
@@ -99,12 +99,12 @@ Dejar sin cambios.
 Ir a Edición -> Preferencias.  
 Click en Aplicaciones de consola (Console applications)  
 Click en Editar (Edit)  
-<img  src="assets/gns3_console_1.png">
+![](assets/gns3_console_1.png "Menú de preferencias")
 
 Elegir la predeterminada del sistema o la que más te guste.  
 **Ubuntu** (gnome) utiliza gnome-terminal  
 **Kubuntu** (kde plasma) utiliza Konsole  
-<img src="assets/gns3_console_2.png">
+![](assets/gns3_console_2.png "Editando consola predeterminada")
 
 Luego Aplicar cambios y listo.  
 Nota: Si se desea ejecutar una imagen con entorno gráfico, ir al apartado de 'VNC' y elegir la que más te guste. Por ejemplo *vinagre*
@@ -117,56 +117,53 @@ Nota: Si se desea ejecutar una imagen con entorno gráfico, ir al apartado de 'V
 
 Click en Nueva plantilla (new template)  
 
-<img src="assets/gns3_5.png">
+![](assets/gns3_5.png "Creando nueva plantilla (Este menú se encuentra al lado izquierdo)")
 
 Seleccionar la opción 3.  
-<img src="assets/gns3_6.png">
+![](assets/gns3_6.png "Opción manual")
 
 Click en Nuevo (new)  
-<img src="assets/gns3_7.png">
+![](assets/gns3_7.png "Creando nueva plantilla")
 
 Click en existente  
 Selecciona la imagen `srealmoreno/rae:latest`  
-<img src="assets/gns3_8.png">
+![](assets/gns3_8.png "Esta es la imagen Ubuntu que se utilizará")
 
 Cambia el nombre a 'ubuntu' o 'pc'  
-<img src="assets/gns3_9.png">
+![](assets/gns3_9.png "Este nombre se verá en la topología")
 
 Dejas la cantidad de adaptadores que gustes (adaptadores de red)  
-<img src="assets/gns3_10.png">
+![](assets/gns3_10.png "Son adaptadores ethernet")
 
 Comando de inicio lo dejas vacío  
-<img src="assets/gns3_11.png">
+![](assets/gns3_11.png "El comando predeterminado es 'bash', es decir, entrará a la línea de ordenes automáticamente")
 
 Tipo de consola: `telnet` ya que es en modo texto, si se desea agregar una con entorno gráfico elegir `vnc`  
-<img src="assets/gns3_12.png">
+![](assets/gns3_12.png "Debes de tener instalado la terminal a utilizar en la máquina física")
 
 Variables de entorno lo dejas vacío    
-<img src="assets/gns3_13.png">
+![](assets/gns3_13.png)
 
 Ya que se lo hayas añadido  
 Click en editar  
-<img src="assets/gns3_14.png">
+![](assets/gns3_14.png)
 
 Marca la opción de 'Auto start console'  
 Click en 'Browse' para cambiar el icono  
-<img src="assets/gns3_15.png">
+![](assets/gns3_15.png "Este icono se verá en la topología")
 
 Filtras por la palabra 'Computer'  
-<img src="assets/gns3_16.png">
+![](assets/gns3_16.png "Puedes escoger el que más te guste")
 
 **Volúmenes persistentes**
 <a name="volumen_persistente_host" id="volumen_persistente_host"></a>
 
 Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto (volúmenes persistentes)  
 ```
-/save/
-/etc/sysctl.conf
+/save
 /etc/network
-/etc/hosts
 /etc/default
-/etc/dhcp
-/root/
+/root
 ```
 GNS3 + Docker está pensado para gastar los menos recursos posibles. Ya sea memoria Ram y Disco duro.
 **Cada vez que se cierra un contenedor de docker todos los ficheros _eliminan_**  
@@ -179,11 +176,11 @@ De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que 
 Nota importante: 
 **JAMÁS agregues todo el sistema de ficheros o `/` porque puede dañar la maquina física.**
 
-[leer_más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
-<img src="assets/gns3_17.png">
+[leer&#32;más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
+![](assets/gns3_17.png "Todo lo que se encuentre dentro de esos directorios, quedará conservado aunque se apague la máquina física")
 
 Listo, se agrego el icono.  
-<img src="assets/gns3_18.png">
+![](assets/gns3_18.png)
 
 ¡Listo!
 
@@ -194,10 +191,10 @@ Listo, se agrego el icono.
 Para plantilla de router es el mismo procedimiento pero con algunas modificaciones.  
 
 Cambia el nombre  
-<img src="assets/gns3_19.png">
+![](assets/gns3_19.png "Este nombre se verá en la topología")
 
 Número de adaptadores  
-<img src="assets/gns3_20.png">
+![](assets/gns3_20.png "Son adaptadores ethernet")
 
 Comando de inicio  
 ```bash
@@ -205,29 +202,27 @@ bash -c "/etc/init.d/frr start; vtysh; bash"
 ```
 De esta forma nos aseguramos que cada vez que arranque el contenedor arranque el servicio y entre a modo Cisco automáticamente  
 
-<img src="assets/gns3_21.png">
+![](assets/gns3_21.png)
 
 Cambia la categoría de 'End devices' a 'Router'  
-<img src="assets/gns3_22.png">
+![](assets/gns3_22.png "Esto es para tener orden")
 
 Cambia el icono  
-<img src="assets/gns3_23.png"> 
+![](assets/gns3_15.png "Este icono se verá en la topología")
 
 <a name="volumen_persistente_router" id="volumen_persistente_router"></a>
 
 y por ultimo se agregan los volúmenes persistentes  
 
 ```
-/save/
-/etc/sysctl.conf
+/save
 /etc/network
-/etc/hosts
 /etc/default
 /etc/dhcp
 /etc/frr
-/root/
+/root
 ```
-<img src="assets/gns3_24.png">
+![](assets/gns3_24.png "Todo lo que se encuentre dentro de esos directorios, quedará conservado aunque se apague la máquina física")
 
 ¡Listo!
 
@@ -240,18 +235,17 @@ La plantilla para usar la imagen como switch es similar a la plantilla de Host
 Simplemente clona la plantilla
 
 Cambia el nombre a 'Switch'  
-<img src="assets/gns3_25.png">
-
+![](assets/gns3_25.png "Este nombre se verá en la topología")
 
 Cambia la categoría de 'End devices' a 'Switches'  
 Cambia el icono  
 Cambia el número de adaptadores      
-<img src="assets/gns3_26.png">
+![](assets/gns3_26.png)
 
 ¡Listo!
 
 **Topología de prueba**  
-<img src="assets/gns3_27.png"><img src="assets/gns3_28.png" height="330px">
+![](assets/gns3_27.png)![](assets/gns3_28.png)
 
 Para ver el consumo de los contenedores:
 ```bash
@@ -259,7 +253,7 @@ docker stats
 ```
 ¡WOW, Cada contenedor consume 4MiB de memoria RAM!  
 
-<img src="assets/gns3_29.png">
+![](assets/gns3_29.png "Este comando se ejecuta en la máquina física")
 
 <a name="tipsgns3" id="tipsgns3"></a>
 * **Tips de GNS3**  
@@ -301,4 +295,5 @@ Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el a
 Redes de área extensa 2020 - Salvador real   
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/UNAN.png" height="50px" align="right">
 
-<a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE." target="_blank"> <img src="https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail"></a><a href="https://facebook.com/srealmoreno" target="_blank"> <img src="https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook"></a><a href="https://github.com/srealmoreno/" target="_blank"> <img src="https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social"></a>
+[![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail)](https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE.) [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook)](https://facebook.com/srealmoreno) [![](https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social)](https://github.com/srealmoreno/)
+
