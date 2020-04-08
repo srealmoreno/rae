@@ -83,13 +83,9 @@ add_repository_virtualbox() {
 
     LIST_INSTALL="${LIST_INSTALL} virtualbox"
     LIST_GROUP="vboxusers"
-
-    #apt update && apt install -y virtualbox && exito "VirtualBox instalado con exíto" || advertencia "No se pudo instalar VirtualBox"
-
 }
 
 add_repository_gns3() {
-    #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F88F6D313016330404F710FC9A2FD067A2E3EF7B &&
     advertencia "Agregando repositorio de GNS3"
     [ -n "$DISTRO_TMP" ] && DISTRO=$DISTRO_TMP
     wget -q "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf88f6d313016330404f710fc9a2fd067a2e3ef7b" -O- | apt-key add - &&
