@@ -105,7 +105,17 @@ Sintaxis:
 ```bash
 docker build [OPTIONS] ruta
 ```
+<a name="descargar" id="descargar"></a>
 
+**Descargar**
+Desde el navegador:
+Descargar [dockerfile](dockerfile) 
+`Click en  '`**`Raw`**`' -> Click derecho -> Guardar Como`
+
+Descargar desde línea de ordenes:
+```bash
+wget https://raw.githubusercontent.com/srealmoreno/rae/master/docker/dockerfile
+```
 <a name="wiki" id="wiki"></a>
 
 ## Wiki  
