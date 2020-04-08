@@ -9,6 +9,7 @@ Esta carpeta contiene los scripts de instalación de:
 -   VirtualBox
 -   Netgui
 -   Imágenes base 
+
 ### Requisitos
 * Sistema operativo: Ubuntu o derivados 
 	- Focal 20.0 (LTS)
