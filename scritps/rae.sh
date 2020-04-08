@@ -26,8 +26,6 @@ exito() {
 }
 
 LIST_GROUP=""
-LIST_PACKAGES=""
-LIST_INSTALL=""
 DISTRO=""
 
 install_dependencies() {
@@ -48,7 +46,7 @@ get_os() {
             error_fatal "Este escript solo es compatible con Ubuntu y derivados"
         fi
         exito "Se detecto Sistema operativo $PRETTY_NAME ($VERSION_CODENAME)"
-        advertencia "Este es una implementación de rapida instalación de los paquetes: $LIST_PACKAGES\nSalvador no se hace responsable de ningún daño a tu maquina. :D"
+        advertencia "Salvador no se hace responsable de ningún daño a tu maquina. :D"
         read -n 1 -s -r -p "Presiona cualquier tecla para continuar"
         echo ""
 
@@ -58,6 +56,7 @@ get_os() {
             DISTRO="eoan"
             DISTRO_TMP="focal"
         fi
+        [ "$ID" == "ubuntu" ] && DISTRO=$VERSION_CODENAME || DISTRO=$UBUNTU_CODENAME
 
         [ "$DISTRO" == "" ] && DISTRO="bionic"
     else
@@ -73,25 +72,22 @@ check_group() {
     fi
 }
 
-add_repository_virtualbox() {
-    advertencia "Agregando repositorio de VirtualBox"
+install_virtualbox() {
+    advertencia "Instalando Virtualbox"
     wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add - &&
         wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\n\
     \rdeb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $DISTRO contrib" \
-            >"/etc/apt/sources.list.d/virtualbox-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de VirtualBox"
-
-    LIST_INSTALL="${LIST_INSTALL} virtualbox"
+            >"/etc/apt/sources.list.d/virtualbox-ubuntu-ppa-$DISTRO.list" &&
+        apt update && apt install -y virtualbox && exito "VirtualBox instalado con exíto" || advertencia "No se pudo instalar VirtualBox"
     LIST_GROUP="vboxusers"
-
-    #apt update && apt install -y virtualbox && exito "VirtualBox instalado con exíto" || advertencia "No se pudo instalar VirtualBox"
-
 }
 
-add_repository_gns3() {
+install_gns3() {
     #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F88F6D313016330404F710FC9A2FD067A2E3EF7B &&
-    advertencia "Agregando repositorio de GNS3"
+    advertencia "Instalando Gns3"
     [ -n "$DISTRO_TMP" ] && DISTRO=$DISTRO_TMP
+
     wget -q "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf88f6d313016330404f710fc9a2fd067a2e3ef7b" -O- | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\n\
         \rdeb http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main\n\
@@ -99,43 +95,35 @@ add_repository_gns3() {
 
     [ -n "$DISTRO_TMP" ] && DISTRO="eoan"
 
-    dpkg --add-architecture i386
+    dpkg --add-architecture i386 &&
+        apt update && apt install -y gns3-gui gns3-server vinagre
 
-    [ "$LIST_GROUP" != "" ] && LIST_GROUP="$LIST_GROUP,"
+    if [ "$?" != "0" ]; then
+        exito "Gns3 instalado con exito"
+        advertencia "Reparando errores de GNS3"
+        apt install -y python3-pip && pip3 install pyqt5==5.13.1 && exito "GNS3 reparando con exíto"
 
-    LIST_GROUP="${LIST_GROUP}libvirt,kvm,wireshark,ubridge"
+        advertencia "Agregando soporte iou en GNS3"
+        apt install -y gns3-iou
 
-    LIST_INSTALL="${LIST_INSTALL} gns3-gui gns3-server gns3-iou vinagre python3-pip"
+        [ "$LIST_GROUP" != "" ] && LIST_GROUP="$LIST_GROUP,"
 
-    #dpkg --add-architecture i386 &&
-    #    apt update &&
-    #    apt install -y gns3-gui gns3-server &&
-    #    exito "Gns3 instalado con exito" || advertencia "No se pudo instalar GNS3"
-
-    #advertencia "Reparando errores de GNS3"
-    #apt install -y python3-pip && pip3 install pyqt5==5.13.1 && exito "GNS3 reparando con exíto"
-
-    #advertencia "Agregando soporte iou en GNS3"
-    #apt install -y gns3-iou
-
-    #check_group "wireshark" "wireshark-common"
-    #check_group "ubridge" "ubridge"
+        LIST_GROUP="${LIST_GROUP}libvirt,kvm,wireshark,ubridge"
+        check_group "wireshark" "wireshark-common"
+        check_group "ubridge" "ubridge"
+    else
+        advertencia "No se pudo instalar GNS3"
+    fi
 }
 
-add_repository_docker() {
-    advertencia "Agregando repositorio de Docker"
+install_docker() {
+    advertencia "Instalando Docker"
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\n\
     \rdeb [arch=amd64] https://download.docker.com/linux/ubuntu $DISTRO stable" >"/etc/apt/sources.list.d/docker-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de Docker"
-
+    apt update && apt install -y docker-ce docker-ce-cli containerd.io && exito "Docker-ce Instalado con exíto" || error_fatal "error al instalar Docker-ce"
     [ "$LIST_GROUP" != "" ] && LIST_GROUP="$LIST_GROUP,"
-
     LIST_GROUP="${LIST_GROUP}docker"
-
-    LIST_INSTALL="${LIST_INSTALL} docker-ce docker-ce-cli containerd.io"
-
-    #apt update && apt install -y docker-ce docker-ce-cli containerd.io && exito "Docker-ce Instalado con exíto" || error_fatal "error al instalar Docker-ce"
-
 }
 
 create_launcher_shortcut_netgui() {
@@ -143,7 +131,7 @@ create_launcher_shortcut_netgui() {
         apt install -y imagemagick
         if [ "$?" == 0 ]; then
             advertencia "Creando Acceso directo y Creando asociacion de extensión .nkp (Project of Netgui)"
-            wget https://raw.githubusercontent.com/srealmoreno/rae/master/netgui.png -O /tmp/netgui.png
+            wget https://raw.githubusercontent.com/srealmoreno/rae/master/assets/netgui.png -O /tmp/netgui.png
             for i in "256" "128" "96" "72" "64" "48" "32" "24" "16"; do
                 convert "/tmp/netgui.png" -resize ${i}x${i} "/usr/share/icons/hicolor/${i}x${i}/apps/netgui.png"
                 ln -sf "/usr/share/icons/hicolor/${i}x${i}/apps/netgui.png" "/usr/share/icons/hicolor/${i}x${i}/mimetypes/netgui.png"
@@ -285,27 +273,6 @@ importar_a_docker() {
     fi && exito "Imagen $1 de Salvador instalada en docker" || advertencia "No se pudo instalar la imagen $1 de Salvador"
 }
 
-install_packages() {
-    local LIST_PACKAGES_INSTALLED=""
-    for i in virtualbox gns3 docker; do
-        if [ -n "${!i}" ]; then
-            [ "$LIST_PACKAGES_INSTALLED" != "" ] && LIST_PACKAGES_INSTALLED="$LIST_PACKAGES_INSTALLED, "
-            LIST_PACKAGES_INSTALLED="${LIST_PACKAGES_INSTALLED}${i^}"
-        fi
-    done
-
-    apt update && apt install -y $LIST_INSTALL && exito "$LIST_PACKAGES_INSTALLED instalado(s) con exíto" || error_fatal "No se pudo instalar $LIST_PACKAGES"
-    if [ -n "$gns3" ]; then
-        advertencia "Reparando errores de GNS3"
-        pip3 install pyqt5==5.13.1 && exito "GNS3 reparando con exíto"
-        check_group "wireshark" "wireshark-common"
-        check_group "ubridge" "ubridge"
-    fi
-
-    advertencia "Añadiendo $SUDO_USER a los grupos necesarios"
-    usermod -aG $LIST_GROUP $SUDO_USER
-}
-
 clean_cache() {
     advertencia "Limpiando caché"
     apt autoremove -y
@@ -324,7 +291,6 @@ if [ "$#" == "0" ]; then #Si no se pasa ningún argumento, instala todo
     virtualbox="true"
     netgui="true"
     images="true"
-    LIST_PACKAGES="VirtualBox, GNS3, Docker, Imágenes docker de Salvador, Netgui"
 else
     while getopts ":h :a :d :g :i :v :n" arg; do #a instala todo, d instala docker, g instala gns3, i instala images de salvador
         case "$arg" in
@@ -334,32 +300,21 @@ else
             virtualbox="true"
             netgui="true"
             images="true"
-            LIST_PACKAGES="VirtualBox, GNS3, Docker, Imágenes docker de Salvador, Netgui"
             ;;
         g)
             gns3="true"
-            [ "$LIST_PACKAGES" != "" ] && LIST_PACKAGES="$LIST_PACKAGES, "
-            LIST_PACKAGES="${LIST_PACKAGES}GNS3"
             ;;
         d)
             docker="true"
-            [ "$LIST_PACKAGES" != "" ] && LIST_PACKAGES="$LIST_PACKAGES, "
-            LIST_PACKAGES="${LIST_PACKAGES}Docker"
             ;;
         v)
             virtualbox="true"
-            [ "$LIST_PACKAGES" != "" ] && LIST_PACKAGES="$LIST_PACKAGES, "
-            LIST_PACKAGES="${LIST_PACKAGES}VirtualBox"
             ;;
         n)
             netgui="true"
-            [ "$LIST_PACKAGES" != "" ] && LIST_PACKAGES="$LIST_PACKAGES, "
-            LIST_PACKAGES="${LIST_PACKAGES}Netgui"
             ;;
         i)
             images="true"
-            [ "$LIST_PACKAGES" != "" ] && LIST_PACKAGES="$LIST_PACKAGES, "
-            LIST_PACKAGES="${LIST_PACKAGES}Imágenes docker de Salvador"
             ;;
         h)
             echo "Uso: $0 [-a instalar todo] [-d instalar docker] [-g instalar gns3] [-v instalar virtualbox] [-n instalar netgui] [-i importar images docker]"
@@ -380,19 +335,15 @@ if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" 
 fi
 
 if [ -n "$virtualbox" ]; then
-    add_repository_virtualbox
+    install_virtualbox
 fi
 
 if [ -n "$gns3" ]; then
-    add_repository_gns3
+    install_gns3
 fi
 
 if [ -n "$docker" ]; then
-    add_repository_docker
-fi
-
-if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
-    install_packages
+    install_docker
 fi
 
 if [ -n "$images" ]; then
@@ -405,7 +356,9 @@ if [ -n "$netgui" ]; then
     install_netgui
 fi
 
-if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" ]; then
+if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
+    advertencia "Añadiendo $SUDO_USER a los grupos necesarios"
+    usermod -aG $LIST_GROUP $SUDO_USER
     clean_cache
 fi
 

@@ -39,12 +39,12 @@ Puedes descargar el script desde la línea de ordenes o desde tu navegador favor
 
 Descargar desde el navegador:  
 Click derecho -> Guardar Como  
-Descargar [rae.sh](rae.sh)  
-Descargar [rae_fast.sh](rae_fast.sh)  
+Descargar [rae.sh](scripts/rae.sh)  
+Descargar [rae_fast.sh](scripts/rae_fast.sh)  
 
 Descargar desde línea de ordenes:
 ```bash
-wget https://raw.githubusercontent.com/srealmoreno/rae/master/rae_fast.sh
+wget https://raw.githubusercontent.com/srealmoreno/rae/master/scripts/rae_fast.sh
 ```
 
 Dar permisos de ejecución
@@ -176,7 +176,10 @@ De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que 
 Nota importante: 
 **JAMÁS agregues todo el sistema de ficheros o `/` porque puede dañar la maquina física.**
 
-[leer&#32;más](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
+[Leer&#32;más&#32;en&#32;docs&#32;GNS3](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
+
+[Leer&#32;más&#32;en&#32;docs&#32;Docker](https://docs.docker.com/storage/volumes/)  
+
 ![](assets/gns3_17.png "Todo lo que se encuentre dentro de esos directorios, quedará conservado aunque se apague la máquina física")
 
 Listo, se agrego el icono.  
@@ -261,7 +264,7 @@ Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UC
 
 <a name="dockerfile" id="dockerfile"></a>
 * **DockerFile**  
-Puedes [ver](https://github.com/srealmoreno/rae/blob/master/dockerfile) el archivo [DockerFile](https://raw.githubusercontent.com/srealmoreno/rae/master/dockerfile) que construye la imagen base  
+Puedes [ver](https://github.com/srealmoreno/rae/blob/master/dockerfile) el archivo [DockerFile](dockerfile/dockerfile) que construye la imagen base  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
 Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
 Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   

@@ -63,6 +63,7 @@ ENV LANG es_NI.UTF-8
 ENV LANGUAGE es_NI:es 
 ENV LC_ALL es_NI.UTF-8
 ENV PROMPT_COMMAND 'history -a'
+RUN useradd -m -s /bin/bash -u 1000 invitado
 RUN echo "by: Srealmoreno" > .bash_history
 RUN sed -i "17,32s/no/yes/" /etc/frr/daemons
 RUN sed -i "46s/.//"        /etc/skel/.bashrc 
