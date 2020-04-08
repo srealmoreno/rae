@@ -102,7 +102,7 @@ CMD [“ejecutable”, “parámetro1”, “parámetro2”, ...]
 
 <a name="#escribir_dockerfile"></a>
 
-**¿Cómo escribir un buen Dockerfile?**  
+## ¿Cómo escribir un buen Dockerfile?  
 Una imagen esta construida por capas (layers) cada instrucción en nuestro Dockerfile agregará una capa nueva a nuestra imagen. una imagen es en realidad un snapshot (captura, paquete) de un sistema de archivos creado a partir de distintas capas; internamente docker utiliza UnionFS para unir las capas en un sistema de archivos coherente que será la base de ejecución para los contenedores.
 
 ```
@@ -195,8 +195,8 @@ De:
 
 ||||
 |---:|:---:|:---|
-|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||#wireshark\|
-|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||#lxde\|
+|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||#wireshark\\ |
+|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||#lxde\\ |
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|[CMD](#entorno)|[ "bash" ]|
 |[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|#CMD|[ "startlxde" ]|
 
@@ -205,8 +205,8 @@ A:
 
 ||||
 |---:|:---:|:---|
-|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||wireshark\|
-|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||lxde\|
+|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||wireshark\\ |
+|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||lxde\\ |
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|#CMD|[ "bash" ]|
 |[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|[CMD](#entorno)|[ "startlxde" ]|
 
