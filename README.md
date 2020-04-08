@@ -3,7 +3,6 @@
 
 
 # Manual de Uso
-===================================
 
 ### Se explicará:
 - <a href="#script"> Uso del script de instalación para: </a>
@@ -40,8 +39,9 @@ Puedes descargar el script desde la línea de ordenes o desde tu navegador favor
 Descargar desde el navegador:  
 
 Descargar [rae.sh](scripts/rae.sh)  
-Descargar [rae_fast.sh](scripts/rae_fast.sh)  
-Click en 'Raw' -> Click derecho -> Guardar Como  
+Descargar [rae_fast.sh](scripts/rae_fast.sh) 
+
+`Click en  '`**`Raw`**`' -> Click derecho -> Guardar Como`
 
 Descargar desde línea de ordenes:
 ```bash
@@ -260,10 +260,12 @@ docker stats
 ![](assets/gns3_29.png "Este comando se ejecuta en la máquina física")
 
 <a name="tipsgns3" id="tipsgns3"></a>
+
 * **Tips de GNS3**  
 Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
 
 <a name="dockerfile" id="dockerfile"></a>
+
 * **DockerFile**  
 Puedes [ver](dockerfile/) el archivo [DockerFile](dockerfile/dockerfile) que construye la imagen base  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
@@ -273,6 +275,7 @@ Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.
 	Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   
 
 <a name="wiki" id="wiki"></a>
+
 ## Wiki  
 - Documentación oficial de [Docker](https://docs.docker.com/)  
 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank"> Guía de instalación de Docker</a>  
@@ -302,4 +305,5 @@ Redes de área extensa 2020 - Salvador real
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/UNAN.png" height="50px" align="right">
 
 [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail)](https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE.) [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook)](https://facebook.com/srealmoreno) [![](https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social)](https://github.com/srealmoreno/)
+
 
