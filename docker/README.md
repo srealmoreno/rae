@@ -191,20 +191,22 @@ docker build -t srealmoreno/rdc:latest .
 Para tener entorno gráfico hay que descomentar `wireshark`, `lxde`, `CMD["startlxde"]` y comentar `CMD["bash"]`  
 Nota: Puedes instalar otro entorno gráfico, por ejemplo `xfce4`
 
-De:  
+De: 
+
 ||||
 |---:|:---:|:---|
-|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||#wireshark\\ |
-|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||#lxde\\ |
+|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||#wireshark\ |
+|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||#lxde\ |
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|**CMD**|[ "bash" ]|
 |[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|#CMD|[ "startlxde" ]|
 
  
 A:  
+
 ||||
 |---:|:---:|:---|
-|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||wireshark\\ |
-|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||lxde\\ |
+|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||wireshark\ |
+|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||lxde\ |
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|#CMD|[ "bash" ]|
 |[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|**CMD**|[ "startlxde" ]|
 
