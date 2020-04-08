@@ -87,14 +87,14 @@ Aclaro, tomé el [script](http://mobiquo.gsyc.es/netgui/netgui-autoinstall.sh) d
 
 - [Netgui](http://mobiquo.gsyc.es/netgui/)
     
-<a name="autores" id="autores"></a>
+<a name="autores"></a>
 ## Autores  
 
 * **Salvador Real** - [srealmoreno](https://github.com/srealmoreno)
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/srealmoreno/rae/contributors) quíenes han participado en este proyecto.
 
-<a name="licencia" id="licencia"></a>
+<a name="licencia"></a>
 ## Licencia
 
 Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el archivo [LICENSE.md](LICENSE.md) para más detalles

@@ -1,3 +1,4 @@
+
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
 
@@ -6,24 +7,26 @@
 ## ¿Que es un DockerFile?  
 Un Dockerfile es un archivo de texto plano que contiene una serie de instrucciones necesarias para crear una imagen que, posteriormente, se convertirá en una sola aplicación utilizada para un determinado propósito.
 
+<a name="from"></a>
+
 ## From
 
 ||||
 |---:|:---:|:---|
-|[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|[FROM](#)|ubuntu:bionic|
+|[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|[FROM](#|ubuntu:bionic|
 
 Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor.
 
 Sintaxis:
-
-```docker
+```docker class:"lineNo"
 FROM  <imagen>
 FROM  <imagen>:<tag>
 ```
 Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O una imagen ya existente en la cual con base a esta queramos construir nuestra propia imagen.
 
-## Workdir
+<a name="workdir"></a>
 
+## Workdir
 ||||
 |---:|:---:|:---|
 |[3](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3) |[WORKDIR](#)|/root |
@@ -34,8 +37,11 @@ Sintaxis:
 ```docker
 WORKDIR ruta_relativa
 ```
-## Run
 
+<a name="run"></a>
+
+
+## Run
 ||||
 |---:|:---:|:---|
 |[5](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)|[RUN](#)|apt-get update && apt-get install -y --no-install-suggests --no-install-recommends ...|
@@ -61,8 +67,9 @@ Usar:
 ```docker
 RUN apt-get install -y bla
 ```
-## ENV
+<a name="#env"></a>
 
+## ENV
 ||||
 |:---|:---:|:---|
 |[62](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62)|[ENV](#)| LANG es_NI.UTF-8 |
@@ -76,6 +83,9 @@ Sintaxis:
 ENV <key><valor>
 ```
 
+<a name="cmd"></a>
+
+
 ## CMD 
 
 ||||
@@ -88,6 +98,7 @@ Sintaxis:
 CMD [“ejecutable”, “parámetro1”, “parámetro2”, ...]
 ```
 
+<a name="#escribir_dockerfile"></a>
 
 **¿Cómo escribir un buen Dockerfile?**  
 Una imagen esta construida por capas (layers) cada instrucción en nuestro Dockerfile agregará una capa nueva a nuestra imagen. una imagen es en realidad un snapshot (captura, paquete) de un sistema de archivos creado a partir de distintas capas; internamente docker utiliza UnionFS para unir las capas en un sistema de archivos coherente que será la base de ejecución para los contenedores.
@@ -142,13 +153,16 @@ RUN apt-get update &&\
     apt-get auto-remove -y &&\
     rm -rf /var/lib/apt/lists/*
 ```
+
+<a name="#build"></a>
+
 ## ¿Cómo se construye una imagen a partir de un Dockerfile?
 Con el comando docker build se construye la imagen siguiendo cada instrucción escrita en el dockerfile.
 Sintaxis:
 ```bash
 docker build [OPTIONS] ruta
 ```
-<a name="descargar" id="descargar"></a>
+<a name="descargar"></a>
 
 ## Descargar
 Desde el navegador:  
@@ -167,8 +181,29 @@ docker build -t username/repo:tag .
 
 docker build -t srealmoreno/rdc:latest .
 ```
+## Entorno gráfico
+Para tener entorno gráfico hay que descomentar `wireshark`, `lxde`, `CMD["startlxde"]` y comentar `CMD["bash"]`  
+Nota: Puedes instalar otro entorno gráfico, por ejemplo `xfce4`
 
-<a name="wiki" id="wiki"></a>
+De:
+||||
+|---:|:---:|:---|
+|[54](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L54)||#wireshark\\|
+|[55](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L55)||#lxde\\|
+|[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|#CMD|[ "startlxde" ]|
+|[77](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|[CMD](#)|[ "bash" ]|
+
+ 
+A:
+||||
+|---:|:---:|:---|
+|[54](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L54)||wireshark\\|
+|[55](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L55)||lxde\\|
+|[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|[CMD](#)|[ "startlxde" ]|
+|[77](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|#CMD|[ "bash" ]|
+
+
+<a name="wiki"></a>
 
 ## Wiki  
 - Documentación oficial de [Docker](https://docs.docker.com/)  
@@ -183,14 +218,14 @@ docker build -t srealmoreno/rdc:latest .
 Curso [básico](https://www.youtube.com/watch?v=UZpyvK6UGFo&list=PLqRCtm0kbeHAep1hc7yW-EZQoAJqSTgD-)  
 Curso [avanzado](https://www.youtube.com/watch?v=62r32R75iZs&list=PLqRCtm0kbeHDt4UYoRDkx-w7d-7l8aRXS)
     
-<a name="autores" id="autores"></a>
+<a name="autores"></a>
 ## Autores  
 
 * **Salvador Real** - [srealmoreno](https://github.com/srealmoreno)
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/srealmoreno/rae/contributors) quíenes han participado en este proyecto.
 
-<a name="licencia" id="licencia"></a>
+<a name="licencia"></a>
 ## Licencia
 
 Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el archivo [LICENSE.md](LICENSE.md) para más detalles

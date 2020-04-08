@@ -10,7 +10,7 @@ Esta carpeta contiene lás imágenes que que utilizo en el manual
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/srealmoreno/rae/contributors) quíenes han participado en este proyecto.
 
-<a name="licencia" id="licencia"></a>
+<a name="licencia"></a>
 ## Licencia
 
 Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el archivo [LICENSE.md](LICENSE.md) para más detalles

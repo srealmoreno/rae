@@ -26,7 +26,7 @@
 * Conexión a Internet.
 * apt como gestor de paquetes.
 
-<a name="script" id="script"></a>
+<a name="script"></a>
 
 ## Uso del script de instalación
 Hay 2 versiones del script. una lenta pero segura `rae.sh` y otra más rápida pero no tan segura `rae_fast.sh` yo probé ambos scripts en máquinas virtuales. Recomiendo usar `rae_fast.sh` y si da algún error usa `rae.sh`
@@ -77,7 +77,7 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 
 ![](assets/ejemplo_2.png "Menú de aplicaciones")  
 
-<a name="gns3" id="gns3"></a>
+<a name="gns3"></a>
 
 ## Integración de GNS3 con Docker
 
@@ -92,7 +92,7 @@ Dejar sin cambios.
 ¡Listo!  
 ![](assets/gns3_3.png "Conexión a servidor") ![](assets/gns3_4.png "Finalizando")
 
-<a name="consola" id="consola"></a>
+<a name="consola"></a>
 
 * **Corrigiendo / Cambiando consola predeterminada**  
 Ir a Edición -> Preferencias.  
@@ -110,7 +110,7 @@ Nota: Si se desea ejecutar una imagen con entorno gráfico, ir al apartado de 'V
 
 * **Agregar imágenes Ubuntu a GNS3**
 
-<a name="ubuntu_host" id="ubuntu_host"></a>
+<a name="ubuntu_host"></a>
 
 *Plantilla de maquina host*  
 
@@ -155,7 +155,7 @@ Filtras por la palabra 'Computer'
 ![](assets/gns3_16.png "Puedes escoger el que más te guste")
 
 **Volúmenes persistentes**
-<a name="volumen_persistente_host" id="volumen_persistente_host"></a>
+<a name="volumen_persistente_host"></a>
 
 Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto (volúmenes persistentes)  
 ```
@@ -187,7 +187,7 @@ Listo, se agrego el icono.
 ¡Listo!
 
 
-<a name="ubuntu_router" id="ubuntu_router"></a>
+<a name="ubuntu_router"></a>
 *Plantilla de router*  
 
 Para plantilla de router es el mismo procedimiento pero con algunas modificaciones.  
@@ -212,7 +212,7 @@ Cambia la categoría de 'End devices' a 'Router'
 Cambia el icono  
 ![](assets/gns3_15.png "Este icono se verá en la topología")
 
-<a name="volumen_persistente_router" id="volumen_persistente_router"></a>
+<a name="volumen_persistente_router"></a>
 
 y por ultimo se agregan los volúmenes persistentes  
 
@@ -229,7 +229,7 @@ y por ultimo se agregan los volúmenes persistentes
 ¡Listo!
 
 
-<a name="ubuntu_switch" id="ubuntu_switch"></a>
+<a name="ubuntu_switch"></a>
 
 *Plantilla de Switch*
 
@@ -257,12 +257,12 @@ docker stats
 
 ![](assets/gns3_29.png "Este comando se ejecuta en la máquina física")
 
-<a name="tipsgns3" id="tipsgns3"></a>
+<a name="tipsgns3"></a>
 
 * **Tips de GNS3**  
 Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
 
-<a name="docker" id="docker"></a>
+<a name="docker"></a>
 
 * **DockerFile**  
 Puedes ver el [manual](docker/) del archivo DockerFile o [descargarlo](https://srealmoreno.github.io/rae/docker/dockerfile) que construye la imagen base  
@@ -272,7 +272,7 @@ Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.
 
 	Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   
 
-<a name="wiki" id="wiki"></a>
+<a name="wiki"></a>
 
 ## Wiki  
 - Documentación oficial de [Docker](https://docs.docker.com/)  
@@ -286,14 +286,14 @@ Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.
 
 - [Netgui](http://mobiquo.gsyc.es/netgui/)
 
-<a name="autores" id="autores"></a>
+<a name="autores"></a>
 ## Autores  
 
 * **Salvador Real** - [srealmoreno](https://github.com/srealmoreno)
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/srealmoreno/rae/contributors) quíenes han participado en este proyecto.
 
-<a name="licencia" id="licencia"></a>
+<a name="licencia"></a>
 ## Licencia
 
 Este proyecto está bajo la Licencia GNU General Public License v3.0 - mira el archivo [LICENSE.md](LICENSE.md) para más detalles
