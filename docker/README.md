@@ -110,8 +110,7 @@ docker build [OPTIONS] ruta
 ## Descargar
 Desde el navegador:  
 
-[DockerFile](dockerfile)  
-`Click en  '`**`Raw`**`' -> Click derecho -> Guardar Como`
+[DockerFile](https://srealmoreno.github.io/rae/docker/dockerfile)  
 
 Descargar desde línea de ordenes:
 ```bash
