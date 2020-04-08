@@ -38,10 +38,10 @@ Descarga:
 Puedes descargar el script desde la línea de ordenes o desde tu navegador favorito.
 
 Descargar desde el navegador:  
-Click en 'Raw' -> Click derecho -> Guardar Como
-![](assets/raw.png)  
+
 Descargar [rae.sh](scripts/rae.sh)  
 Descargar [rae_fast.sh](scripts/rae_fast.sh)  
+Click en 'Raw' -> Click derecho -> Guardar Como  
 
 Descargar desde línea de ordenes:
 ```bash
@@ -268,9 +268,9 @@ Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UC
 Puedes [ver](dockerfile/) el archivo [DockerFile](dockerfile/dockerfile) que construye la imagen base  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
 
-Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
+	Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
 
-Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   
+	Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   
 
 <a name="wiki" id="wiki"></a>
 ## Wiki  
