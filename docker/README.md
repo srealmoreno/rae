@@ -107,15 +107,23 @@ docker build [OPTIONS] ruta
 ```
 <a name="descargar" id="descargar"></a>
 
-**Descargar**
-Desde el navegador:
-Descargar [dockerfile](dockerfile) 
+## Descargar
+Desde el navegador:  
+
+[DockerFile](dockerfile)  
 `Click en  '`**`Raw`**`' -> Click derecho -> Guardar Como`
 
 Descargar desde línea de ordenes:
 ```bash
 wget https://raw.githubusercontent.com/srealmoreno/rae/master/docker/dockerfile
 ```
+
+Construir:
+
+```bash
+docker build -t username/repo:version .
+```
+
 <a name="wiki" id="wiki"></a>
 
 ## Wiki  
