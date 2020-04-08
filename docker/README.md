@@ -8,29 +8,66 @@
 Un Dockerfile es un archivo de texto plano que contiene una serie de instrucciones necesarias para crear una imagen que, posteriormente, se convertirá en una sola aplicación utilizada para un determinado propósito.
 
 ## From
+
+||||
+|---:|:---:|:---|
+|[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|[FROM]()|ubuntu:bionic|
+
 Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor.
 
 Sintaxis:
-```docker
+```docker class:"lineNo"
 FROM  <imagen>
 FROM  <imagen>:<tag>
 ```
 Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O una imagen ya existente en la cual con base a esta queramos construir nuestra propia imagen.
 
 ## Workdir
+
+||||
+|---:|:---:|:---|
+|[3](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3) |[WORKDIR]()|/root |
+
+
 Es el directorio de trabajo predeterminado. en nuestro caso el directorio pasa de `/` a `root`
 Sintaxis:
 ```docker
 WORKDIR ruta_relativa
 ```
 ## Run
+||||
+|---:|:---:|:---|
+|[5](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)|[RUN]()|apt-get update && apt-get install -y --no-install-suggests --no-install-recommends ...|
+|[6](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
+|[59](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
+|[60](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean|
+
+
 Nos permite ejecutar comandos en el contenedor, por ejemplo, instalar paquetes o librerías (apt-get, yum install, etc.).
 
 Sintaxis:
 ```docker
 RUN <comando>
 ```
+No se puede interactuar con los comandos a ejecutar. por ejemplo no se puede escribir `y` ni `enter` al comando `apt-get`. Todos los comandos tienen que ser sin interacción 
+
+En lugar de:
+```docker
+RUN apt-get install bla
+```
+
+Usar:
+```docker
+RUN apt-get install -y bla
+```
+
 ## ENV
+||||
+|:---|:---:|:---|
+|[62](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62)|[ENV]()| LANG es_NI.UTF-8 |
+|[63](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L63)|[ENV]()| LANGUAGE es_NI:es |
+
+
 Establece variables de entorno para nuestro contenedor, en este caso la variable de entorno. por ejemplo `DEBIAN_FRONTEND noninteractive` el cual nos permite instalar un montón de archivos .deb sin tener que interactuar con ellos o `LANGUAGE` que nos permite establecer el idioma, en este caso a español Nicaragua
 
 Sintaxis:
@@ -39,6 +76,11 @@ ENV <key><valor>
 ```
 
 ## CMD 
+
+||||
+|---:|:---:|:---|
+|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|[CMD]()|[ "bash" ]|
+
 Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutaran una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. en nuestro caso como queremos una línea de ordenes el comando de inicio es `bash`
 Sintaxis:
 ```docker
@@ -96,7 +138,7 @@ RUN apt-get update &&\
     nano\
     nmap\
     ssh &&\
-    apt-get auto-remove &&\
+    apt-get auto-remove -y &&\
     rm -rf /var/lib/apt/lists/*
 ```
 ## ¿Cómo se construye una imagen a partir de un Dockerfile?
@@ -120,7 +162,9 @@ wget https://raw.githubusercontent.com/srealmoreno/rae/master/docker/dockerfile
 Construir:
 
 ```bash
-docker build -t username/repo:version .
+docker build -t username/repo:tag .
+
+docker build -t srealmoreno/rdc:latest .
 ```
 
 <a name="wiki" id="wiki"></a>
