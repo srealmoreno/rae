@@ -265,7 +265,7 @@ Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UC
 <a name="dockerfile" id="dockerfile"></a>
 
 * **DockerFile**  
-Puedes [ver](docker/) el archivo [DockerFile](docker/dockerfile) que construye la imagen base  
+Puedes [ver](docker/) el manual del archivo DockerFile o [descargarlo](https://srealmoreno.github.io/rae/docker/dockerfile) que construye la imagen base  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
 
 	Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
