@@ -13,7 +13,7 @@ Un Dockerfile es un archivo de texto plano que contiene una serie de instruccion
 
 ||||
 |---:|:---:|:---|
-|[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|[FROM](#from)|ubuntu:bionic|
+|[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|**FROM**|ubuntu:bionic|
 
 Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor.
 
@@ -30,7 +30,7 @@ Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O
 
 ||||
 |---:|:---:|:---|
-|[3](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3) |[WORKDIR](#workdir)|/root |
+|[3](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3) |**WORKDIR**|/root |
 
 
 Es el directorio de trabajo predeterminado. en nuestro caso el directorio pasa de `/` a `root`
@@ -75,8 +75,8 @@ RUN apt-get install -y bla
 
 ||||
 |:---|:---:|:---|
-|[62](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62)|[ENV](#env)| LANG es_NI.UTF-8 |
-|[63](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L63)|[ENV](#env)| LANGUAGE es_NI:es |
+|[62](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62)|**ENV**| LANG es_NI.UTF-8 |
+|[63](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L63)|**ENV**| LANGUAGE es_NI:es |
 
 
 Establece variables de entorno para nuestro contenedor, en este caso la variable de entorno. por ejemplo `DEBIAN_FRONTEND noninteractive` el cual nos permite instalar un montón de archivos .deb sin tener que interactuar con ellos o `LANGUAGE` que nos permite establecer el idioma, en este caso a español Nicaragua
@@ -92,7 +92,7 @@ ENV <key><valor>
 
 ||||
 |---:|:---:|:---|
-|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|[CMD](#cmd)|[ "bash" ]|
+|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|**CMD**|[ "bash" ]|
 
 Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutaran una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. en nuestro caso como queremos una línea de ordenes el comando de inicio es `bash`
 Sintaxis:
@@ -191,24 +191,22 @@ docker build -t srealmoreno/rdc:latest .
 Para tener entorno gráfico hay que descomentar `wireshark`, `lxde`, `CMD["startlxde"]` y comentar `CMD["bash"]`  
 Nota: Puedes instalar otro entorno gráfico, por ejemplo `xfce4`
 
-De:
-
+De:  
 ||||
 |---:|:---:|:---|
 |[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||#wireshark\\ |
 |[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||#lxde\\ |
-|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|[CMD](#entorno)|[ "bash" ]|
+|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|**CMD**|[ "bash" ]|
 |[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|#CMD|[ "startlxde" ]|
 
  
-A:
-
+A:  
 ||||
 |---:|:---:|:---|
 |[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||wireshark\\ |
 |[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||lxde\\ |
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|#CMD|[ "bash" ]|
-|[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|[CMD](#entorno)|[ "startlxde" ]|
+|[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|**CMD**|[ "startlxde" ]|
 
 
 <a name="wiki"></a>
