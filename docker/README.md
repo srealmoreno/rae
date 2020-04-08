@@ -1,4 +1,3 @@
-
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
 
@@ -11,12 +10,13 @@ Un Dockerfile es un archivo de texto plano que contiene una serie de instruccion
 
 ||||
 |---:|:---:|:---|
-|[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|[FROM]()|ubuntu:bionic|
+|[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|[FROM](#)|ubuntu:bionic|
 
 Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor.
 
 Sintaxis:
-```docker class:"lineNo"
+
+```docker
 FROM  <imagen>
 FROM  <imagen>:<tag>
 ```
@@ -26,7 +26,7 @@ Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O
 
 ||||
 |---:|:---:|:---|
-|[3](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3) |[WORKDIR]()|/root |
+|[3](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3) |[WORKDIR](#)|/root |
 
 
 Es el directorio de trabajo predeterminado. en nuestro caso el directorio pasa de `/` a `root`
@@ -35,9 +35,10 @@ Sintaxis:
 WORKDIR ruta_relativa
 ```
 ## Run
+
 ||||
 |---:|:---:|:---|
-|[5](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)|[RUN]()|apt-get update && apt-get install -y --no-install-suggests --no-install-recommends ...|
+|[5](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)|[RUN](#)|apt-get update && apt-get install -y --no-install-suggests --no-install-recommends ...|
 |[6](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
 |[59](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
 |[60](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean|
@@ -60,12 +61,12 @@ Usar:
 ```docker
 RUN apt-get install -y bla
 ```
-
 ## ENV
+
 ||||
 |:---|:---:|:---|
-|[62](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62)|[ENV]()| LANG es_NI.UTF-8 |
-|[63](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L63)|[ENV]()| LANGUAGE es_NI:es |
+|[62](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62)|[ENV](#)| LANG es_NI.UTF-8 |
+|[63](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L63)|[ENV](#)| LANGUAGE es_NI:es |
 
 
 Establece variables de entorno para nuestro contenedor, en este caso la variable de entorno. por ejemplo `DEBIAN_FRONTEND noninteractive` el cual nos permite instalar un montón de archivos .deb sin tener que interactuar con ellos o `LANGUAGE` que nos permite establecer el idioma, en este caso a español Nicaragua
@@ -79,7 +80,7 @@ ENV <key><valor>
 
 ||||
 |---:|:---:|:---|
-|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|[CMD]()|[ "bash" ]|
+|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|[CMD](#)|[ "bash" ]|
 
 Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutaran una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. en nuestro caso como queremos una línea de ordenes el comando de inicio es `bash`
 Sintaxis:
