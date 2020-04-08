@@ -277,11 +277,21 @@ install_packages() {
             LIST_PACKAGES_INSTALLED="${LIST_PACKAGES_INSTALLED}${i^}"
         fi
     done
-
+    advertencia "Instalando $LIST_PACKAGES_INSTALLED"
+    
     apt update && apt install -y $LIST_INSTALL && exito "$LIST_PACKAGES_INSTALLED instalado(s) con exíto" || error_fatal "No se pudo instalar $LIST_PACKAGES"
+
     if [ -n "$gns3" ]; then
-        advertencia "Reparando errores de GNS3"
-        pip3 install pyqt5==5.13.1 && exito "GNS3 reparando con exíto"
+        advertencia "Comprobando si hay errores en el entorno de GNS3"
+        local version_pyqt_installed=$(pip3 show pyqt5 | grep Version: | cut -d ' ' -f2)
+        local version_min=5.13.1
+        [ "$version_pyqt_installed" != "" ] &&
+            if [ ${version_pyqt_installed//./} -lt ${version_min//./} ]; then
+                advertencia "Se encontró un error: librería Pyqt5.\nGns3 necesita version mínima: $version_min, tienes instalada: $version_pyqt_installed"
+                pip3 install pyqt5==$version_min && exito "GNS3 reparando con exíto"
+            else
+                exito "No se encontraron errores"
+            fi
         check_group "wireshark" "wireshark-common"
         check_group "ubridge" "ubridge"
     fi

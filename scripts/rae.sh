@@ -98,13 +98,26 @@ install_gns3() {
     dpkg --add-architecture i386 &&
         apt update && apt install -y gns3-gui gns3-server vinagre
 
-    if [ "$?" != "0" ]; then
+    if [ "$?" == "0" ]; then
         exito "Gns3 instalado con exito"
-        advertencia "Reparando errores de GNS3"
-        apt install -y python3-pip && pip3 install pyqt5==5.13.1 && exito "GNS3 reparando con exíto"
+        advertencia "Comprobando si hay errores en el entorno de GNS3"
+        apt install -y python3-pip
+        if [ "$?" == "0" ]; then
+            local version_pyqt_installed=$(pip3 show pyqt5 | grep Version: | cut -d ' ' -f2)
+            local version_min=5.13.1
+            [ "$version_pyqt_installed" != "" ] &&
+                if [ ${version_pyqt_installed//./} -lt ${version_min//./} ]; then
+                    advertencia "Se encontró un error: librería Pyqt5.\nGns3 necesita version mínima: $version_min, tienes instalada: $version_pyqt_installed"
+                    pip3 install pyqt5==$version_min && exito "GNS3 reparando con exíto"
+                else
+                    exito "No se encontraron errores"
+                fi
 
+        else
+            advertencia "No se pudo comprobar"
+        fi
         advertencia "Agregando soporte iou en GNS3"
-        apt install -y gns3-iou
+        apt install -y gns3-iou && exito "Soporte IOU agrego en gns3 con exíto" || advertencia "No se pudo agregar soporte IOU en Gns3"
 
         [ "$LIST_GROUP" != "" ] && LIST_GROUP="$LIST_GROUP,"
 
