@@ -33,7 +33,7 @@ Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O
 |[3](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3) |**WORKDIR**|/root |
 
 
-Es el directorio de trabajo predeterminado. en nuestro caso el directorio pasa de `/` a `root`
+Es el directorio de trabajo predeterminado, en nuestro caso el directorio pasa de `/` a `root`
 Sintaxis:
 ```docker
 WORKDIR ruta_relativa
@@ -58,7 +58,7 @@ Sintaxis:
 ```docker
 RUN <comando>
 ```
-No se puede interactuar con los comandos a ejecutar. por ejemplo no se puede escribir `y` ni `enter` al comando `apt-get`. Todos los comandos tienen que ser sin interacción 
+No se puede interactuar con los comandos a ejecutar. Por ejemplo no se puede escribir `y` ni `enter` al comando `apt-get`. Todos los comandos tienen que ser sin interacción 
 
 En lugar de:
 ```docker
@@ -94,7 +94,7 @@ ENV <key><valor>
 |---:|:---:|:---|
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|**CMD**|[ "bash" ]|
 
-Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutaran una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. en nuestro caso como queremos una línea de ordenes el comando de inicio es `bash`
+Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutarán una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. En nuestro caso como queremos una línea de ordenes así que el comando de inicio es `bash`
 Sintaxis:
 ```docker
 CMD [“ejecutable”, “parámetro1”, “parámetro2”, ...]
@@ -103,7 +103,7 @@ CMD [“ejecutable”, “parámetro1”, “parámetro2”, ...]
 <a name="#escribir_dockerfile"></a>
 
 ## ¿Cómo escribir un buen Dockerfile?  
-Una imagen esta construida por capas (layers) cada instrucción en nuestro Dockerfile agregará una capa nueva a nuestra imagen. una imagen es en realidad un snapshot (captura, paquete) de un sistema de archivos creado a partir de distintas capas; internamente docker utiliza UnionFS para unir las capas en un sistema de archivos coherente que será la base de ejecución para los contenedores.
+Una imagen esta construida por capas (layers) cada instrucción en nuestro Dockerfile agregará una capa nueva a nuestra imagen. Una imagen es en realidad un snapshot (captura, paquete) de un sistema de archivos creado a partir de distintas capas; internamente docker utiliza UnionFS para unir las capas en un sistema de archivos coherente que será la base de ejecución para los contenedores.
 
 ```
 ├─57d778d0fe7c Virtual Size: 125 B
