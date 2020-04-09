@@ -59,7 +59,8 @@ Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O
 </table>
 </div>
 
-Es el directorio de trabajo predeterminado, en nuestro caso el directorio pasa de `/` a `root`
+Es el directorio de trabajo predeterminado, en nuestro caso el directorio pasa de `/` a `root`  
+
 Sintaxis:
 ```docker
 WORKDIR ruta_relativa
@@ -210,7 +211,8 @@ ENV <key><valor>
 </table>
 </div>
 
-Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutarán una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. En nuestro caso como queremos una línea de ordenes así que el comando de inicio es `bash`
+Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutarán una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. En nuestro caso como queremos una línea de ordenes así que el comando de inicio es `bash`  
+
 Sintaxis:
 ```docker
 CMD [“ejecutable”, “parámetro1”, “parámetro2”, ...]
@@ -275,7 +277,8 @@ RUN apt-get update &&\
 <a name="#build"></a>
 
 ## ¿Cómo se construye una imagen a partir de un Dockerfile?
-Con el comando docker build se construye la imagen siguiendo cada instrucción escrita en el dockerfile.
+Con el comando docker build se construye la imagen siguiendo cada instrucción escrita en el dockerfile.  
+
 Sintaxis:
 ```bash
 docker build [OPTIONS] ruta
