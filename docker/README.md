@@ -28,6 +28,11 @@
 
 .line{
     text-align: right;
+    min-width: 20px;
+    padding-left: 5px;
+}
+.line > a:link{
+    color: rgba(27,31,35,.3)
 }
 .command{
     color: #000000;
@@ -66,6 +71,7 @@ Un Dockerfile es un archivo de texto plano que contiene una serie de instruccion
 </table>
 </div>
 
+
 Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor.
 
 Sintaxis:
@@ -81,11 +87,22 @@ Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O
 
 <div class="table">
 
-||||
-|---:|:---:|:---|
-|[3](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3) |**WORKDIR**|/root |
-||||
-
+<div class="background_table">
+<table class="table">
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3">
+            3
+        </a>
+    </th>
+    <th class="command">
+        WORKDIR
+    </th>
+    <th class="value">
+        /root
+    </th>
+  </tr>
+</table>
 </div>
 
 Es el directorio de trabajo predeterminado, en nuestro caso el directorio pasa de `/` a `root`
