@@ -59,7 +59,8 @@ Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O
 </table>
 </div>
 
-Es el directorio de trabajo predeterminado, en nuestro caso el directorio pasa de `/` a `root`
+Es el directorio de trabajo predeterminado, en nuestro caso el directorio pasa de `/` a `root`  
+
 Sintaxis:
 ```docker
 WORKDIR ruta_relativa
@@ -466,13 +467,18 @@ Redes de área extensa 2020 - Salvador real
     border: 1px solid #e5e5e5;
     background:#f8f8f8;
     padding: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     overflow-x: auto; 
+    border-radius: 5px;
 }
 
 .table{
     display:contents;
     width: 100%; 
+}
+
+td:empty::after{
+  content: "\00a0";
 }
 
 .line, .command, .value{
