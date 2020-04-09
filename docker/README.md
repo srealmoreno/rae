@@ -22,15 +22,20 @@
     font-weight: normal;
 }
 
+.command, .value{
+    font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+}
+
 .line{
     text-align: right;
 }
 .command{
+    color: #000000;
     font-weight: bold;
     text-align: center;
 }
 .value{
-    color: red;
+    color: #d14;
     text-align: left;
 }
 </style>
@@ -60,15 +65,6 @@ Un Dockerfile es un archivo de texto plano que contiene una serie de instruccion
   </tr>
 </table>
 </div>
-
-- e
-
-
-||||
-|---:|:---:|:---|
-|[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|**FROM**|ubuntu:bionic|
-||||
-
 
 Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor.
 
