@@ -30,6 +30,7 @@
     text-align: center;
 }
 .value{
+    color: red;
     text-align: left;
 }
 </style>
@@ -46,8 +47,8 @@ Un Dockerfile es un archivo de texto plano que contiene una serie de instruccion
 <table class="table">
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17docker/ dockerfile#L73">
-            73 
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1">
+            1
         </a>
     </th>
     <th class="command">
@@ -321,21 +322,3 @@ Redes de área extensa 2020 - Salvador real
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/UNAN.png" height="50px" align="right">
 
 [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail)](https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE.) [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook)](https://facebook.com/srealmoreno) [![](https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social)](https://github.com/srealmoreno/)
-
-<style>
-.table{
-    border: 1px solid #e5e5e5;
-    background:#f8f8f8;
-    
-}
-table{
-    width: auto;
-    empty-cells: hide;
-    background: none;
-}
-
-td, th {
-    border: 0px solid grey
-}
-
-</style>
