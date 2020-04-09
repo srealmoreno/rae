@@ -110,12 +110,10 @@ ENV <key><valor>
 ## CMD 
 
 <div class="table">
-
 ||||
 |---:|:---:|:---|
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|**CMD**|[ "bash" ]|
 ||||
-
 </div>
 
 Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutarán una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. En nuestro caso como queremos una línea de ordenes así que el comando de inicio es `bash`
@@ -288,7 +286,7 @@ table{
 }
 
 td, th {
-    border: none;
+    border: 0px solid grey
 }
 
 </style>
