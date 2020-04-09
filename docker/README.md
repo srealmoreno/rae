@@ -2,6 +2,25 @@
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
 
+<style>
+.table{
+    border: 1px solid #e5e5e5;
+    background:#f8f8f8;
+    width: 100%;    
+}
+table{
+    background: none;
+}
+
+.line, .command, .value {
+    border: none;
+}
+
+.command{
+    font-weight: bold;
+}
+</style>
+
 # DockerFile
 
 ## ¿Que es un DockerFile?  
@@ -10,15 +29,32 @@ Un Dockerfile es un archivo de texto plano que contiene una serie de instruccion
 <a name="from"></a>
 
 ## From
-
 <div class="table">
+<table>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17docker/ dockerfile#L73">
+            73 
+        </a>
+    </th>
+    <th class="command">
+        FROM
+    </th>
+    <th class="value">
+        ubuntu:bionic
+    </th>
+  </tr>
+</table>
+</div>
+
+- e
+
 
 ||||
 |---:|:---:|:---|
 |[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|**FROM**|ubuntu:bionic|
 ||||
 
-</div>
 
 Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor.
 
