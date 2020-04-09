@@ -1,16 +1,14 @@
-
+<a name="scripts"></a>
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
-<a name="scripts"></a>
 
 # Scripts
 
 ### Ir a:
-
 * [Inicio](../)
 * [Scripts](#scripts)
-* [Docker](../docker/)
-* [Assets](../assets/)
+* [Docker](../docker/#docker)
+* [Assets](../assets/#assets)
 
 Esta carpeta contiene los scripts de instalación de:
 -   Docker

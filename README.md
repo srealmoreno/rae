@@ -1,16 +1,13 @@
-
-![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
-
 <a name="inicio"></a>
+![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
 # Manual de Uso
 
 ### Ir a:
-
 * [Inicio](#inicio)
-* [Scripts](scripts/)
-* [Docker](docker/)
-* [Assets](assets/)
+* [Scripts](scripts/#scripts)
+* [Docker](docker/#docker)
+* [Assets](assets/#assets)
 
 ### Se explicará:
 - <a href="#script"> Uso del script de instalación para: </a>
@@ -25,7 +22,7 @@
 	* <a href="#ubuntu_router"> Uso como Router </a>
 	* <a href="#ubuntu_switch"> Uso como Switch </a>
 
-- [DockerFile](docker)
+- [DockerFile](#docker)
 
 ### Requisitos
 * Sistema operativo: Ubuntu o derivados 

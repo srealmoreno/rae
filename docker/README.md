@@ -1,16 +1,14 @@
-
+<a name="docker"></a>
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
-<a name="docker"></a>
 
 # DockerFile
 
 ### Ir a:
-
 * [Inicio](../)
-* [Scripts](../scripts/)
+* [Scripts](../scripts/#scripts)
 * [Docker](#docker)
-* [Assets](../assets/)
+* [Assets](../assets/#assets)
 
 ## ¿Que es un DockerFile?  
 Un Dockerfile es un archivo de texto plano que contiene una serie de instrucciones necesarias para crear una imagen que, posteriormente, se convertirá en una sola aplicación utilizada para un determinado propósito.

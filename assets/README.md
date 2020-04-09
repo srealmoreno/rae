@@ -1,15 +1,13 @@
-
+<a name="assets"></a>
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
-<a name="assets"></a>
 
 # Assets
 
 ### Ir a:
-
 * [Inicio](../)
-* [Scripts](../scripts/)
-* [Docker](../docker/)
+* [Scripts](../scripts/#scripts)
+* [Docker](../docker/#docker)
 * [Assets](#assets)
 
 Esta carpeta contiene lás imágenes que que utilizo en el manual
