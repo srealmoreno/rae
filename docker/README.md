@@ -1,19 +1,6 @@
 
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
-<style>
-table{
-    width: auto;
-    border: 1px solid #e5e5e5;
-    background:#f6f8fa;
-}
-
-td, th {
-    color: black;
-    border: none;
-}
-
-</style>
 
 # DockerFile
 
@@ -257,3 +244,18 @@ Redes de área extensa 2020 - Salvador real
 
 [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail)](https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE.) [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook)](https://facebook.com/srealmoreno) [![](https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social)](https://github.com/srealmoreno/)
 
+<style>
+table{
+    width: auto;
+    border: 1px solid #e5e5e5;
+    background:#f6f8fa;
+    empty-cells: hide;
+}
+
+td, th {
+    color: black;
+    border: none;
+    empty-cells: hide;
+}
+
+</style>
