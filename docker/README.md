@@ -1,49 +1,6 @@
 
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
-
-<style>
-.background_table{
-    border: 1px solid #e5e5e5;
-    background:#f8f8f8;
-    width: 100%; 
-    padding: 2px;   
-}
-
-.table{
-    display:contents;
-}
-
-.line, .command, .value{
-    border: none;
-}
-
-.line, .value{
-    font-weight: normal;
-}
-
-.command, .value{
-    font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
-}
-
-.line{
-    text-align: right;
-    font-size: 14px;
-}
-.line > a:link{
-    color: rgba(27,31,35,.3)
-}
-.command{
-    color: #000000;
-    font-weight: bold;
-    text-align: center;
-}
-.value{
-    color: #d14;
-    text-align: left;
-}
-</style>
-
 # DockerFile
 
 ## ¿Que es un DockerFile?  
@@ -352,29 +309,143 @@ Nota: Puedes instalar otro entorno gráfico, por ejemplo `xfce4`
 
 De: 
 
-<div class="table">
-
-||||
-|---:|:---:|:---|
-|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||#wireshark\ |
-|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||#lxde\ |
-|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|**CMD**|[ "bash" ]|
-|[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|#CMD|[ "startlxde" ]|
-||||
+<div class="background_table">
+<table class="table">
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52">
+            52
+        </a>
+    </th>
+    <th class="command">
+        &#32;
+    </th>
+    <th class="value commend">
+        #wireshark\
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53">
+            56
+        </a>
+    </th>
+    <th class="command">
+        &#32;
+    </th>
+    <th class="value commend">
+        #lxde\
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+       ..
+    </th>
+    <th class="command">
+        &#32;    
+    </th>
+    <th class="value">
+         &#32;
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73">
+            73
+        </a>
+    </th>
+    <th class="command">
+        CMD
+    </th>
+    <th class="value">
+        [ "bash" ]
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75">
+            75
+        </a>
+    </th>
+    <th class="command commend">
+        #CMD
+    </th>
+    <th class="value commend">
+        [ "startlxde" ]
+    </th>
+  </tr>
+</table>
 </div>
 
  
 A:  
 
-<div class="table">
-
-||||
-|---:|:---:|:---|
-|[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||wireshark\ |
-|[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||lxde\ |
-|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|#CMD|[ "bash" ]|
-|[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|**CMD**|[ "startlxde" ]|
-||||
+<div class="background_table">
+<table class="table">
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52">
+            52
+        </a>
+    </th>
+    <th class="command">
+        &#32;
+    </th>
+    <th class="value">
+        wireshark\
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53">
+            56
+        </a>
+    </th>
+    <th class="command">
+        &#32;
+    </th>
+    <th class="value">
+        lxde\
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+       ..
+    </th>
+    <th class="command">
+        &#32;    
+    </th>
+    <th class="value">
+         &#32;
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73">
+            73
+        </a>
+    </th>
+    <th class="command commend">
+        #CMD
+    </th>
+    <th class="value commend">
+        [ "bash" ]
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75">
+            75
+        </a>
+    </th>
+    <th class="command">
+        CMD
+    </th>
+    <th class="value">
+        [ "startlxde" ]
+    </th>
+  </tr>
+</table>
 </div>
 
 <a name="wiki"></a>
@@ -409,3 +480,45 @@ Redes de área extensa 2020 - Salvador real
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/UNAN.png" height="50px" align="right">
 
 [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail)](https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE.) [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook)](https://facebook.com/srealmoreno) [![](https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social)](https://github.com/srealmoreno/)
+
+<style>
+.background_table{
+    border: 1px solid #e5e5e5;
+    background:#f8f8f8;
+    width: 100%; 
+    padding: 2px;   
+}
+
+.table{
+    display:contents;
+}
+
+.line, .command, .value{
+    border: none;
+    font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+}
+
+.line, .value{
+    font-weight: normal;
+}
+
+.line{
+    text-align: right;
+    font-size: 14px;
+}
+.line > a:link, .line > a:visited{
+    color: rgba(27,31,35,.3)
+}
+.command{
+    color: #000000;
+    font-weight: bold;
+    text-align: center;
+}
+.value{
+    color: #d14;
+    text-align: left;
+}
+.commend{
+    color: gray;
+}
+</style>
