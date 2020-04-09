@@ -1,6 +1,19 @@
 
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
+<style>
+table{
+    width: auto;
+    border: 1px solid #e5e5e5;
+    background:#f6f8fa;
+}
+
+td, th {
+    color: black;
+    border: none;
+}
+
+</style>
 
 # DockerFile
 
@@ -46,7 +59,7 @@ WORKDIR ruta_relativa
 
 ||||
 |---:|:---:|:---|
-|[5](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)|[RUN](#run)|apt-get update && apt-get install -y --no-install-suggests --no-install-recommends ...|
+|[5](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)|**RUN**|apt-get update && apt-get install -y --no-install-suggests --no-install-recommends ...|
 |[6](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
 |[59](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
 |[60](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean|
