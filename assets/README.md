@@ -3,6 +3,7 @@
 
 
 # Assets
+Esta carpeta contiene lás imágenes que que utilizo en el manual
 
 ### Ir a:
 * [Inicio](../)
@@ -10,7 +11,6 @@
 * [Docker](../docker/#docker)
 * [Assets](#assets)
 
-Esta carpeta contiene lás imágenes que que utilizo en el manual
 ## Autores  
 
 * **Salvador Real** - [srealmoreno](https://github.com/srealmoreno)

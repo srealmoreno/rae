@@ -266,18 +266,19 @@ docker stats
 
 <a name="tipsgns3"></a>
 
-* **Tips de GNS3**  
+## Tips de GNS3  
 Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
 
 <a name="docker"></a>
 
-* **DockerFile**  
+## DockerFile  
+
 Puedes ver el [manual](docker/) del archivo DockerFile o [descargarlo](https://srealmoreno.github.io/rae/docker/dockerfile) que construye la imagen base  
 Si falta algún comando puedes agregarlo al dockerfile y reconstruir la imagen.  
 
-	Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
+Leer [tutorial](https://docs.docker.com/get-started/part2/) oficial de Docker para construir una imagen  
 
-	Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   
+Ver [video](https://youtu.be/a8sf54TCRN4) tutorial construir una imagen   
 
 <a name="wiki"></a>
 

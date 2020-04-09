@@ -317,7 +317,7 @@ docker build -t srealmoreno/rdc:latest .
 Para tener entorno gráfico hay que descomentar `wireshark`, `lxde`, `CMD["startlxde"]` y comentar `CMD["bash"]`  
 Nota: Puedes instalar otro entorno gráfico, por ejemplo `xfce4`
 
-De:  
+De:
 <div class="background_table">
 <table class="table">
   <tr>
@@ -340,7 +340,9 @@ De:
         </a>
     </th>
     <th class="command"></th>
-    <th class="value commend"></th>
+    <th class="value commend"> 
+        #lxde\
+    </th>
   </tr>
   <tr>
     <th class="line">
@@ -377,7 +379,8 @@ De:
   </tr>
 </table>
 </div>
-A:  
+
+A:
 <div class="background_table">
 <table class="table">
   <tr>
@@ -497,6 +500,13 @@ Redes de área extensa 2020 - Salvador real
 .line{
     text-align: right;
     font-size: 14px;
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select:none;
+	user-select: none;
 }
 .line > a:link, .line > a:visited{
     color: rgba(27,31,35,.3)
