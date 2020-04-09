@@ -307,8 +307,7 @@ docker build -t srealmoreno/rdc:latest .
 Para tener entorno gráfico hay que descomentar `wireshark`, `lxde`, `CMD["startlxde"]` y comentar `CMD["bash"]`  
 Nota: Puedes instalar otro entorno gráfico, por ejemplo `xfce4`
 
-De: 
-
+De:  
 <div class="background_table">
 <table class="table">
   <tr>
@@ -330,23 +329,15 @@ De:
             56
         </a>
     </th>
-    <th class="command">
-        &#32;
-    </th>
-    <th class="value commend">
-        #lxde\
-    </th>
+    <th class="command"></th>
+    <th class="value commend"></th>
   </tr>
   <tr>
     <th class="line">
        ..
     </th>
-    <th class="command">
-        &#32;    
-    </th>
-    <th class="value">
-         &#32;
-    </th>
+    <th class="command"></th>
+    <th class="value"></th>
   </tr>
   <tr>
     <th class="line">
@@ -376,10 +367,7 @@ De:
   </tr>
 </table>
 </div>
-
- 
 A:  
-
 <div class="background_table">
 <table class="table">
   <tr>
@@ -388,9 +376,7 @@ A:
             52
         </a>
     </th>
-    <th class="command">
-        &#32;
-    </th>
+    <th class="command"></th>
     <th class="value">
         wireshark\
     </th>
@@ -401,9 +387,7 @@ A:
             56
         </a>
     </th>
-    <th class="command">
-        &#32;
-    </th>
+    <th class="command"></th>
     <th class="value">
         lxde\
     </th>
@@ -412,12 +396,8 @@ A:
     <th class="line">
        ..
     </th>
-    <th class="command">
-        &#32;    
-    </th>
-    <th class="value">
-         &#32;
-    </th>
+    <th class="command"></th>
+    <th class="value"></th>
   </tr>
   <tr>
     <th class="line">
@@ -485,20 +465,20 @@ Redes de área extensa 2020 - Salvador real
 .background_table{
     border: 1px solid #e5e5e5;
     background:#f8f8f8;
-    width: 100%; 
     padding: 2px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     overflow-x: auto; 
 }
 
 .table{
     display:contents;
-    overflow-x: auto;
+    width: 100%; 
 }
 
 .line, .command, .value{
     border: none;
     font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+    white-space: nowrap;
 }
 
 .line, .value{
