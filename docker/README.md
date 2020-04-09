@@ -28,8 +28,7 @@
 
 .line{
     text-align: right;
-    min-width: 20px;
-    padding-left: 5px;
+    font-size: 14px;
 }
 .line > a:link{
     color: rgba(27,31,35,.3)
@@ -85,8 +84,6 @@ Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O
 
 ## Workdir
 
-<div class="table">
-
 <div class="background_table">
 <table class="table">
   <tr>
@@ -116,16 +113,61 @@ WORKDIR ruta_relativa
 
 ## Run
 
-<div class="table">
-
-||||
-|---:|:---:|:---|
-|[5](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)|**RUN**|apt-get update && apt-get install -y --no-install-suggests --no-install-recommends ...|
-|[6](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
-|[59](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
-|[60](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean|
-||||
-
+<div class="background_table">
+<table class="table">
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60">
+            5
+        </a>
+    </th>
+    <th class="command">
+        RUN
+    </th>
+    <th class="value">
+        apt-get update && apt-get install -y --no-install-suggests --no-install-recommends ...
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60">
+            6
+        </a>
+    </th>
+    <th class="command">
+        &#32;
+    </th>
+    <th class="value">
+        ...
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60">
+            59
+        </a>
+    </th>
+    <th class="command">
+        &#32;
+    </th>
+    <th class="value">
+        ...
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60">
+            60
+        </a>
+    </th>
+    <th class="command">
+        &#32;
+    </th>
+    <th class="value">
+        rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean
+    </th>
+  </tr>
+</table>
 </div>
 
 
@@ -150,14 +192,35 @@ RUN apt-get install -y bla
 
 ## ENV
 
-<div class="table">
-
-||||
-|:---|:---:|:---|
-|[62](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62)|**ENV**| LANG es_NI.UTF-8 |
-|[63](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L63)|**ENV**| LANGUAGE es_NI:es |
-||||
-
+<div class="background_table">
+<table class="table">
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62">
+            62
+        </a>
+    </th>
+    <th class="command">
+        ENV
+    </th>
+    <th class="value">
+        LANG es_NI.UTF-8
+    </th>
+  </tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L63">
+            63
+        </a>
+    </th>
+    <th class="command">
+        ENV
+    </th>
+    <th class="value">
+        LANGUAGE es_NI:es
+    </th>
+  </tr>
+</table>
 </div>
 
 
@@ -172,11 +235,22 @@ ENV <key><valor>
 
 ## CMD 
 
-<div class="table">
-||||
-|---:|:---:|:---|
-|[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|**CMD**|[ "bash" ]|
-||||
+<div class="background_table">
+<table class="table">
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73">
+            73
+        </a>
+    </th>
+    <th class="command">
+        CMD
+    </th>
+    <th class="value">
+        [ "bash" ]
+    </th>
+  </tr>
+</table>
 </div>
 
 Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutarán una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. En nuestro caso como queremos una línea de ordenes así que el comando de inicio es `bash`
