@@ -486,11 +486,14 @@ Redes de área extensa 2020 - Salvador real
     border: 1px solid #e5e5e5;
     background:#f8f8f8;
     width: 100%; 
-    padding: 2px;   
+    padding: 2px;
+    margin-bottom: 5px;
+    overflow-x: auto; 
 }
 
 .table{
     display:contents;
+    overflow-x: auto;
 }
 
 .line, .command, .value{
