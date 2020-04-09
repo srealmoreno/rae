@@ -3,21 +3,34 @@
 
 
 <style>
-.table{
+.background_table{
     border: 1px solid #e5e5e5;
     background:#f8f8f8;
-    width: 100%;    
-}
-table{
-    background: none;
+    width: 100%; 
+    padding: 2px;   
 }
 
-.line, .command, .value {
+.table{
+    display:contents;
+}
+
+.line, .command, .value{
     border: none;
 }
 
+.line, .value{
+    font-weight: normal;
+}
+
+.line{
+    text-align: right;
+}
 .command{
     font-weight: bold;
+    text-align: center;
+}
+.value{
+    text-align: left;
 }
 </style>
 
@@ -29,8 +42,8 @@ Un Dockerfile es un archivo de texto plano que contiene una serie de instruccion
 <a name="from"></a>
 
 ## From
-<div class="table">
-<table>
+<div class="background_table">
+<table class="table">
   <tr>
     <th class="line">
         <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17docker/ dockerfile#L73">
