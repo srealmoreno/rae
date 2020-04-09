@@ -11,9 +11,14 @@ Un Dockerfile es un archivo de texto plano que contiene una serie de instruccion
 
 ## From
 
+<div class="table">
+
 ||||
 |---:|:---:|:---|
 |[1](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1)|**FROM**|ubuntu:bionic|
+||||
+
+</div>
 
 Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor.
 
@@ -28,10 +33,14 @@ Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O
 
 ## Workdir
 
+<div class="table">
+
 ||||
 |---:|:---:|:---|
 |[3](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3) |**WORKDIR**|/root |
+||||
 
+</div>
 
 Es el directorio de trabajo predeterminado, en nuestro caso el directorio pasa de `/` a `root`
 Sintaxis:
@@ -44,12 +53,17 @@ WORKDIR ruta_relativa
 
 ## Run
 
+<div class="table">
+
 ||||
 |---:|:---:|:---|
 |[5](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)|**RUN**|apt-get update && apt-get install -y --no-install-suggests --no-install-recommends ...|
 |[6](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
 |[59](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||...|
 |[60](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60)||rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean|
+||||
+
+</div>
 
 
 Nos permite ejecutar comandos en el contenedor, por ejemplo, instalar paquetes o librerías (apt-get, yum install, etc.).
@@ -73,10 +87,15 @@ RUN apt-get install -y bla
 
 ## ENV
 
+<div class="table">
+
 ||||
 |:---|:---:|:---|
 |[62](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62)|**ENV**| LANG es_NI.UTF-8 |
 |[63](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L63)|**ENV**| LANGUAGE es_NI:es |
+||||
+
+</div>
 
 
 Establece variables de entorno para nuestro contenedor, en este caso la variable de entorno. por ejemplo `DEBIAN_FRONTEND noninteractive` el cual nos permite instalar un montón de archivos .deb sin tener que interactuar con ellos o `LANGUAGE` que nos permite establecer el idioma, en este caso a español Nicaragua
@@ -90,9 +109,14 @@ ENV <key><valor>
 
 ## CMD 
 
+<div class="table">
+
 ||||
 |---:|:---:|:---|
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|**CMD**|[ "bash" ]|
+||||
+
+</div>
 
 Esta instrucción nos provee valores por defecto a nuestro contenedor, es decir, mediante esta podemos definir una serie de comandos que solo se ejecutarán una vez que el contenedor se ha inicializado, pueden ser comandos Shell con parámetros establecidos. En nuestro caso como queremos una línea de ordenes así que el comando de inicio es `bash`
 Sintaxis:
@@ -193,15 +217,21 @@ Nota: Puedes instalar otro entorno gráfico, por ejemplo `xfce4`
 
 De: 
 
+<div class="table">
+
 ||||
 |---:|:---:|:---|
 |[52](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52)||#wireshark\ |
 |[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||#lxde\ |
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|**CMD**|[ "bash" ]|
 |[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|#CMD|[ "startlxde" ]|
+||||
+</div>
 
  
 A:  
+
+<div class="table">
 
 ||||
 |---:|:---:|:---|
@@ -209,7 +239,8 @@ A:
 |[53](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53)||lxde\ |
 |[73](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73)|#CMD|[ "bash" ]|
 |[75](https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75)|**CMD**|[ "startlxde" ]|
-
+||||
+</div>
 
 <a name="wiki"></a>
 
@@ -245,17 +276,19 @@ Redes de área extensa 2020 - Salvador real
 [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail)](https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE.) [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook)](https://facebook.com/srealmoreno) [![](https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social)](https://github.com/srealmoreno/)
 
 <style>
+.table{
+    border: 1px solid #e5e5e5;
+    background:#f8f8f8;
+    
+}
 table{
     width: auto;
-    border: 1px solid #e5e5e5;
-    background:#f6f8fa;
     empty-cells: hide;
+    background: none;
 }
 
 td, th {
-    color: black;
     border: none;
-    empty-cells: hide;
 }
 
 </style>
