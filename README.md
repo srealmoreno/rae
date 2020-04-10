@@ -1,38 +1,13 @@
 <a name="inicio"></a>
 ![](https://img.shields.io/badge/%20-Bash-grey) ![](https://img.shields.io/badge/%20-Docker-blue) ![](https://img.shields.io/badge/%20-GNS3-green) ![](https://img.shields.io/badge/%20-Netgui-lightgrey) ![](https://img.shields.io/badge/%20-VirtalBox-lightblue") ![](https://img.shields.io/badge/Tutoriales-Srealmoreno-red?style=flat&logo=github)
 
-<div class="menu">
-  <a title="Inicio"  class="active"  >Inicio</a>
-  <a title="Scripts" href="../scripts/#scripts">Scripts</a>
-  <a title="Docker"  href="../docker/#docker" >Docker</a>
-  <a title="Assets"  href="../assets/#assets">Assets</a>
-</div>
-
-<style>
-.menu {
-    background-color: #333;
-    overflow: hidden;
-}
-.menu a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 5px 10px;
-    text-decoration: none;
-}
-
-.menu a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.menu a.active {
-    background-color: #0e0e0e;
-    color: white;
-}
-</style>
-
 # Manual de Uso
+
+### Ir a:
+* [Inicio](#inicio)
+* [Scripts](scripts/#scripts)
+* [Docker](docker/#docker)
+* [Assets](assets/#assets)
 
 ### Se explicará:
 - <a href="#script"> Uso del script de instalación para: </a>
