@@ -70,7 +70,7 @@ Es el directorio de trabajo predeterminado, en nuestro caso el directorio pasa d
 
 Sintaxis:
 ```docker
-WORKDIR ruta_relativa
+WORKDIR ruta_absoluta
 ```
 
 <a name="run"></a>
@@ -507,9 +507,10 @@ Redes de área extensa 2020 - Salvador real
 	-ms-user-select: none;
 	-o-user-select:none;
 	user-select: none;
+    color: #1b1f23
 }
 .line > a:link, .line > a:visited{
-    color: rgba(27,31,35,.3)
+    color: #1b1f23
 }
 .command{
     color: #000000;
