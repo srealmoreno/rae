@@ -174,7 +174,7 @@ Ahora ve a avanzado y agrega las siguientes líneas en la segunda caja de texto 
 GNS3 + Docker está pensado para gastar los menos recursos posibles. Ya sea memoria Ram y Disco duro.
 **Cada vez que se cierra un contenedor de docker todos los ficheros _eliminan_**  
 Estas rutas a ficheros y carpetas quedarán **guardadas** aunque el contenedor se cierre.
-**Si quieres guardar un script hazlo en el directorio `/save/`**
+**Si quieres guardar un script o una captura hazlo en el directorio `/save/`**
 Si quieres que otro fichero o carpeta se guarde, simplemente agrega la ruta **absoluta**.
 
 De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que es muy pesado en Disco.
@@ -263,6 +263,61 @@ docker stats
 ¡WOW, Cada contenedor consume 4MiB de memoria RAM!  
 
 ![](assets/gns3_29.png "Este comando se ejecuta en la máquina física")
+
+<a name="tcpdump"></a>
+
+## Corrigiendo tcpdump
+Error de tcpdump al tratar de guardar la captura con el párameto -w:
+Tcpdump: Permission denied  
+
+![](assets/tcpdump_1.png "Error de tcpdump en escritura")  
+
+Este error ocurre al tratar de guardar una captura en el directorio `/save/`, por razones de seguridad el SO anfitrión bloquea que el comando tcpdump pueda escribir archivos `'.cap'`. [AppArmor](https://es.wikipedia.org/wiki/AppArmor) es el causante de esto.
+Hay algunas formas de solucionarlo:  
+1.	Escribir la salida con extensión `.pcap` o cualquiera diferente a `.cap`
+
+	En vez de:
+	```bash
+	tcpdump -w /save/bla.cap
+	```
+	Has esto:
+	```bash
+	tcpdump -w /save/bla.pcap
+	```
+	![](assets/tcpdump_2.png "Cambia la extensión a '.pcap'")  
+	
+2.	Cambiar el perfil de tcpdump de `enforce` a `complain` en AppArmor (en el SO anfitrión)
+	
+	Ejecutar en la máquina fisica:
+
+	```bash
+	sudo apt-get install apparmor-utils
+	sudo aa-complain /usr/sbin/tcpdump
+	```
+	![](assets/tcpdump_3.png "Creando perfil 'complain' de tcpdump")  
+
+	Ya puedes guardar con extensión `.cap`  
+
+	![](assets/tcpdump_4.png "Ya puedes guardar normalmente")  
+
+	Para volver al perfil a la normalidad: (Recomendado cuando termines todas las prácticas)
+	```bash
+	sudo aa-enforce /usr/sbin/tcpdump
+	```
+3. Desactivar AppArmor (No recomendado)  
+	Enserio no lo hagas a menos que sepas lo que haces.  
+
+	Ejecutar en la máquina fisica:
+	```bash
+	sudo systemctl disable apparmor.service
+	```
+	luego reiniciar la máquina  
+	
+4. Realiza la captura en otro directorio y luego copiala al directorio  `/save/`
+	Por ejemplo se puede guardar en `/root/` o `/tmp`
+	![](assets/tcpdump_4.png "Se guarda en el directorio de conexión") 
+
+	Nota: El directorio `/root/` tambien es persistente pero debes de apagar el contenedor para poder acceder a su contendio o jugar con `chmod` `chown` para acceder al contendio aún cuando este el contenedor encendido.
 
 <a name="tipsgns3"></a>
 
