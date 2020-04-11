@@ -274,7 +274,7 @@ Tcpdump: Permission denied
 
 Este error ocurre al tratar de guardar una captura en el directorio `/save/`, por razones de seguridad el SO anfitrión bloquea que el comando tcpdump pueda escribir archivos `'.cap'`. [AppArmor](https://es.wikipedia.org/wiki/AppArmor) es el causante de esto.
 Hay algunas formas de solucionarlo:  
-1.	Escribir la salida con extensión `.pcap` o cualquiera diferente a `.cap`
+1.	Escribir la salida con extensión `'.pcap'` o cualquiera diferente a `'.cap'`
 
 	En vez de:
 	```bash
@@ -286,7 +286,7 @@ Hay algunas formas de solucionarlo:
 	```
 	![](assets/tcpdump_2.png "Cambia la extensión a '.pcap'")  
 	
-2.	Cambiar el perfil de tcpdump de `enforce` a `complain` en AppArmor (en el SO anfitrión)
+2.	Cambiar el perfil de tcpdump de `'enforce'` a `'complain'` en AppArmor (en el SO anfitrión)
 	
 	Ejecutar en la máquina fisica:
 
@@ -296,7 +296,7 @@ Hay algunas formas de solucionarlo:
 	```
 	![](assets/tcpdump_3.png "Creando perfil 'complain' de tcpdump")  
 
-	Ya puedes guardar con extensión `.cap`  
+	Ya puedes guardar con extensión `'.cap'`  
 
 	![](assets/tcpdump_4.png "Ya puedes guardar normalmente")  
 
@@ -314,7 +314,7 @@ Hay algunas formas de solucionarlo:
 	luego reiniciar la máquina  
 	
 4. Realiza la captura en otro directorio y luego copiala al directorio  `/save/`
-	Por ejemplo se puede guardar en `/root/` o `/tmp`
+	Por ejemplo se puede guardar en `/root/` o `/tmp/`
 	![](assets/tcpdump_4.png "Se guarda en el directorio de conexión") 
 
 	Nota: El directorio `/root/` tambien es persistente pero debes de apagar el contenedor para poder acceder a su contendio o jugar con `chmod` `chown` para acceder al contendio aún cuando este el contenedor encendido.
