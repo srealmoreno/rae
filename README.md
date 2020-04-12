@@ -285,6 +285,7 @@ Hay algunas formas de solucionarlo:
 	tcpdump -w /save/bla.pcap
 	```
 	![](assets/tcpdump_2.png "Cambia la extensión a '.pcap'")  
+	![](assets/tcpdump_6.png "Cambia la extensión a '.pcap'")  
 	
 2.	Cambiar el perfil de tcpdump de `'enforce'` a `'complain'` en AppArmor (en el SO anfitrión)
 	

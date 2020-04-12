@@ -13,17 +13,22 @@ White=$(tput setaf 15)
 Normal=$(tput sgr0)
 
 error_fatal() {
-    echo -e "${Red}Error fatal:${Normal} $1" >&2
+    echo -e "${Red}x Error fatal:${Normal} $@" >&2
     exit -1
 }
 
+info() {
+  printf "${Blue}> Info: ${Normal} $@\n"
+}
+
 advertencia() {
-    echo -e "${Yellow}Advertencia: ${Normal}$1" >&2
+    echo -e "${Yellow}! Advertencia: ${Normal}$@" >&2
 }
 
 exito() {
-    echo -e "${Green}Exíto: ${Normal}$1"
+    echo -e "${Green}✓ Exíto: ${Normal}$@"
 }
+
 
 LIST_GROUP=""
 LIST_PACKAGES=""
@@ -31,7 +36,7 @@ LIST_INSTALL=""
 DISTRO=""
 
 install_dependencies() {
-    advertencia "Instalando dependencias necesarias"
+   info "Instalando dependencias necesarias"
     apt install -y \
         apt-transport-https \
         ca-certificates \
@@ -41,7 +46,7 @@ install_dependencies() {
 }
 
 get_os() {
-    advertencia "Obteniendo información del sistema..."
+   info "Obteniendo información del sistema..."
     if [ -f /etc/os-release ]; then
         source /etc/os-release
         if [[ "$ID" != "ubuntu" ]] && [[ "$ID_LIKE" != "ubuntu" ]]; then
@@ -74,7 +79,7 @@ check_group() {
 }
 
 add_repository_virtualbox() {
-    advertencia "Agregando repositorio de VirtualBox"
+   info "Agregando repositorio de VirtualBox"
     wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add - &&
         wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\n\
@@ -86,7 +91,7 @@ add_repository_virtualbox() {
 }
 
 add_repository_gns3() {
-    advertencia "Agregando repositorio de GNS3"
+   info "Agregando repositorio de GNS3"
     [ -n "$DISTRO_TMP" ] && DISTRO=$DISTRO_TMP
     wget -q "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf88f6d313016330404f710fc9a2fd067a2e3ef7b" -O- | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\n\
@@ -105,7 +110,7 @@ add_repository_gns3() {
 }
 
 add_repository_docker() {
-    advertencia "Agregando repositorio de Docker"
+   info "Agregando repositorio de Docker"
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\n\
     \rdeb [arch=amd64] https://download.docker.com/linux/ubuntu $DISTRO stable" >"/etc/apt/sources.list.d/docker-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de Docker"
@@ -122,7 +127,7 @@ create_launcher_shortcut_netgui() {
     if [ ! -f "/usr/share/mime/packages/netgui.xml" ] || [ ! -f "/usr/share/applications/netgui.desktop" ]; then
         apt install -y imagemagick
         if [ "$?" == 0 ]; then
-            advertencia "Creando Acceso directo y Creando asociacion de extensión .nkp (Project of Netgui)"
+           info "Creando Acceso directo y Creando asociacion de extensión .nkp (Project of Netgui)"
             wget https://raw.githubusercontent.com/srealmoreno/rae/master/assets/netgui.png -O /tmp/netgui.png
             for i in "256" "128" "96" "72" "64" "48" "32" "24" "16"; do
                 convert "/tmp/netgui.png" -resize ${i}x${i} "/usr/share/icons/hicolor/${i}x${i}/apps/netgui.png"
@@ -166,7 +171,7 @@ Icon=netgui" >/usr/share/applications/clean_netgui.desktop
 }
 
 install_netgui() {
-    advertencia "Instalando netgui"
+   info "Instalando netgui"
     if [ ! -d "/usr/local/netkit" ]; then
         local NETGUI_VERSION=0.4.10
         [ "$ID" == "ubuntu" ] && local HAS_UBUNTU="$ID"
@@ -225,14 +230,14 @@ install_netgui() {
             local size_internet=$(curl -sI http://mobiquo.gsyc.es/netgui-${NETGUI_VERSION}/netgui-${NETGUI_VERSION}.tar.bz2 | grep Content-Length | cat -v | cut -d ' ' -f 2 | sed -e "s/\^M//")
             if [ "$size_tmp" != "$size_internet" ]; then
                 rm -f netgui-${NETGUI_VERSION}.tar.bz2
-                advertencia "Descargando Netgui"
+               info "Descargando Netgui"
                 wget http://mobiquo.gsyc.es/netgui-${NETGUI_VERSION}/netgui-${NETGUI_VERSION}.tar.bz2
             else
-                advertencia "Utilizando fichero tempral /tmp/netgui-${NETGUI_VERSION}.tar.bz2"
+               info "Utilizando fichero tempral /tmp/netgui-${NETGUI_VERSION}.tar.bz2"
             fi
             cd /usr/local
             rm -rf netkit
-            advertencia "Desempaquetando Netgui"
+           info "Desempaquetando Netgui"
             pv /tmp/netgui-${NETGUI_VERSION}.tar.bz2 | tar -xjSf -
             ln -fs /usr/local/netkit/netgui/bin/netgui.sh /usr/local/bin
             ln -fs /usr/local/netkit/netgui/bin/clean-netgui.sh /usr/local/bin
@@ -255,9 +260,9 @@ install_netgui() {
 }
 
 importar_a_docker() {
-    advertencia "Instalando imagen docker $1 de Salvador"
+   info "Instalando imagen docker $1 de Salvador"
     if [ -f "$2" ]; then
-        advertencia "Importando $2"
+       info "Importando $2"
         docker load --input "$2"
     else
         advertencia "No se pudo encontrar la imagen local... Descargando imagen $2 desde internet: $3"
@@ -273,7 +278,7 @@ install_packages() {
             LIST_PACKAGES_INSTALLED="${LIST_PACKAGES_INSTALLED}${i^}"
         fi
     done
-    advertencia "Instalando $LIST_PACKAGES_INSTALLED"
+   info "Instalando $LIST_PACKAGES_INSTALLED"
     
     apt update && apt install -y $LIST_INSTALL && exito "$LIST_PACKAGES_INSTALLED instalado(s) con exíto" || error_fatal "No se pudo instalar $LIST_PACKAGES"
 
@@ -292,12 +297,12 @@ install_packages() {
         check_group "ubridge" "ubridge"
     fi
 
-    advertencia "Añadiendo $SUDO_USER a los grupos necesarios"
+   info "Añadiendo $SUDO_USER a los grupos necesarios"
     usermod -aG $LIST_GROUP $SUDO_USER
 }
 
 clean_cache() {
-    advertencia "Limpiando caché"
+   info "Limpiando caché"
     apt autoremove -y
     [ -f /tmp/netgui.png ] && rm /tmp/netgui.png
 }
