@@ -139,7 +139,6 @@ ADD <fuente> <destino>
     <th class="value"></th>
   </tr>
   <tr>
-  <tr>
     <th class="line">
         <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L7-L65">
             64
