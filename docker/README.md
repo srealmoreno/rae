@@ -20,7 +20,7 @@ Un Dockerfile es un archivo de texto plano que contiene una serie de instruccion
 <table class="table">
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L1">
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L1">
             1
         </a>
     </th>
@@ -52,7 +52,7 @@ Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O
 <table class="table">
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L3">
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L3">
             3
         </a>
     </th>
@@ -73,8 +73,35 @@ Sintaxis:
 WORKDIR ruta_absoluta
 ```
 
-<a name="run"></a>
+<a name="add"></a>
 
+## Add
+<div class="background_table">
+<table class="table">
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L5">
+            5
+        </a>
+    </th>
+    <th class="command">
+        ADD
+    </th>
+    <th class="value">
+        https://deb.frrouting.org/frr/keys.asc ./
+    </th>
+  </tr>
+</table>
+</div>
+
+Esta instrucción copia archivos de directorios o URL a un destino especifico dentro del contenedor. En nuestro caso descarga y agrega la clave pública del repositorio de FRR.
+
+Sintaxis:
+```docker
+ADD <fuente> <destino>
+```
+
+<a name="run"></a>
 
 ## Run
 
@@ -82,8 +109,8 @@ WORKDIR ruta_absoluta
 <table class="table">
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60">
-            5
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L7-65">
+            7
         </a>
     </th>
     <th class="command">
@@ -95,39 +122,41 @@ WORKDIR ruta_absoluta
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60">
-            6
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L7-L65">
+            8
         </a>
     </th>
-    <th class="command">
-        &#32;
-    </th>
+    <th class="command"></th>
     <th class="value">
         ...
     </th>
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60">
-            59
+       ..
+    </th>
+    <th class="command"></th>
+    <th class="value"></th>
+  </tr>
+  <tr>
+  <tr>
+    <th class="line">
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L7-L65">
+            64
         </a>
     </th>
-    <th class="command">
-        &#32;
-    </th>
+    <th class="command"></th>
     <th class="value">
         ...
     </th>
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L5-L60">
-            60
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L5-L65">
+            65
         </a>
     </th>
-    <th class="command">
-        &#32;
-    </th>
+    <th class="command"></th>
     <th class="value">
         rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean
     </th>
@@ -161,8 +190,8 @@ RUN apt-get install -y bla
 <table class="table">
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L62">
-            62
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L67">
+            67
         </a>
     </th>
     <th class="command">
@@ -174,8 +203,8 @@ RUN apt-get install -y bla
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L63">
-            63
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L68">
+            68
         </a>
     </th>
     <th class="command">
@@ -204,8 +233,8 @@ ENV <key><valor>
 <table class="table">
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73">
-            73
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L79">
+            79
         </a>
     </th>
     <th class="command">
@@ -322,21 +351,19 @@ De:
 <table class="table">
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52">
-            52
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L57">
+            57
         </a>
     </th>
-    <th class="command">
-        &#32;
-    </th>
+    <th class="command"></th>
     <th class="value commend">
         #wireshark\
     </th>
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53">
-            56
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L58">
+            58
         </a>
     </th>
     <th class="command"></th>
@@ -353,8 +380,8 @@ De:
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73">
-            73
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L79">
+            79
         </a>
     </th>
     <th class="command">
@@ -366,8 +393,8 @@ De:
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75">
-            75
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L81">
+            81
         </a>
     </th>
     <th class="command commend">
@@ -385,8 +412,8 @@ A:
 <table class="table">
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L52">
-            52
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L57">
+            57
         </a>
     </th>
     <th class="command"></th>
@@ -396,8 +423,8 @@ A:
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L53">
-            56
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L58">
+            58
         </a>
     </th>
     <th class="command"></th>
@@ -414,8 +441,8 @@ A:
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L73">
-            73
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L78">
+            78
         </a>
     </th>
     <th class="command commend">
@@ -427,8 +454,8 @@ A:
   </tr>
   <tr>
     <th class="line">
-        <a href="https://github.com/srealmoreno/rae/blob/ca026ab7afb782e8a3d7bad424c1b08e7f44fb17/docker/dockerfile#L75">
-            75
+        <a href="https://github.com/srealmoreno/rae/blob/7bab9a32ae448d2daaccd4d3251ad07be452a671/docker/dockerfile#L81">
+            81
         </a>
     </th>
     <th class="command">
