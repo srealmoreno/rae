@@ -323,9 +323,7 @@ Hay algunas formas de solucionarlo:
 <a name="tipsgns3"></a>
 
 ## Tips de GNS3  
-Video de tips de GNS3 próximamente / [video](https://youtu.be/3cGE_HKxumY)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3cGE_HKxumY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Video de tips de GNS3 con wireshark [video](https://youtu.be/3cGE_HKxumY)
 
 <a name="docker"></a>
 
