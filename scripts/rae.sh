@@ -80,8 +80,7 @@ install_virtualbox() {
    info "Instalando Virtualbox"
     wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add - &&
         wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - &&
-        echo -e "#Repositorio agregado por Script de Salvador\n\
-    \rdeb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $DISTRO contrib" \
+        echo -e "#Repositorio agregado por Script de Salvador\ndeb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $DISTRO contrib" \
             >"/etc/apt/sources.list.d/virtualbox-ubuntu-ppa-$DISTRO.list" &&
         apt update && apt install -y virtualbox && exito "VirtualBox instalado con exíto" || advertencia "No se pudo instalar VirtualBox"
     LIST_GROUP="vboxusers"
@@ -93,9 +92,7 @@ install_gns3() {
     [ -n "$DISTRO_TMP" ] && DISTRO=$DISTRO_TMP
 
     wget -q "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf88f6d313016330404f710fc9a2fd067a2e3ef7b" -O- | apt-key add - &&
-        echo -e "#Repositorio agregado por Script de Salvador\n\
-        \rdeb http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main\n\
-          \r#deb-src http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main" >"/etc/apt/sources.list.d/gns3-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de GNS3"
+        echo -e "#Repositorio agregado por Script de Salvador\ndeb http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main\n#deb-src http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main" >"/etc/apt/sources.list.d/gns3-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de GNS3"
 
     [ -n "$DISTRO_TMP" ] && DISTRO="eoan"
 
@@ -136,8 +133,7 @@ install_gns3() {
 install_docker() {
     advertencia "Instalando Docker"
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
-        echo -e "#Repositorio agregado por Script de Salvador\n\
-    \rdeb [arch=amd64] https://download.docker.com/linux/ubuntu $DISTRO stable" >"/etc/apt/sources.list.d/docker-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de Docker"
+        echo -e "#Repositorio agregado por Script de Salvador\ndeb [arch=amd64] https://download.docker.com/linux/ubuntu $DISTRO stable" >"/etc/apt/sources.list.d/docker-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de Docker"
     apt update && apt install -y docker-ce docker-ce-cli containerd.io && exito "Docker-ce Instalado con exíto" || error_fatal "error al instalar Docker-ce"
     [ "$LIST_GROUP" != "" ] && LIST_GROUP="$LIST_GROUP,"
     LIST_GROUP="${LIST_GROUP}docker"

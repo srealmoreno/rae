@@ -73,7 +73,7 @@ RUN echo "by: Srealmoreno" > .bash_history
 RUN sed -i "17,32s/no/yes/" /etc/frr/daemons
 RUN sed -i "46s/.//"        /etc/skel/.bashrc 
 RUN sed -i "35,41s/.//"     /etc/bash.bashrc
-RUN sed -i "39b0; 97,99b0; b ;:0 ;s/.//" .bashrc && echo "cd \$PWD" >> .bashrc
+RUN sed -i "39b0; 97,99b0; b ;:0 ;s/.//" .bashrc && echo "stty -ixon\ncd \$PWD\nchown -R 1000 /etc/default /etc/network /etc/dhcp /root /save 2>/dev/null\nchgrp -R 1000 /etc/default /etc/network /etc/dhcp /root /save 2>/dev/null\nchown 1000 /etc 2>/dev/null\nchgrp 1000 /etc 2>/dev/null" >> .bashrc
 RUN useradd --create-home --shell /bin/bash --groups sudo --uid 1000 anfitrion
 
 CMD [ "bash" ]

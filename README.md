@@ -316,14 +316,16 @@ Hay algunas formas de solucionarlo:
 	
 4. Realiza la captura en otro directorio y luego copiala al directorio  `/save/`
 	Por ejemplo se puede guardar en `/root/` o `/tmp/`
-	![](assets/tcpdump_4.png "Se guarda en el directorio de conexión") 
+	![](assets/tcpdump_5.png "Se guarda en el directorio de conexión") 
 
-	Nota: El directorio `/root/` tambien es persistente pero debes de apagar el contenedor para poder acceder a su contendio o jugar con `chmod` `chown` para acceder al contendio aún cuando este el contenedor encendido.
+	Nota: El directorio `/root/` tambien es persistente pero debes de apagar el contenedor para poder acceder a su contendio o jugar con `chmod` `chown` para acceder al contendio aún cuando este el contenedor encendido. o simplemente ejecutar `source ~/.bashrc`
 
 <a name="tipsgns3"></a>
 
 ## Tips de GNS3  
-Video de tips de GNS3 próximamente / [video](https://www.youtube.com/channel/UCXqFPKVslL_2b40djJWEc5A)
+Video de tips de GNS3 próximamente / [video](https://youtu.be/3cGE_HKxumY)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3cGE_HKxumY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <a name="docker"></a>
 
