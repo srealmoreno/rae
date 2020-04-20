@@ -217,7 +217,7 @@ Cambia la categoría de 'End devices' a 'Router'
 ![](assets/gns3_22.png "Esto es para tener orden")
 
 Cambia el icono  
-![](assets/gns3_15.png "Este icono se verá en la topología")
+![](assets/gns3_23.png "Este icono se verá en la topología")
 
 <a name="volumen_persistente_router"></a>
 
