@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-suggests --no-install-reco
     iputils-clockdiff\
     iputils-ping\
     iputils-tracepath\
+    iptables\
     isc-dhcp-server\
     isc-dhcp-client\
     isc-dhcp-relay\
