@@ -80,10 +80,10 @@ sudo ./rae_fast.sh -d -i
 
 En la ejecución del script aparecerán los siguientes mensajes:
 
-Configuración de Wireshark
+Configuración de Wireshark  
 ![](assets/grupo_wireshark.png "Añadiendo Usuario anfitrión al grupo de Wireshark")
 
-Configuración de GNS3
+Configuración de GNS3  
 ![](assets/grupo_gns3.png "Añadiendo Usuario anfitrión al grupo de GNS3")
 
 Tienes que escoger la opción que dice 'Sí', esto es para que el usuario normal (no root) pueda usar Wireshark y GNS3
@@ -324,8 +324,9 @@ Hay algunas formas de solucionarlo:
 	```
 	luego reiniciar la máquina  
 	
-4. Realiza la captura en otro directorio y luego copiala al directorio  `/save/`
-	Por ejemplo se puede guardar en `/root/` o `/tmp/`
+4. Realiza la captura en otro directorio y luego copiala al directorio  `/save/`  
+	Por ejemplo se puede guardar en `/root/` o `/tmp/`  
+
 	![](assets/tcpdump_5.png "Se guarda en el directorio de conexión") 
 
 	Nota: El directorio `/root/` tambien es persistente pero debes de apagar el contenedor para poder acceder a su contendio o jugar con `chmod` `chown` para acceder al contendio aún cuando este el contenedor encendido. o simplemente ejecutar `source ~/.bashrc`
