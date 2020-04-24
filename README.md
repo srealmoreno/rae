@@ -78,7 +78,17 @@ Por ejemplo si solo se desea instalar Docker e importar imágenes:
 sudo ./rae_fast.sh -d -i
 ```
 
-Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones se agregaron.
+En la ejecución del script aparecerán los siguientes mensajes:
+
+Configuración de Wireshark
+![](assets/grupo_wireshark.png "Añadiendo Usuario anfitrión al grupo de Wireshark")
+
+Configuración de GNS3
+![](assets/grupo_gns3.png "Añadiendo Usuario anfitrión al grupo de GNS3")
+
+Tienes que escoger la opción que dice 'Sí', esto es para que el usuario normal (no root) pueda usar Wireshark y GNS3
+
+Al finalizar debes **CERRAR SESIÓN** y notáras que los iconos de las aplicaciones se agregaron. Nota: Si no lo haces de dará permiso denegado al tratar de usar Docker y Wireshark
 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
