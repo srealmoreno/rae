@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-suggests --no-install-reco
     man-db\
     manpages-es\
     manpages-posix\
+    apache2\
     bind9\
     bridge-utils\
     command-not-found\
@@ -55,6 +56,7 @@ RUN apt-get update && apt-get install -y --no-install-suggests --no-install-reco
     whois\
     wget\
     curl\
+    radvd\
     #wireshark\
     #lxde\
     &&\
@@ -62,7 +64,7 @@ RUN apt-get update && apt-get install -y --no-install-suggests --no-install-reco
     echo "es_NI.UTF-8 UTF-8" > /var/lib/locales/supported.d/es &&\
     echo -e "LANG=\"es_NI.UTF-8\"\nLANGUAGE=\"es_NI:es\"" >> /etc/default/locale &&\
     locale-gen --purge &&\
-    apt-get auto-remove -y &&\
+    apt-get remove --autoremove -y hicolor-icon-theme &&\
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/docker-clean
 
 ENV LANG es_NI.UTF-8
@@ -74,7 +76,7 @@ RUN echo "by: Srealmoreno" > .bash_history
 RUN sed -i "17,32s/no/yes/" /etc/frr/daemons
 RUN sed -i "46s/.//"        /etc/skel/.bashrc 
 RUN sed -i "35,41s/.//"     /etc/bash.bashrc
-RUN sed -i "39b0; 97,99b0; b ;:0 ;s/.//" .bashrc && echo "stty -ixon\ncd \$PWD\nchown -R 1000 /etc/default /etc/network /etc/dhcp /root /save 2>/dev/null\nchgrp -R 1000 /etc/default /etc/network /etc/dhcp /root /save 2>/dev/null\nchown 1000 /etc 2>/dev/null\nchgrp 1000 /etc 2>/dev/null" >> .bashrc
+RUN sed -i "39b0; 97,99b0; b ;:0 ;s/.//" .bashrc >> .bashrc && echo "stty -ixon\n\ncd \$PWD\n\nif [ -n IPv6_Hosts ] && [ -f ~/.etc/hosts ]; then\n\tcat ~/.etc/hosts >> /etc/hosts\n\nfi\n\nifdown -a >/dev/null 2>/dev/null\n\nif [ -f ~/.etc/radvd.conf ]; then\n\tcp ~/.etc/radvd.conf /etc/\nfi\n\nif [ -f ~/\$(hostname).startup ]; then\n\tbash ~/\$(hostname).startup\nfi\n\nsed -n '/^[[:space:]]*#/!s/auto //p' /etc/network/interfaces | while read dev; do\n\tip link set dev \$dev up\ndone\n\nifup -a\n\nchown -R 1000:1000 /etc/default /etc/network /etc/dhcp /root /save 2>/dev/null\n\nchown 1000:1000 /etc 2>/dev/null" >> .bashrc
 RUN useradd --create-home --shell /bin/bash --groups sudo --uid 1000 anfitrion
 
 CMD [ "bash" ]
