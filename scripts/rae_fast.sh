@@ -18,7 +18,7 @@ error_fatal() {
 }
 
 info() {
-  printf "${Blue}> Info: ${Normal} $@\n"
+    printf "${Blue}> Info: ${Normal} $@\n"
 }
 
 advertencia() {
@@ -29,24 +29,24 @@ exito() {
     echo -e "${Green}✓ Exíto: ${Normal}$@"
 }
 
-
 LIST_GROUP=""
 LIST_PACKAGES=""
 LIST_INSTALL=""
 DISTRO=""
 
 install_dependencies() {
-   info "Instalando dependencias necesarias"
+    info "Instalando dependencias necesarias"
     apt install -y \
         apt-transport-https \
         ca-certificates \
         curl \
         gnupg-agent \
+        jq \
         wget && exito "Dependencias instaladas con exíto" || error_fatal "Error al instalar las dependencias necesarias"
 }
 
 get_os() {
-   info "Obteniendo información del sistema..."
+    info "Obteniendo información del sistema..."
     if [ -f /etc/os-release ]; then
         source /etc/os-release
         if [[ "$ID" != "ubuntu" ]] && [[ "$ID_LIKE" != "ubuntu" ]]; then
@@ -58,11 +58,6 @@ get_os() {
         echo ""
 
         [ "$ID" == "ubuntu" ] && DISTRO=$VERSION_CODENAME || DISTRO=$UBUNTU_CODENAME
-
-        if [ "$DISTRO" == "focal" ]; then
-            DISTRO="eoan"
-            DISTRO_TMP="focal"
-        fi
 
         [ "$DISTRO" == "" ] && DISTRO="bionic"
     else
@@ -79,7 +74,7 @@ check_group() {
 }
 
 add_repository_virtualbox() {
-   info "Agregando repositorio de VirtualBox"
+    info "Agregando repositorio de VirtualBox"
     wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add - &&
         wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\ndeb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $DISTRO contrib" \
@@ -90,12 +85,10 @@ add_repository_virtualbox() {
 }
 
 add_repository_gns3() {
-   info "Agregando repositorio de GNS3"
-    [ -n "$DISTRO_TMP" ] && DISTRO=$DISTRO_TMP
+    info "Agregando repositorio de GNS3"
+
     wget -q "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf88f6d313016330404f710fc9a2fd067a2e3ef7b" -O- | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\ndeb http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main\n#deb-src http://ppa.launchpad.net/gns3/ppa/ubuntu $DISTRO main" >"/etc/apt/sources.list.d/gns3-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de GNS3"
-
-    [ -n "$DISTRO_TMP" ] && DISTRO="eoan"
 
     dpkg --add-architecture i386
 
@@ -107,7 +100,7 @@ add_repository_gns3() {
 }
 
 add_repository_docker() {
-   info "Agregando repositorio de Docker"
+    info "Agregando repositorio de Docker"
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&
         echo -e "#Repositorio agregado por Script de Salvador\ndeb [arch=amd64] https://download.docker.com/linux/ubuntu $DISTRO stable" >"/etc/apt/sources.list.d/docker-ubuntu-ppa-$DISTRO.list" || error_fatal "Error al añadir repositorio de Docker"
 
@@ -123,7 +116,7 @@ create_launcher_shortcut_netgui() {
     if [ ! -f "/usr/share/mime/packages/netgui.xml" ] || [ ! -f "/usr/share/applications/netgui.desktop" ]; then
         apt install -y imagemagick
         if [ "$?" == 0 ]; then
-           info "Creando Acceso directo y Creando asociacion de extensión .nkp (Project of Netgui)"
+            info "Creando Acceso directo y Creando asociacion de extensión .nkp (Project of Netgui)"
             wget https://raw.githubusercontent.com/srealmoreno/rae/master/assets/netgui.png -O /tmp/netgui.png
             for i in "256" "128" "96" "72" "64" "48" "32" "24" "16"; do
                 convert "/tmp/netgui.png" -resize ${i}x${i} "/usr/share/icons/hicolor/${i}x${i}/apps/netgui.png"
@@ -167,7 +160,7 @@ Icon=netgui" >/usr/share/applications/clean_netgui.desktop
 }
 
 install_netgui() {
-   info "Instalando netgui"
+    info "Instalando netgui"
     if [ ! -d "/usr/local/netkit" ]; then
         local NETGUI_VERSION=0.4.10
         [ "$ID" == "ubuntu" ] && local HAS_UBUNTU="$ID"
@@ -226,14 +219,14 @@ install_netgui() {
             local size_internet=$(curl -sI http://mobiquo.gsyc.es/netgui-${NETGUI_VERSION}/netgui-${NETGUI_VERSION}.tar.bz2 | grep Content-Length | cat -v | cut -d ' ' -f 2 | sed -e "s/\^M//")
             if [ "$size_tmp" != "$size_internet" ]; then
                 rm -f netgui-${NETGUI_VERSION}.tar.bz2
-               info "Descargando Netgui"
+                info "Descargando Netgui"
                 wget http://mobiquo.gsyc.es/netgui-${NETGUI_VERSION}/netgui-${NETGUI_VERSION}.tar.bz2
             else
-               info "Utilizando fichero tempral /tmp/netgui-${NETGUI_VERSION}.tar.bz2"
+                info "Utilizando fichero tempral /tmp/netgui-${NETGUI_VERSION}.tar.bz2"
             fi
             cd /usr/local
             rm -rf netkit
-           info "Desempaquetando Netgui"
+            info "Desempaquetando Netgui"
             pv /tmp/netgui-${NETGUI_VERSION}.tar.bz2 | tar -xjSf -
             ln -fs /usr/local/netkit/netgui/bin/netgui.sh /usr/local/bin
             ln -fs /usr/local/netkit/netgui/bin/clean-netgui.sh /usr/local/bin
@@ -256,14 +249,135 @@ install_netgui() {
 }
 
 importar_a_docker() {
-   info "Instalando imagen docker $1 de Salvador"
+    info "Instalando imagen docker $1 de Salvador"
     if [ -f "$2" ]; then
-       info "Importando $2"
+        info "Importando $2"
         docker load --input "$2"
     else
         advertencia "No se pudo encontrar la imagen local... Descargando imagen $2 desde internet: $3"
         docker pull $3
     fi && exito "Imagen $1 de Salvador instalada en docker" || advertencia "No se pudo instalar la imagen $1 de Salvador"
+}
+
+info_computer=("pc_docker" "aaaabbbb-cccc-dddd-eeee-ffff12345678")
+info_router=("router_docker" "aaaabbbb-cccc-dddd-eeee-ffff12345677")
+info_switch=("switch_docker" "aaaabbbb-cccc-dddd-eeee-ffff12345676")
+
+create_template() {
+    if [ $1 == "computer" ]; then
+        local default_name_format="pc{0}"
+        local symbol=":/symbols/classic/computer.svg"
+        local category="guest"
+        local name=${info_computer[0]}
+        local adapters="1"
+        local extra_volumes='["/save", "/etc/network", "/etc/default", "/root"]'
+        local template_id=${info_computer[1]}
+    elif [ $1 == "router" ]; then
+        local default_name_format="r{0}"
+        local symbol=":/symbols/classic/router.svg"
+        local category="router"
+        local name=${info_router[0]}
+        local adapters="5"
+        local extra_volumes='["/save","/etc/network","/etc/default","/etc/dhcp","/etc/frr","/root"]'
+        local template_id=${info_router[1]}
+    else
+        local default_name_format="s{0}"
+        local symbol=":/symbols/classic/ethernet_switch.svg"
+        local category="switch"
+        local name=${info_switch[0]}
+        local adapters="8"
+        local extra_volumes='["/save","/etc/network","/etc/default","/root"]'
+        local template_id=${info_switch[1]}
+    fi
+
+    echo "
+{
+\"default_name_format\": \"$default_name_format\",
+\"usage\": \"\",
+\"symbol\": \"$symbol\",
+\"category\": \"$category\",
+\"start_command\": \"\",
+\"name\": \"$name\",
+\"image\": \"srealmoreno/rae:latest\",
+\"adapters\": 1,
+\"custom_adapters\": [],
+\"environment\": \"\",
+\"console_type\": \"telnet\",
+\"console_auto_start\": true,
+\"console_resolution\": \"800x600\",
+\"console_http_port\": 80,
+\"console_http_path\": \"/\",
+\"extra_hosts\": \"\",
+\"extra_volumes\": $extra_volumes,
+\"compute_id\": \"local\",
+\"template_id\": \"$template_id\",
+\"template_type\": \"docker\",
+\"builtin\": false
+}
+"
+
+}
+
+import_templates_gns3() {
+    local gns3_config="/home/$SUDO_USER/.config/GNS3/2.2/gns3_controller.conf"
+
+    info "Importando plantillas para GNS3"
+
+    if [ -f "$gns3_config" ]; then
+        gns3_controller=$(jq . $gns3_config)
+        if [ "$?" == 0 ]; then
+            exits=$(jq ".templates[] | select(.template_id==\"${info_computer[1]}\" or .name==\"${info_computer[0]}\")" <<<$gns3_controller)
+            if [ "$?" == 0 ]; then
+                if [ "$exits" == "" ]; then
+                    advertencia "Importando plantilla de computadora"
+                    computer=$(create_template "computer")
+                    gns3_controller=$(jq ".templates += [$computer]" <<<$gns3_controller)
+                    changes="true"
+                else
+                    advertencia "La plantilla de computadora ya existe"
+                fi
+            else
+                error_fatal "Ocurrio un error al leer el $gns3_config"
+            fi
+            exits=$(jq ".templates[] | select(.template_id==\"${info_router[1]}\" or .name==\"${info_router[0]}\")" <<<$gns3_controller)
+            if [ "$?" == 0 ]; then
+                if [ "$exits" == "" ]; then
+                    advertencia "Importando plantilla de router"
+                    router=$(create_template "router")
+                    gns3_controller=$(jq ".templates += [$router]" <<<$gns3_controller)
+                    changes="true"
+                else
+                    advertencia "La plantilla de router ya existe"
+                fi
+            else
+                error_fatal "Ocurrio un error al leer el $gns3_config"
+            fi
+
+            exits=$(jq ".templates[] | select(.template_id==\"${info_switch[1]}\" or .name ==\"${info_switch[0]}\")" <<<$gns3_controller)
+            if [ "$?" == 0 ]; then
+                if [ "$exits" == "" ]; then
+                    advertencia "Importando plantilla de switch"
+                    switch=$(create_template "switch")
+                    gns3_controller=$(jq ".templates += [$switch]" <<<$gns3_controller)
+                    changes="true"
+                else
+                    advertencia "La plantilla de switch ya existe"
+                fi
+            else
+                error_fatal "Ocurrio un error al leer el $gns3_config"
+            fi
+
+            if [ -n "$changes" ]; then
+                mv "$gns3_config" "$gns3_config.backup" && jq . <<<$gns3_controller >$gns3_config
+                [ "$?" == "0" ] && exito "Plantillas agregadas exitosamente" || advertencia "No se pudo agregar las plantillas, deberá hacerlo manualmente"
+                chown $SUDO_USER:$SUDO_USER $gns3_config $gns3_config.backup
+            fi
+        else
+            error_fatal "Ocurrio un error al leer el $gns3_config"
+        fi
+    else
+        error_fatal "No existe el fichero $gns3_config"
+    fi
 }
 
 install_packages() {
@@ -274,11 +388,12 @@ install_packages() {
             LIST_PACKAGES_INSTALLED="${LIST_PACKAGES_INSTALLED}${i^}"
         fi
     done
-   info "Instalando $LIST_PACKAGES_INSTALLED"
-    
+    info "Instalando $LIST_PACKAGES_INSTALLED"
+
     apt update && apt install -y $LIST_INSTALL && exito "$LIST_PACKAGES_INSTALLED instalado(s) con exíto" || error_fatal "No se pudo instalar $LIST_PACKAGES"
 
     if [ -n "$gns3" ]; then
+        sed -i "81,87s/^#*/#/" /usr/share/gns3/gns3-server/lib/python3.7/site-packages/gns3server/compute/docker/resources/init.sh 2>/dev/null
         advertencia "Comprobando si hay errores en el entorno de GNS3"
         local version_pyqt_installed=$(pip3 show pyqt5 | grep Version: | cut -d ' ' -f2)
         local version_min=5.13.1
@@ -292,13 +407,14 @@ install_packages() {
         check_group "wireshark" "wireshark-common"
         check_group "ubridge" "ubridge"
     fi
-
-   info "Añadiendo $SUDO_USER a los grupos necesarios"
-    usermod -aG $LIST_GROUP $SUDO_USER
+    if [ -n "$LIST_GROUP" ]; then
+        info "Añadiendo $SUDO_USER a los grupos necesarios"
+        usermod -aG $LIST_GROUP $SUDO_USER
+    fi
 }
 
 clean_cache() {
-   info "Limpiando caché"
+    info "Limpiando caché"
     apt autoremove -y
     [ -f /tmp/netgui.png ] && rm /tmp/netgui.png
 }
@@ -315,9 +431,10 @@ if [ "$#" == "0" ]; then #Si no se pasa ningún argumento, instala todo
     virtualbox="true"
     netgui="true"
     images="true"
-    LIST_PACKAGES="VirtualBox, GNS3, Docker, Imágenes docker de Salvador, Netgui"
+    plantillas="true"
+    LIST_PACKAGES="VirtualBox, GNS3, Docker, Imágenes docker de Salvador, Netgui, Plantillas para GNS3"
 else
-    while getopts ":h :a :d :g :i :v :n" arg; do #a instala todo, d instala docker, g instala gns3, i instala images de salvador
+    while getopts ":h :a :d :g :p :i :v :n" arg; do #a instala todo, d instala docker, g instala gns3, i instala images de salvador, p importa las plantillas para GNS3
         case "$arg" in
         a)
             gns3="true"
@@ -352,12 +469,18 @@ else
             [ "$LIST_PACKAGES" != "" ] && LIST_PACKAGES="$LIST_PACKAGES, "
             LIST_PACKAGES="${LIST_PACKAGES}Imágenes docker de Salvador"
             ;;
+        p)
+            plantillas="true"
+            [ "$LIST_PACKAGES" != "" ] && LIST_PACKAGES="$LIST_PACKAGES, "
+            LIST_PACKAGES="${LIST_PACKAGES}Plantillas para GNS3"
+            ;;
+
         h)
-            echo "Uso: $0 [-a instalar todo] [-d instalar docker] [-g instalar gns3] [-v instalar virtualbox] [-n instalar netgui] [-i importar images docker]"
+            echo -e "Uso: $0 [-a instalar todo]   [-d instalar docker]\n\t\t   [-g instalar gns3]   [-v instalar virtualbox]\n\t\t   [-n instalar netgui] [-i importar images docker]\n\t\t   [-p importar plantillas para GNS3]"
             exit 0
             ;;
         *)
-            error_fatal "Argumentos no validos\n$*\nUso $0 [-a Instalar todo] [-d instalar docker] [-g instalar gns3] [-v instalar virtualbox] [-n instalar netgui] [-i importar images docker]"
+            error_fatal "Argumentos no validos: $*\nUso $0 [-a instalar todo]   [-d instalar docker]\n\t\t  [-g instalar gns3]   [-v instalar virtualbox]\n\t\t  [-n instalar netgui] [-i importar images docker]\n\t\t  [-p importar plantillas para GNS3]"
             ;;
         esac
     done
@@ -365,7 +488,7 @@ fi
 
 exito "Iniciando Script de instalación"
 
-if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" ]; then
+if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" ] || [ -n "$plantillas" ]; then
     get_os
     install_dependencies
 fi
@@ -380,6 +503,10 @@ fi
 
 if [ -n "$docker" ]; then
     add_repository_docker
+fi
+
+if [ -n "$plantillas" ]; then
+    import_templates_gns3
 fi
 
 if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
