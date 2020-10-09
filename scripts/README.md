@@ -10,12 +10,14 @@
 * [Docker](../docker/#docker)
 * [Assets](../assets/#assets)
 
-Esta carpeta contiene los scripts de instalación de:
--   Docker
--   GNS3
--   VirtualBox
--   Netgui
--   Imágenes base 
+Esta carpeta contiene los scripts de:
+-   Instalación de Docker
+-   Instalación de GNS3
+-   Instalación de VirtualBox
+-   Instalación de Netgui
+-   Instalación de Imágenes base 
+- 	Convertir Toplogías de Netgui a GNS3
+
 
 ### Requisitos
 * Sistema operativo: Ubuntu o derivados 
@@ -41,7 +43,6 @@ Descargar desde el navegador:
 Descargar [rae.sh](rae.sh)  
 Descargar [rae_fast.sh](rae_fast.sh) 
 
-`Click en  '`**`Raw`**`' -> Click derecho -> Guardar Como`
 
 Descargar desde línea de ordenes:
 ```bash
@@ -78,6 +79,113 @@ Al finalizar debes cerrar sesión y notáras que los iconos de las aplicaciones 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
 ![](../assets/ejemplo_2.png "Menú de aplicaciones")  
+
+<a name="ntg"></a>  
+
+# 
+
+## Script para convertir topolgías de Netgui a GNS3  
+He creado un script para convertir topolgías completas de Netgui a GNS3, ntg (Netgui to gns3)  
+Con el uso del script podrás clonar los escenarios completos que son asignados en la universidad.  
+
+Descargar [ntg.py](ntg.py) 
+
+Descargar desde línea de ordenes:
+```bash
+wget https://raw.githubusercontent.com/srealmoreno/rae/master/scripts/ntg.py
+```
+
+Dar permisos de ejecución
+```bash
+chmod +x ntg.py
+```  
+
+#
+
+Antes que todo hay que saber algunos conceptos sobre los proyectos y configuración de GNS3:  
+ **Template ID**: Es el id de la plantilla para identificar los nodos en la topología  
+
+>![](../assets/conceptos_gns3_1.png "Template ID")  
+
+ **Image name**: Es la imagen Docker que se utilizará para los nodos.  
+
+>![](../assets/conceptos_gns3_2.png "Image name")  
+
+Para poder convertir proyectos de Netgui a GNS3 se necesita de ambos valors. **Template ID** y **Image name**   
+
+**gns3_controller.conf**: Es un archivo json que obtiene todas las plantillas creadas por el usuario, el script de aquí leerá **Template ID** y **Image name** para convertir el proyecto. Como puedes observar este fichero contiene ambos datos.  
+
+>![](../assets/conceptos_gns3_3.png "Gns3 controller")  
+
+Para ver la ayuda puedes utilizar la opción -h  
+>![](../assets/ntg_1.png "Ayuda para el script ntg")
+
+
+#
+
+El script tiene 3 subcomandos:  
+
+### Subcomando `all` 
+
+>```bash
+>ntg.py all #Convierte la topología y los ficheros de configuración
+>```
+> 
+>
+>![](../assets/ntg_2.png "Ayuda para subcomando all del script ntg")  
+>
+>**Netgui_Project_Folder**: Proyecto a convertir
+>
+>>**-i --image**:	Será la imagen base que se utilizará para los nodos de GNS3
+>>			por defecto es: srealmoreno/rae:latest   
+>>  
+>>**-n --name**: Es el nombre que tendrá el proyecto de GNS3. por defecto es el nombre del proyecto de Netgui  
+>>  
+>>**-t --template**: Es el id de la plantilla que se utilizará para los nodos de GNS3 (Si no se especifica se buscará en >el fichero 'gns3_controller.conf')  
+>>  
+>>**-r --read**: Ubicación absoluta al fichero 'gns3_controller.conf', aquí se buscará el ID de la plantilla (En caso >>que no se especifique -t)   
+>>
+>>**--o --output**: Carpeta de salida donde se guardará el proyecto convertido. por defecto es '~/GNS3/projects'  
+>
+>Ejemplo:  
+>Tengo el siguiente proyecto Netgui en la carpeta descargas:  
+>
+>>![](../assets/ntg_3.png "Ejemplo de proyecto Netgui")  
+>
+>El archivo llamado **netgui.nkp** es la topología del proyecto, en este archivo esta la información de los nodos.  
+>Los demás ficheros son los de configuración.  
+>
+>Esta es la topología:
+>>![](../assets/ntg_4.png "Topología de ejemplo a convertir")   
+>
+>```bash
+>ntg.py all ~/Descargas/IPv6-tun-lab
+>			#Ruta del proyecto netgui a convertir
+>```
+>Como no se especifico ningún parámetro opcional. utilizó los que están por defecto.  
+>>![](../assets/ntg_5.png "Topología de ejemplo a convertida")   
+>>![](../assets/ntg_6.png "Topología de ejemplo a convertida")  
+
+
+### Subcomando `topology`
+>```bash
+>ntg.py topology #Convierte unicamente la topología sin los ficheros de configuración
+>```
+>![](../assets/ntg_7.png "Ayuda para subcomando topology del script ntg")  
+>Este subcomando es similar al anterior, la diferencia es que no copia los ficheros de configuración. Unicamente crea la topología
+>
+
+### Subcomando `config`
+>```bash
+>ntg.py config #Convierte unicamente los ficheros de configuración (Se requiere una toplogía previamente creada)
+>```
+>![](../assets/ntg_8.png "Ayuda para subcomando config del script ntg")  
+
+>>**Netgui_Project_Folder**: Proyecto Netgui donde están los archivos de configuración  
+>>**GNS3_Project_Folder**: Proyecto GNS3 donde se convertirán los ficheros de configuración  
+
+>Este subcomando copia únicamente los ficheros de configuración, se requiere una topolgía GNS3 similar a la de Netgui.
+
 
 ## Netgui
 Aclaro, tomé el [script](http://mobiquo.gsyc.es/netgui/netgui-autoinstall.sh) de auto instalación de netgui, modifique algunas cosas para hacerlo compatible con Ubuntu 20.0 LTS, crear un lanzador y registrar la asociación del fichero
