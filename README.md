@@ -21,6 +21,7 @@
 	* <a href="#ubuntu_host"> Uso como máquina host </a>
 	* <a href="#ubuntu_router"> Uso como Router </a>
 	* <a href="#ubuntu_switch"> Uso como Switch </a>
+	* <a href="#template_script"> Hacerlo de forma automática con el script </a>
 
 - [DockerFile](#docker)
 
@@ -126,6 +127,18 @@ Luego Aplicar cambios y listo.
 Nota: Si se desea ejecutar una imagen con entorno gráfico, ir al apartado de 'VNC' y elegir la que más te guste. Por ejemplo *vinagre*
 
 * **Agregar imágenes Ubuntu a GNS3**
+
+<a name="template_script"></a>
+
+*Hacerlo de forma automática con el script de instalación*  
+El script tiene una opción '-p' (plantillas)
+
+```bash
+sudo ./rae_fast.sh -p
+```
+
+Esta opción agrega las tres plantillas correspondientes de forma automática. Pero si quieres hacerlo manualmente puedes hacerlo.  
+Nota: Aunque que agregues las plantillas de forma automática debes de leer todo el manual de uso para tener claros los conceptos.
 
 <a name="ubuntu_host"></a>
 
