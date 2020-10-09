@@ -140,7 +140,7 @@ Click en Editar (Edit)
 
 <a name="template_script"></a>
 
->*Hacerlo de forma automática con el script de instalación*  
+*Hacerlo de forma automática con el script de instalación*  
 >El script tiene una opción '-p' (plantillas)
 >
 >```bash
