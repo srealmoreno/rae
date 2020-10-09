@@ -80,9 +80,9 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 
 ![](../assets/ejemplo_2.png "Menú de aplicaciones")  
 
-<a name="ntg"></a>  
+--- 
 
-# 
+<a name="ntg"></a>  
 
 ## Script para convertir topolgías de Netgui a GNS3  
 He creado un script para convertir topolgías completas de Netgui a GNS3, ntg (Netgui to gns3)  
@@ -100,9 +100,9 @@ Dar permisos de ejecución
 chmod +x ntg.py
 ```  
 
-#
+---  
 
-Antes que todo hay que saber algunos conceptos sobre los proyectos y configuración de GNS3:  
+Antes que todo debemos saber algunos conceptos sobre los proyectos y configuración de GNS3:  
  **Template ID**: Es el id de la plantilla para identificar los nodos en la topología  
 
 >![](../assets/conceptos_gns3_1.png "Template ID")  
@@ -121,14 +121,14 @@ Para ver la ayuda puedes utilizar la opción -h
 >![](../assets/ntg_1.png "Ayuda para el script ntg")
 
 
-#
+---
 
 El script tiene 3 subcomandos:  
 
 ### Subcomando `all` 
-
+>Convierte la topología y los ficheros de configuración
 >```bash
->ntg.py all #Convierte la topología y los ficheros de configuración
+>ntg.py all
 >```
 > 
 >
@@ -168,16 +168,18 @@ El script tiene 3 subcomandos:
 
 
 ### Subcomando `topology`
+>Convierte unicamente la topología sin los ficheros de configuración
 >```bash
->ntg.py topology #Convierte unicamente la topología sin los ficheros de configuración
+>ntg.py topology 
 >```
 >![](../assets/ntg_7.png "Ayuda para subcomando topology del script ntg")  
 >Este subcomando es similar al anterior, la diferencia es que no copia los ficheros de configuración. Unicamente crea la topología
 >
 
 ### Subcomando `config`
+>Convierte unicamente los ficheros de configuración (Se requiere una toplogía GNS3 previamente creada)
 >```bash
->ntg.py config #Convierte unicamente los ficheros de configuración (Se requiere una toplogía previamente creada)
+>ntg.py config
 >```
 >![](../assets/ntg_8.png "Ayuda para subcomando config del script ntg")  
 
@@ -186,9 +188,12 @@ El script tiene 3 subcomandos:
 
 >Este subcomando copia únicamente los ficheros de configuración, se requiere una topolgía GNS3 similar a la de Netgui.
 
+---
 
 ## Netgui
 Aclaro, tomé el [script](http://mobiquo.gsyc.es/netgui/netgui-autoinstall.sh) de auto instalación de netgui, modifique algunas cosas para hacerlo compatible con Ubuntu 20.0 LTS, crear un lanzador y registrar la asociación del fichero
+
+---
 
 ## Wiki
 - Documentación oficial de [Docker](https://docs.docker.com/)  

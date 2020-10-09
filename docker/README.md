@@ -44,6 +44,8 @@ FROM  <imagen>:<tag>
 ```
 Por ejemplo la imagen puede ser un sistema operativo como Ubuntu, Centos, etc. O una imagen ya existente en la cual con base a esta queramos construir nuestra propia imagen.
 
+---
+
 <a name="workdir"></a>
 
 ## Workdir
@@ -73,6 +75,8 @@ Sintaxis:
 WORKDIR ruta_absoluta
 ```
 
+---
+
 <a name="add"></a>
 
 ## Add
@@ -100,6 +104,7 @@ Sintaxis:
 ```docker
 ADD <fuente> <destino>
 ```
+---
 
 <a name="run"></a>
 
@@ -181,6 +186,9 @@ Usar:
 ```docker
 RUN apt-get install -y bla
 ```
+
+---
+
 <a name="#env"></a>
 
 ## ENV
@@ -224,6 +232,8 @@ Sintaxis:
 ENV <key><valor>
 ```
 
+---
+
 <a name="cmd"></a>
 
 ## CMD 
@@ -252,6 +262,8 @@ Sintaxis:
 ```docker
 CMD [“ejecutable”, “parámetro1”, “parámetro2”, ...]
 ```
+
+---
 
 <a name="#escribir_dockerfile"></a>
 
@@ -309,6 +321,8 @@ RUN apt-get update &&\
     rm -rf /var/lib/apt/lists/*
 ```
 
+---
+
 <a name="#build"></a>
 
 ## ¿Cómo se construye una imagen a partir de un Dockerfile?
@@ -318,6 +332,9 @@ Sintaxis:
 ```bash
 docker build [OPTIONS] ruta
 ```
+
+---
+
 <a name="descargar"></a>
 
 ## Descargar
@@ -339,6 +356,8 @@ docker build -t srealmoreno/rdc:latest .
 ```
 
 <a name="entorno"></a>
+
+---
 
 ## Entorno gráfico
 
@@ -466,6 +485,8 @@ A:
   </tr>
 </table>
 </div>
+
+---
 
 <a name="wiki"></a>
 
