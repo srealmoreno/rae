@@ -25,6 +25,7 @@
 
 - <a href="#ntg"> Uso del script de ntg </a>
 	* ¿Que es ntg y para que sirve?
+	* Requerimientos del script
 
 - [DockerFile](#docker)
 
@@ -358,6 +359,7 @@ docker stats
 >
 >	Nota: El directorio `/root/` tambien es persistente pero debes de apagar el contenedor para poder acceder a su contendio o jugar con `chmod` `chown` para acceder al contendio aún cuando este el contenedor encendido. o simplemente ejecutar `source ~/.bashrc`
 >
+
 ---
 
 <a name="tipsgns3"></a>
@@ -370,12 +372,20 @@ Video de tips de GNS3 con wireshark [video](https://youtu.be/3cGE_HKxumY)
 <a name="ntg"></a>  
 
 ## ntg
-ntg es un script programado en python3 para convertir topolgoías.  
+### Script para convertir topolgías de Netgui a GNS3  
 
 He creado un script para convertir topolgías completas de Netgui a GNS3, ntg (Netgui to gns3)  
 Con el uso del script podrás clonar los escenarios completos que son asignados en la universidad.  
 
-Descargar [ntg.py](ntg.py) 
+Requerimientos:  
+>El script depende de una librería llamada `rstr`
+>
+>Puedes instalar la librería con el siguiente comando:
+>```bash
+>sudo pip3 install rstr
+>```
+
+Descargar [ntg.py](scripts/ntg.py) 
 
 Descargar desde línea de ordenes:
 ```bash
@@ -386,8 +396,6 @@ Dar permisos de ejecución
 ```bash
 chmod +x ntg.py
 ```  
-
----  
 
 Antes que todo debemos saber algunos conceptos sobre los proyectos y configuración de GNS3:  
  **Template ID**: Es el id de la plantilla para identificar los nodos en la topología  
@@ -405,10 +413,7 @@ Para poder convertir proyectos de Netgui a GNS3 se necesita de ambos valors. **T
 >![](assets/conceptos_gns3_3.png "Gns3 controller")  
 
 Para ver la ayuda puedes utilizar la opción -h  
->![](assets/ntg_1.png "Ayuda para el script ntg")
-
-
----
+>![](assets/ntg_1.png "Ayuda para el script ntg")  
 
 El script tiene 3 subcomandos:  
 

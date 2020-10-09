@@ -84,9 +84,18 @@ Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuari
 
 <a name="ntg"></a>  
 
-## Script para convertir topolgías de Netgui a GNS3  
+## ntg
+### Script para convertir topolgías de Netgui a GNS3  
 He creado un script para convertir topolgías completas de Netgui a GNS3, ntg (Netgui to gns3)  
 Con el uso del script podrás clonar los escenarios completos que son asignados en la universidad.  
+
+Requerimientos:  
+>El script depende de una librería llamada `rstr`
+>
+>Puedes instalar la librería con el siguiente comando:
+>```bash
+>sudo pip3 install rstr
+>```
 
 Descargar [ntg.py](ntg.py) 
 
@@ -99,8 +108,6 @@ Dar permisos de ejecución
 ```bash
 chmod +x ntg.py
 ```  
-
----  
 
 Antes que todo debemos saber algunos conceptos sobre los proyectos y configuración de GNS3:  
  **Template ID**: Es el id de la plantilla para identificar los nodos en la topología  
@@ -120,8 +127,6 @@ Para poder convertir proyectos de Netgui a GNS3 se necesita de ambos valors. **T
 Para ver la ayuda puedes utilizar la opción -h  
 >![](../assets/ntg_1.png "Ayuda para el script ntg")
 
-
----
 
 El script tiene 3 subcomandos:  
 
