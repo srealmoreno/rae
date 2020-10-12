@@ -2,7 +2,8 @@
 #####################################
 #             UNAN-LEÓN             #
 #  Script creado por Salvador Real  #
-#   Redes de Area extensa 2020      #
+#     Redes de Area extensa 2020    #
+#       Soporte para IPv6 2021      #
 #####################################
 
 Green=$(tput setaf 10)

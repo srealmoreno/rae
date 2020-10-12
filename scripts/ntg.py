@@ -1,4 +1,10 @@
 #!/bin/python3
+#####################################
+#             UNAN-LEÓN             #
+#  Script creado por Salvador Real  #
+#     Redes de Area extensa 2020    #
+#       Soporte para IPv6 2021      #
+#####################################
 from sys import stdin
 from glob import glob
 from rstr import xeger
@@ -7,8 +13,8 @@ from pathlib import Path
 from json import dumps, load
 from math import sqrt, atan, sin, cos
 from sys import version as python_version
-from re import sub, findall, IGNORECASE, MULTILINE
-from os import path, listdir, makedirs, symlink, remove
+from os import path, listdir, makedirs, symlink, unlink
+from re import sub, findall, finditer, IGNORECASE, MULTILINE
 from importlib.util import spec_from_file_location, module_from_spec
 from argparse import ArgumentParser, ArgumentTypeError, RawTextHelpFormatter
 
@@ -108,17 +114,17 @@ class GNS3Project:
     def create_link(self, Node_in: MyNode, Node_out: MyNode):
         Vx = Node_out.x - Node_in.x
         Vy = Node_out.y - Node_in.y
-        distance = sqrt((Vx**2)+Vy**2)
+        distance = int(sqrt((Vx**2) + Vy**2) * 0.20)
 
         if Vx != 0:
-            # Dx = int(45 * abs((Vx / sqrt(Vx**2 + Vy**2))))
-            # Dy = int(45 * abs((Vy / sqrt(Vx**2 + Vy**2))))
+            # Dx = int(distance * abs((Vx / sqrt(Vx**2 + Vy**2)))))
+            # Dy = int(distance * abs((Vy / sqrt(Vx**2 + Vy**2)))))
             tehta = atan(abs(Vy/Vx))
-            Dx = int((distance*0.20)*abs(cos(tehta)))
-            Dy = int((distance*0.20)*abs(sin(tehta)))
+            Dx = int(distance * abs(cos(tehta)))
+            Dy = int(distance * abs(sin(tehta)))
         else:
             Dx = 0
-            Dy = int((distance*0.20))
+            Dy = distance
 
         self.project["topology"]["links"].append({
             "filters": {},
@@ -174,10 +180,6 @@ class GNS3Project:
 
     def get_value(self) -> str:
         return dumps(self.project, indent=4)
-
-
-def cleanhtml(text):
-    return sub('<[^<]+?>\n', '', text)
 
 
 def copy_subfolder(src: str, dst: str):
@@ -251,7 +253,8 @@ def get_etc_hosts(file: str, IPv4: bool = True, IPv6: bool = False):
 
     regex_ipv4 = r"^\s*((?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\s*(.+)$"
     regex_ipv6 = r"^\s*(?:(?:[0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|(?:[0-9a-fA-F]{1,4}:){1,7}:|(?:[0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|(?:[0-9a-fA-F]{1,4}:){1,5}(?::[0-9a-fA-F]{1,4}){1,2}|(?:[0-9a-fA-F]{1,4}:){1,4}(?::[0-9a-fA-F]{1,4}){1,3}|(?:[0-9a-fA-F]{1,4}:){1,3}(?::[0-9a-fA-F]{1,4}){1,4}|(?:[0-9a-fA-F]{1,4}:){1,2}(?::[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:(?:(?::[0-9a-fA-F]{1,4}){1,6})|:(?:(?::[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(?::[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(?:ffff(?::0{1,4}){0,1}:){0,1}(?:(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-fA-F]{1,4}:){1,4}:(?:(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\s* (?:.+)$"
-
+    #regex_del_redundancy_ipv6 = r"^(?:(?!^\s*::1\s*(?:localhost)*\s+ip6-localhost\s+ip6-loopback\s*$)(?!^\s*fe00::0\s+ip6-localnet\s*$)(?!^\s*ff00::0\s+ip6-mcastprefix\s*$)(?!^\s*ff02::1\s+ip6-allnodes\s*$)(?!^\s*ff02::2\s+ip6-allrouters\s*$).)+$"
+    regex_del_redundancy_ipv6 = r"^(?!.*(?:::1\s*(?:localhost)*ip6-localhost\s*ip6-loopback|fe00::0\s*ip6-localnet|ff00::0\s*ip6-mcastprefix|ff02::1\s*ip6-allnodes|ff02::2\s*ip6-allrouters)).+"
     hosts = ''
     if path.isfile(file):
         if IPv4:
@@ -263,8 +266,10 @@ def get_etc_hosts(file: str, IPv4: bool = True, IPv6: bool = False):
 
         # GNS3 no support IPv6 :c in extra hosts
         if IPv6:
-            hosts += "\n".join(findall(regex_ipv6,
-                                       Path(file).read_text(), flags=MULTILINE))
+            ipv6_matches = "\n".join(findall(regex_ipv6,
+                                             Path(file).read_text(), flags=MULTILINE))
+            hosts += "\n".join(findall(regex_del_redundancy_ipv6,
+                                           ipv6_matches, flags=MULTILINE))
             # for i in findall(regex_ipv6, Path(file).read_text(), flags=MULTILINE):
             #    if hosts != "":
             #        hosts += "\n"
@@ -279,8 +284,10 @@ def convert_topology(pjNetgui: str, pjOutput: str, nameOutput: str,  imgDocker: 
         pjOutput += "/"
 
     if path.exists(pjOutput+nameOutput):
-        print(pjOutput+nameOutput + " a file or directory already exists")
-        exit(1)
+        if not (path.isdir(pjOutput+nameOutput) and not listdir(pjOutput+nameOutput)):
+            print(pjOutput+nameOutput +
+                  "\033[91m a file or directory already exists\033[0m")
+            exit(1)
 
     project = GNS3Project(name=nameOutput, gns3_version=gns3_version)
 
@@ -292,16 +299,16 @@ def convert_topology(pjNetgui: str, pjOutput: str, nameOutput: str,  imgDocker: 
                         template_id = i["template_id"]
                         break
                 if template_id == None:
-                    print("Not exists template of '%s' in '%s'" %
+                    print("\033[91mNot exists template of\033[0m '%s' \033[91min\033[0m '%s'" %
                           (imgDocker, cfgRead))
                     exit(1)
         else:
-            print(cfgRead + " No such file GNS3 Controller")
+            print(cfgRead + "\033[91m No such file GNS3 Controller\033[0m")
             exit(1)
 
     if findall(r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$', template_id) == []:
         print(
-            "Invalid template ID: %s\nIt must have this format: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}" % template_id)
+            "\033[91mInvalid template ID:\033[0m %s\n\033[94mIt must have this format:\033[0m ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}" % template_id)
         exit(1)
 
     nodes = {}
@@ -312,7 +319,7 @@ def convert_topology(pjNetgui: str, pjOutput: str, nameOutput: str,  imgDocker: 
         r"^\s*position\s*\(\s*(-?[0-9]+)\.[0-9]*\s*,\s*(-?[0-9]+)\.[0-9]*\s*\);\s*(NKCompaq|NKRouter|NKSwitch|NKHub)\s*\(\s*\"(.+)\s*\"\s*\)\s*$", netgui_file, flags=IGNORECASE | MULTILINE)
 
     if nodes_in_file == []:
-        print("Nodes of topology not found in ", pjNetgui)
+        print("\033[93mNodes of topology not found in \033[0m", pjNetgui)
     else:
         for current_node in nodes_in_file:
             if current_node[2].lower() == "nkhub":
@@ -329,7 +336,7 @@ def convert_topology(pjNetgui: str, pjOutput: str, nameOutput: str,  imgDocker: 
                     "console_http_port": 80,
                     "console_resolution": "800x600",
                     "container_id": xeger(r'^[a-f0-9]{12,64}$'),
-                    "environment": "IPv6_Hosts" if copy_hosts and get_etc_hosts(pjNetgui+current_node[3], IPv4=False, IPv6=True) != None else None,
+                    "environment": "IPv6_Hosts=yes" if copy_hosts and get_etc_hosts(pjNetgui+current_node[3], IPv4=False, IPv6=True) != None else None,
                     "extra_hosts": get_etc_hosts(pjNetgui+current_node[3]) if copy_hosts else None,
                     "extra_volumes": None,
                     "image": imgDocker,
@@ -358,19 +365,19 @@ def convert_topology(pjNetgui: str, pjOutput: str, nameOutput: str,  imgDocker: 
             r"^\s*(?:Connect|To)\s*\(\s*\"(.+)\s*\"\s*\)\s*$", netgui_file, flags=IGNORECASE | MULTILINE)
 
         if links_in_file == []:
-            print("Links of topology not found in ", pjNetgui)
+            print("\033[93mLinks of topology not found in \033[0m", pjNetgui)
         else:
             for i in range(0, len(links_in_file), 2):
 
                 try:
                     if links_in_file[i] == links_in_file[i+1]:
-                        print("Skipping link from \"%s\" to \"%s\", cannot connect to itself" % (
+                        print("\033[93mSkipping link from \033[0m\"%s\" \033[93mto\033[0m \"%s\"\033[91m cannot connect to itself\033[0m" % (
                             links_in_file[i], links_in_file[i]))
                         continue
                     project.create_link(
                         nodes[links_in_file[i]], nodes[links_in_file[i+1]])
                 except IndexError:
-                    print("Skipping link from \"%s\" to ??, unfinished link" %
+                    print("\033[93mSkipping link from\033[0m \"%s\" \033[93mto\033[0m ??\033[91m unfinished link\033[0m" %
                           links_in_file[i])
                 except KeyError as error:
                     if error.args[0] != links_in_file[i]:
@@ -380,14 +387,16 @@ def convert_topology(pjNetgui: str, pjOutput: str, nameOutput: str,  imgDocker: 
                         from_ = error.args[0]
                         to_ = links_in_file[1]
 
-                    print("Skipping link from \"%s\" to \"%s\" not exists node \"%s\" in netgui topology" %
+                    print("\033[93mSkipping link from\033[0m \"%s\" \033[93mto\033[0m \"%s\"\033[91m not exists node\033[0m \"%s\"\033[91m in netgui topology\033[0m" %
                           (from_, to_, error.args[0]))
 
-    centrate_topology(project)
+        centrate_topology(project)
 
-    makedirs(pjOutput+nameOutput)
-    with open(pjOutput+nameOutput+"/"+nameOutput+".gns3", 'w') as gns3_file:
-        gns3_file.write(project.get_value())
+        makedirs(pjOutput+nameOutput, exist_ok=True)
+        with open(pjOutput+nameOutput+"/"+nameOutput+".gns3", 'w') as gns3_file:
+            gns3_file.write(project.get_value())
+            print("\033[92mSuccessfully converted topology saved in:\033[0m\n%s" %
+                  pjOutput+nameOutput+"/")
 
     return nodes
 
@@ -400,25 +409,27 @@ def convert_files(pjNetgui: str, pjOutput: str, netgui_file: str, nodes: dict = 
             folder = pjOutput
             all_match = glob(pjOutput+'*.gns3')
             if len(all_match) == 0:
-                print("Not exists file *.gns3 in " + pjOutput)
+                print("\033[91mNot exists file *.gns3 in\033[0m " + pjOutput)
                 exit(1)
             elif len(all_match) > 1:
-                print("Ambiguous Directory\nWhat is project?")
+                print(
+                    "\033[93mAmbiguous Directory\n\033[94mWhat is project?\033[0m")
                 for i in all_match:
                     print(i)
-                print("Please pass the full name of the project file as an argument")
+                print(
+                    "\033[0mPlease pass the full name of the project file as an argument\033[0m")
                 exit(1)
             else:
                 pjOutput = all_match[0]
                 gns3_file = Path(all_match[0]).read_text()
         elif path.isfile(pjOutput):
             if not pjOutput.lower().endswith(".gns3"):
-                print(pjOutput + "Isn't project of gns3")
+                print(pjOutput + "\033[91mIsn't project of gns3\033[0m")
                 exit(1)
             else:
                 gns3_file = Path(pjOutput).read_text()
         else:
-            print(pjOutput + " Isn't file or directory")
+            print(pjOutput + "\033[91m Isn't file or directory\033[0m")
             exit(1)
         nodes = {}
         with open(pjOutput, "r") as json_file:
@@ -431,6 +442,7 @@ def convert_files(pjNetgui: str, pjOutput: str, netgui_file: str, nodes: dict = 
     else:
         project = None
 
+    copy_successfull = False
     changes_detect = False
 
     for i in findall(r"\s*(?:NKCompaq|NKRouter|NKSwitch)\s*\(\s*\"(.+)\s*\"\s*\)\s*$", netgui_file, flags=IGNORECASE | MULTILINE):
@@ -441,25 +453,27 @@ def convert_files(pjNetgui: str, pjOutput: str, netgui_file: str, nodes: dict = 
             makedirs(folder_base+"/save", exist_ok=True)
 
             if not path.exists(path.dirname(folder_base)+"/"+i):
-                symlink(path.basename(folder_base), path.dirname(folder_base)+"/"+i)
+                symlink(path.basename(folder_base),
+                        path.dirname(folder_base)+"/"+i)
             else:
-                remove(path.dirname(folder_base)+"/"+i)
-                symlink(path.basename(folder_base), path.dirname(folder_base)+"/"+i)
+                unlink(path.dirname(folder_base)+"/"+i)
+                symlink(path.basename(folder_base),
+                        path.dirname(folder_base)+"/"+i)
 
             if project != None:
+                print("false")
                 node_hosts_ipv6 = get_etc_hosts(
                     pjNetgui, IPv4=False, IPv6=True)
 
                 if node_hosts_ipv6 != None:
-                    print(node_hosts_ipv6)
                     if project["topology"]["nodes"][nodes[i].index]["properties"]["environment"] == None:
                         project["topology"]["nodes"][nodes[i]
-                                                     .index]["properties"]["environment"] = "IPv6_Hosts"
+                                                     .index]["properties"]["environment"] = "IPv6_Hosts=yes"
                         changes_detect = True
-                    elif "IPv6_Hosts" not in project["topology"]["nodes"][nodes[i]
-                                                                          .index]["properties"]["environment"]:
+                    elif "IPv6_Hosts=yes" not in project["topology"]["nodes"][nodes[i]
+                                                                              .index]["properties"]["environment"]:
                         project["topology"]["nodes"][nodes[i]
-                                                     .index]["properties"]["environment"] += "\nIPv6_Hosts"
+                                                     .index]["properties"]["environment"] += "\nIPv6_Hosts=yes"
                         changes_detect = True
 
                 node_hosts_ipv4 = get_etc_hosts(pjNetgui+i)
@@ -477,22 +491,31 @@ def convert_files(pjNetgui: str, pjOutput: str, netgui_file: str, nodes: dict = 
 
             if path.isdir(pjNetgui+i):
                 copy_subfolder(src=pjNetgui+i, dst=folder_base)
+                copy_successfull = True
             elif path.isdir(pjNetgui+i+".old"):
                 copy_subfolder(src=pjNetgui+i+".old", dst=folder_base)
+                copy_successfull = True
             if path.isfile(pjNetgui+i+".startup"):
                 copy(pjNetgui+i+".startup", folder_base+"/root")
+                copy_successfull = True
 
         except KeyError:
-            print("Skipping \"%s\" Not exists in GNS3 topology or isn't docker type." % i)
+            print(
+                "\033[93mSkipping\033[0m \"%s\"\033[91m Not exists in GNS3 topology or isn't docker type.\033[0m" % i)
 
     if changes_detect:
         with open(pjOutput, 'w') as gns3_file:
             gns3_file.write(dumps(project, indent=4))
 
+    if changes_detect or copy_successfull:
+        print("\033[92mSuccessfully converted config files\033[0m")
+    else:
+        print("\033[93mNo configuration files found\033[0m")
+
 
 def convert_project(pjNetgui: str, pjOutput: str, nameOutput: str = None, imgDocker: str = None, template_id: str = None, cfgRead: str = None, onlyConfig: str = False, onlyTopology: bool = False, gns3_version: str = None):
     if not path.exists(pjNetgui):
-        print(pjNetgui + " No such file or directory")
+        print(pjNetgui + "\033[91m No such file or directory\033[0m")
         exit(1)
 
     if path.isdir(pjNetgui):
@@ -500,21 +523,21 @@ def convert_project(pjNetgui: str, pjOutput: str, nameOutput: str = None, imgDoc
             pjNetgui += "/"
         all_match = glob(pjNetgui+'*.nkp')
         if len(all_match) == 0:
-            print("Not exists file *.nkp in" + pjNetgui)
+            print("\033[91mNot exists file *.nkp in\033[0m" + pjNetgui)
             exit(1)
         elif len(all_match) > 1:
-            print("Ambiguous Directory\nWhat is project?")
+            print("\033[93mAmbiguous Directory\n\033[94mWhat is project?\033[0m")
             for i in all_match:
                 if (i.lower().endswith("/netgui.nkp")):
                     while True:
-                        print(i+" <- Use this? (S/n) ", end="")
+                        print(i+"\033[92m <- Use this? (S/n)\033[0m ", end="")
                         resp = input()
                         if resp.lower() == "s":
                             netgui_file = Path(i).read_text()
                             break
                         elif resp.lower() == "n":
                             print(
-                                "Please pass the full name of the project file as an argument")
+                                "\033[91mPlease pass the full name of the project file as an argument\033[0m")
                             break
                     if resp.lower() == "s":
                         break
@@ -523,20 +546,20 @@ def convert_project(pjNetgui: str, pjOutput: str, nameOutput: str = None, imgDoc
 
             if 'resp' not in locals() and 'resp' not in globals():
                 print(
-                    "Please pass the full name of the project file as an argument")
+                    "\033[91mPlease pass the full name of the project file as an argument\033[0m")
             if 'netgui_file' not in locals() and 'netgui_file' not in globals():
                 exit(1)
         else:
             netgui_file = Path(all_match[0]).read_text()
     elif path.isfile(pjNetgui):
-        # if not pjNetgui.lower().endswith(".nkp"):
-        #    print(pjNetgui + " Isn't project of netgui ")
-        #    exit(1)
-        # else:
-        netgui_file = Path(pjNetgui).read_text()
-        pjNetgui = path.dirname(pjNetgui)+"/"
+        if not pjNetgui.lower().endswith(".nkp"):
+            print(pjNetgui + "\033[91m Isn't project of netgui\033[0m")
+            exit(1)
+        else:
+            netgui_file = Path(pjNetgui).read_text()
+            pjNetgui = path.dirname(pjNetgui)+"/"
     else:
-        print(pjNetgui + " Isn't file or directory")
+        print(pjNetgui + "\033[91m Isn't file or directory\033[91m")
         exit(1)
 
     nodes = None
@@ -548,7 +571,7 @@ def convert_project(pjNetgui: str, pjOutput: str, nameOutput: str = None, imgDoc
         nodes = convert_topology(pjNetgui=pjNetgui, pjOutput=pjOutput, nameOutput=nameOutput,
                                  imgDocker=imgDocker, template_id=template_id,  cfgRead=cfgRead, netgui_file=netgui_file, gns3_version=gns3_version, copy_hosts=not onlyTopology)
         if not onlyConfig:
-            pjOutput += nameOutput+"/"+nameOutput+".gns3"
+            pjOutput += "/"+nameOutput+"/"+nameOutput+".gns3"
 
     if not onlyTopology:
         convert_files(pjNetgui=pjNetgui, pjOutput=pjOutput,
@@ -562,7 +585,7 @@ if __name__ == '__main__':
         gns3 = module_from_spec(spec)
         spec.loader.exec_module(gns3)
     except FileNotFoundError:
-        print("GNS3 not installed")
+        print("\033[91mGNS3 not installed\033[0m")
         exit(1)
     pass
 
@@ -635,11 +658,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.command == "all":
-        convert_project(pjNetgui=args.Netgui_project_folder,
-                        pjOutput=args.output, nameOutput=args.name, imgDocker=args.image, template_id=args.template, cfgRead=args.read, gns3_version=gns3.__version__)
+        convert_project(pjNetgui=path.abspath(args.Netgui_project_folder),
+                        pjOutput=path.abspath(args.output), nameOutput=args.name, imgDocker=args.image, template_id=args.template, cfgRead=path.abspath(args.read), gns3_version=gns3.__version__)
     elif args.command == "topology":
-        convert_project(pjNetgui=args.Netgui_project_folder,
-                        pjOutput=args.output, nameOutput=args.name, imgDocker=args.image, template_id=args.template, cfgRead=args.read, onlyTopology=True, gns3_version=gns3.__version__)
+        convert_project(pjNetgui=path.abspath(args.Netgui_project_folder),
+                        pjOutput=path.abspath(args.output), nameOutput=args.name, imgDocker=args.image, template_id=args.template, cfgRead=path.abspath(args.read), onlyTopology=True, gns3_version=gns3.__version__)
     else:
-        convert_project(pjNetgui=args.Netgui_project_folder,
-                        pjOutput=args.GNS3_project_folder, onlyConfig=True)
+        convert_project(pjNetgui=path.abspath(args.Netgui_project_folder),
+                        pjOutput=path.abspath(args.GNS3_project_folder), onlyConfig=True)
