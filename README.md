@@ -408,7 +408,7 @@ Antes que todo debemos saber algunos conceptos sobre los proyectos y configuraci
 
 Para poder convertir proyectos de Netgui a GNS3 se necesita de ambos valors. **Template ID** y **Image name**   
 
-**gns3_controller.conf**: Es un archivo json que obtiene todas las plantillas creadas por el usuario, el script de aquí leerá **Template ID** y **Image name** para convertir el proyecto. Como puedes observar este fichero contiene ambos datos.  
+**gns3_controller.conf**: Es un archivo json que contiene todas las plantillas creadas por el usuario, el script de aquí leerá **Template ID** y **Image name** para convertir el proyecto. Como puedes observar este fichero contiene ambos datos.  
 
 >![](assets/conceptos_gns3_3.png "Gns3 controller")  
 
