@@ -95,7 +95,7 @@ Configuración de GNS3
 
 Tienes que escoger la opción que dice 'Sí', esto es para que el usuario normal (no root) pueda usar Wireshark y GNS3
 
-Al finalizar debes **CERRAR SESIÓN** y notáras que los iconos de las aplicaciones se agregaron. Nota: Si no lo haces de dará permiso denegado al tratar de usar Docker y Wireshark
+Al finalizar debes **CERRAR SESIÓN** y notáras que los iconos de las aplicaciones se agregaron. Nota: Si no lo haces dará permiso denegado al tratar de usar Docker y Wireshark
 
 Docker no es [GUI](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)
 
@@ -213,7 +213,7 @@ Click en Editar (Edit)
 >>De esta manera cada práctica pesa lo menos posible, a excepción de Netgui que es muy pesado en Disco.
 >>
 >>Nota importante: 
->>**JAMÁS agregues todo el sistema de ficheros o `/` porque puede dañar la maquina física.**
+>>**JAMÁS agregues todo el sistema de ficheros o `'/'` porque puede dañar la maquina física.**
 >>
 >>[Leer&#32;más&#32;en&#32;docs&#32;GNS3](https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/index.html#h.7s4z7hjkewuv)  
 >>
@@ -290,7 +290,7 @@ Click en Editar (Edit)
 ---
 
 **Topología de prueba**  
-![](assets/gns3_27.png)![](assets/gns3_28.png)
+>![](assets/gns3_27.png)![](assets/gns3_28.png)
 
 Para ver el consumo de los contenedores:
 ```bash
@@ -527,4 +527,4 @@ Redes de área extensa 2020 - Salvador real
 
 [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail)](https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE.) [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook)](https://facebook.com/srealmoreno) [![](https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social)](https://github.com/srealmoreno/)
 
-
+<style>blockquote{font-style: normal !important;}</style>

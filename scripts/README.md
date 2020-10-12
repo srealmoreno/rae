@@ -118,9 +118,9 @@ Antes que todo debemos saber algunos conceptos sobre los proyectos y configuraci
 
 >![](../assets/conceptos_gns3_2.png "Image name")  
 
-Para poder convertir proyectos de Netgui a GNS3 se necesita de ambos valors. **Template ID** y **Image name**   
+Para poder convertir proyectos de Netgui a GNS3 se necesita de ambos valores. **Template ID** y **Image name**   
 
-**gns3_controller.conf**: Es un archivo json que obtiene todas las plantillas creadas por el usuario, el script de aquí leerá **Template ID** y **Image name** para convertir el proyecto. Como puedes observar este fichero contiene ambos datos.  
+**gns3_controller.conf**: Es un archivo json que contiene todas las plantillas creadas por el usuario, el script de aquí leerá **Template ID** y **Image name** para convertir el proyecto. Como puedes observar este fichero contiene ambos datos.  
 
 >![](../assets/conceptos_gns3_3.png "Gns3 controller")  
 
@@ -191,7 +191,7 @@ El script tiene 3 subcomandos:
 >>**Netgui_Project_Folder**: Proyecto Netgui donde están los archivos de configuración  
 >>**GNS3_Project_Folder**: Proyecto GNS3 donde se convertirán los ficheros de configuración  
 
->Este subcomando copia únicamente los ficheros de configuración, se requiere una topolgía GNS3 similar a la de Netgui.
+>Este subcomando copia únicamente los ficheros de configuración, se requiere una topología GNS3 similar a la de Netgui.
 
 ---
 
@@ -230,3 +230,4 @@ Redes de área extensa 2020 - Salvador real
 
 [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=gmail&label=Gmail)](https://mail.google.com/mail/u/0/?view=cm&fs=1&to=salvadorreal77@gmail.com&su=Manua%20de%20uso%20RAE&body=Hola,%20Salvador%20tengo%20una%20pregunta%20acerca%20del%20manual%20del%20repositorio%20RAE.) [![](https://img.shields.io/badge/%20-%20-grey?style=social&logo=facebook&label=facebook)](https://facebook.com/srealmoreno) [![](https://img.shields.io/github/followers/srealmoreno?label=Follow&style=social)](https://github.com/srealmoreno/)
 
+<style>blockquote{font-style: normal !important;}</style>
