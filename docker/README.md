@@ -603,6 +603,9 @@ Redes de área extensa 2020 - Salvador real
 .commend{
     color: gray;
 }
+.wrapper {
+    width: 95%;
+}
 header {
     width: 20%;
 }

@@ -577,6 +577,9 @@ Redes de área extensa 2020 - Salvador real
 blockquote{
 	font-style: normal !important;
 }
+.wrapper {
+    width: 95%;
+}
 header {
     width: 20%;
 }
