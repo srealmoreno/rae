@@ -217,7 +217,7 @@ install_netgui() {
             cd /tmp
 
             local size_tmp=$(stat --format=%s netgui-${NETGUI_VERSION}.tar.bz2 2>/dev/null)
-            local size_internet=$(curl -sI http://mobiquo.gsyc.es/netgui-${NETGUI_VERSION}/netgui-${NETGUI_VERSION}.tar.bz2 | grep Content-Length | cat -v | cut -d ' ' -f 2 | sed -e "s/\^M//")
+            local size_internet=$(curl -sI http://mobiquo.gsyc.es/netgui-${NETGUI_VERSION}/netgui-${NETGUI_VERSION}.tar.bz2 | grep -oP "(?<=Content-Length: )\d+")
             if [ "$size_tmp" != "$size_internet" ]; then
                 rm -f netgui-${NETGUI_VERSION}.tar.bz2
                 info "Descargando Netgui"
@@ -396,7 +396,7 @@ install_packages() {
     if [ -n "$gns3" ]; then
         sed -i "81,87s/^#*/#/" /usr/share/gns3/gns3-server/lib/python3.7/site-packages/gns3server/compute/docker/resources/init.sh 2>/dev/null
         advertencia "Comprobando si hay errores en el entorno de GNS3"
-        local version_pyqt_installed=$(pip3 show pyqt5 | grep Version: | cut -d ' ' -f2)
+        local version_pyqt_installed=$(pip3 show pyqt5 | grep -oP "(?<=Version: ).+")
         local version_min=5.13.1
         [ "$version_pyqt_installed" != "" ] &&
             if [ ${version_pyqt_installed//./} -lt ${version_min//./} ]; then
