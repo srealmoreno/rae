@@ -5,39 +5,74 @@
 #     Redes de Area extensa 2020    #
 #       Soporte para IPv6 2021      #
 #####################################
-from sys import stdin
 from glob import glob
+# To get all the files in a directory, with a unix-like pattern
 from rstr import xeger
+# To generate a text from a regular expression
 from shutil import copy
+# To copy files
 from pathlib import Path
+# To read the contents of a file quickly. this method opens, reads and closes the file
 from json import dumps, load
+# dumps to format a string in json format, load to load the content of a file in json format
 from math import sqrt, atan, sin, cos
+# sqrt for square root, atan is inverse tangent, sin is sine, cos is cosine
 from sys import version as python_version
+# To get the current version of python
 from os import path, listdir, makedirs, symlink, unlink
-from re import sub, findall, finditer, IGNORECASE, MULTILINE
+# path is a group of useful methods for obtaining information from file system.
+# path.isfile(X) return true is x is file
+# listdir to know if a directory is empty
+# makedirs make directory by recursive, similar to mkdir -p in linux
+# symlink make symbolic link
+# unlink remove symbolic link
+from re import findall, IGNORECASE, MULTILINE
+# findall is a method to search with regular expressions in a text
+# IGNORECASE and MULTILINE are flags passed to the findall method
+# IGNORECASE case insensitive search
+# MULTILINE multiline search
 from importlib.util import spec_from_file_location, module_from_spec
-from argparse import ArgumentParser, ArgumentTypeError, RawTextHelpFormatter
+# To import a .py file from the filesystem.
+from argparse import ArgumentParser, RawTextHelpFormatter
+# For the command line
+# RawTextHelpFormatter Allows me to add newlines "\ n" in the syntax
 
 
 class MyNode:
+    # Class that contains all the node information
+    # This class is used when converting the topology
+
+    # Statics vars
     TCP_PORT = 5000
+    # In a GNS3 topology, each node is assigned two TCP ports
+    # to identify the main console and auxiliary console. since the connection is by telnet
     N_NODES = 0
+    # for index node
+    # Constructor
 
     def __init__(self, console_port: int, console_auto_start: bool, console_type: str, name: str, type: str, properties: dict, symbol: str, template_id: str, x: int, y: int):
         self.console_port = console_port
         self.console_auto_start = console_auto_start
+        # If true, a console starts automatically every time the node is powered on
         self.console_type = console_type
+        #Telnet (Docker) or null (Hub)
         self.name = name
+        # Name or hostname of node
         self.node_id = xeger(
             r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$')
+        # Id of node
         self.type = type
+        #Docker or ethernet_hub
         self.properties = properties
+        # Additional node properties
         self.symbol = symbol
+        # Symbol of node
         self.template_id = template_id
-
         self.adapters = 0
+        # Number of adapters of node, if a link is added, this number will increase
         self.x = x
         self.y = y
+        # Coordinates
 
         self.index = MyNode.N_NODES
 
@@ -45,13 +80,22 @@ class MyNode:
 
 
 class AuxNode:
+    # Since there is no constructor overload in python,
+    # this class is helpful when using the config subcommand,
+    # as only little data is required from the node
+
+    # Constructor
     def __init__(self, node_id: str, index: int):
         self.node_id = node_id
         self.index = index
 
 
 class GNS3Project:
+    # Class containing all the project information
+    # Constructor
     def __init__(self, name: str, gns3_version):
+
+        # This is the base template of a GNS3 project
         self.project = {
             "auto_close": False,
             "auto_open": False,
@@ -80,6 +124,7 @@ class GNS3Project:
             "zoom": 100
         }
 
+    # Add a node to the topology
     def append_node(self, Node: MyNode):
         self.project["topology"]["nodes"].append({
             "compute_id": "local",
@@ -111,6 +156,7 @@ class GNS3Project:
             "z": 1
         })
 
+    # Creates a link between two nodes, also centers the interface tag
     def create_link(self, Node_in: MyNode, Node_out: MyNode):
         Vx = Node_out.x - Node_in.x
         Vy = Node_out.y - Node_in.y
@@ -134,7 +180,7 @@ class GNS3Project:
                     "adapter_number": Node_in.adapters if Node_in.type == "docker" else 0,
                     "label": {
                         "rotation": 0,
-                        "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                        "style": "font-family: TypeWriter;font-size: 10.0;fill: #000000;fill-opacity: 1.0;",
                         "text": "eth" + str(Node_in.adapters) if Node_in.type == "docker" else "",
                         "x": Dx if Vx > 0 else Dx * -1,
                         "y": Dy if Vy > 0 else Dy * -1
@@ -146,7 +192,7 @@ class GNS3Project:
                     "adapter_number": Node_out.adapters if Node_out.type == "docker" else 0,
                     "label": {
                         "rotation": 0,
-                        "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                        "style": "font-family: TypeWriter;font-size: 10.0;fill: #000000;fill-opacity: 1.0;",
                         "text": "eth" + str(Node_out.adapters) if Node_out.type == "docker" else "",
                         "x": Dx * -1 if Vx > 0 else Dx,
                         "y": Dy * -1 if Vy > 0 else Dy
@@ -178,10 +224,12 @@ class GNS3Project:
 
         Node_out.adapters += 1
 
+    # Return project in json value
     def get_value(self) -> str:
         return dumps(self.project, indent=4)
 
 
+# recursive copy method
 def copy_subfolder(src: str, dst: str):
     if not src.endswith("/"):
         src += "/"
@@ -195,16 +243,23 @@ def copy_subfolder(src: str, dst: str):
             if path.basename(path.dirname(src+i)) != "etc":
                 copy(src+i, dst)
             else:
+                # If the file is in the "/etc/" folder, copy the file to the "root/.etc/" directory,
+                # since there is no file persistence in docker
                 makedirs(path.dirname(path.dirname(dst+i)) +
                          "/root/.etc", exist_ok=True)
 
                 if i == "hosts":
+                    # If it is the hosts file, it only copies IPv6 addresses since in a GNS3 project,
+                    # the hosts IPv4 are saved in additional properties of the node
                     ipv6_hosts = get_etc_hosts(
                         src+i, IPv4=False, IPv6=True)
                     if ipv6_hosts != None:
                         for i in ipv6_hosts.splitlines():
-                            regex = r"^\s*" + i.replace(".",
-                                                        "\.").replace(" ", "\s*")+"$"
+                            # This is to remove duplicate name-addresses if file /etc/hosts
+                            # or not add the name-address if it already exists
+                            regex = r"^[\t ]*" + \
+                                " ".join(i.split()).translate(
+                                    str.maketrans({'.': '\.', ' ': '[\t ]+'})) + "[\t ]*$"
                             with open(path.dirname(path.dirname(dst+i))+"/root/.etc/hosts", "a+") as hosts_file:
                                 hosts_file.seek(0)
                                 if findall(regex, "".join(hosts_file.readlines()), flags=MULTILINE) == []:
@@ -214,7 +269,7 @@ def copy_subfolder(src: str, dst: str):
 
 
 def centrate_topology(Project: GNS3Project):
-
+    # This method centers the topology
     for i in Project.project["topology"]["nodes"]:
         if 'min_x' not in locals() and 'min_x' not in globals():
             min_x = i["x"]
@@ -251,10 +306,9 @@ def get_etc_hosts(file: str, IPv4: bool = True, IPv6: bool = False):
         else:
             file += "etc/hosts"
 
-    regex_ipv4 = r"^\s*((?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\s*(.+)$"
-    regex_ipv6 = r"^\s*(?:(?:[0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|(?:[0-9a-fA-F]{1,4}:){1,7}:|(?:[0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|(?:[0-9a-fA-F]{1,4}:){1,5}(?::[0-9a-fA-F]{1,4}){1,2}|(?:[0-9a-fA-F]{1,4}:){1,4}(?::[0-9a-fA-F]{1,4}){1,3}|(?:[0-9a-fA-F]{1,4}:){1,3}(?::[0-9a-fA-F]{1,4}){1,4}|(?:[0-9a-fA-F]{1,4}:){1,2}(?::[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:(?:(?::[0-9a-fA-F]{1,4}){1,6})|:(?:(?::[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(?::[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(?:ffff(?::0{1,4}){0,1}:){0,1}(?:(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-fA-F]{1,4}:){1,4}:(?:(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\s* (?:.+)$"
-    #regex_del_redundancy_ipv6 = r"^(?:(?!^\s*::1\s*(?:localhost)*\s+ip6-localhost\s+ip6-loopback\s*$)(?!^\s*fe00::0\s+ip6-localnet\s*$)(?!^\s*ff00::0\s+ip6-mcastprefix\s*$)(?!^\s*ff02::1\s+ip6-allnodes\s*$)(?!^\s*ff02::2\s+ip6-allrouters\s*$).)+$"
-    regex_del_redundancy_ipv6 = r"^(?!.*(?:::1\s*(?:localhost)*ip6-localhost\s*ip6-loopback|fe00::0\s*ip6-localnet|ff00::0\s*ip6-mcastprefix|ff02::1\s*ip6-allnodes|ff02::2\s*ip6-allrouters)).+"
+    regex_ipv4 = r"^((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))[\t ]+(.*\S)[\t ]*$"
+    regex_ipv6 = r"^[\t ]*(?:(?:[0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|(?:[0-9a-fA-F]{1,4}:){1,7}:|(?:[0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|(?:[0-9a-fA-F]{1,4}:){1,5}(?::[0-9a-fA-F]{1,4}){1,2}|(?:[0-9a-fA-F]{1,4}:){1,4}(?::[0-9a-fA-F]{1,4}){1,3}|(?:[0-9a-fA-F]{1,4}:){1,3}(?::[0-9a-fA-F]{1,4}){1,4}|(?:[0-9a-fA-F]{1,4}:){1,2}(?::[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:(?:(?::[0-9a-fA-F]{1,4}){1,6})|:(?:(?::[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(?::[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(?:ffff(?::0{1,4}){0,1}:){0,1}(?:(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-fA-F]{1,4}:){1,4}:(?:(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))[\t ]+(?:.*[\S])[\t ]*$"
+    regex_del_redundancy_ipv6 = r"^(?![\t ]*(?:::1[\t ]+(?:localhost)*ip6-localhost[\t ]+ip6-loopback|fe00::0[\t ]+ip6-localnet|ff00::0[\t ]+ip6-mcastprefix|ff02::1[\t ]+ip6-allnodes|ff02::2[\t ]+ip6-allrouters)[\t ]*$).+\S"
     hosts = ''
     if path.isfile(file):
         if IPv4:
@@ -269,7 +323,7 @@ def get_etc_hosts(file: str, IPv4: bool = True, IPv6: bool = False):
             ipv6_matches = "\n".join(findall(regex_ipv6,
                                              Path(file).read_text(), flags=MULTILINE))
             hosts += "\n".join(findall(regex_del_redundancy_ipv6,
-                                           ipv6_matches, flags=MULTILINE))
+                                       ipv6_matches, flags=MULTILINE))
             # for i in findall(regex_ipv6, Path(file).read_text(), flags=MULTILINE):
             #    if hosts != "":
             #        hosts += "\n"
@@ -282,7 +336,6 @@ def convert_topology(pjNetgui: str, pjOutput: str, nameOutput: str,  imgDocker: 
 
     if not pjOutput.endswith("/"):
         pjOutput += "/"
-
     if path.exists(pjOutput+nameOutput):
         if not (path.isdir(pjOutput+nameOutput) and not listdir(pjOutput+nameOutput)):
             print(pjOutput+nameOutput +
@@ -312,80 +365,143 @@ def convert_topology(pjNetgui: str, pjOutput: str, nameOutput: str,  imgDocker: 
         exit(1)
 
     nodes = {}
-    node_in = ''
-    node_out = ''
-
     nodes_in_file = findall(
-        r"^\s*position\s*\(\s*(-?[0-9]+)\.[0-9]*\s*,\s*(-?[0-9]+)\.[0-9]*\s*\);\s*(NKCompaq|NKRouter|NKSwitch|NKHub)\s*\(\s*\"(.+)\s*\"\s*\)\s*$", netgui_file, flags=IGNORECASE | MULTILINE)
+        r"^[\t ]*position[\t ]*\([\t ]*(-?[0-9]+)\.[0-9]*[\t ]*,[\t ]*(-?[0-9]+)\.[0-9]*[\t ]*\)[\t ]*;[\t ]*(NKCompaq|NKRouter|NKSwitch|NKHub)[\t ]*\([\t ]*\"[\t ]*(.+?)[\t ]*\"[\t ]*\).*$", netgui_file, flags=IGNORECASE | MULTILINE)
 
+    """
+        Since the syntax of a node is the following:
+            position(coordinates.x, coordinates.y); type_of_node(name_of_node)
+
+            The coordinates of a node are in decimal, but the coordinates of a node in GNS3 are integers.
+
+        This regex allows me to extract:
+        Group 0: Coordinates on the X axis (Without decimal)
+        Group 1: Coordinates on the Y axis (Without decimal)
+        Group 2: Node Type
+        Group 3: Node name                 (Without whitespace at the beginning or end)
+
+        In addition, it does not break with comments between the statements
+
+        Matches Example:
+
+            --------------------------------------------
+            position(268.10,125.0);NKHub("hub1")
+                result = (268, 125, "Nkhub", "hub1")
+            --------------------------------------------
+
+            --------------------------------------------
+            position(568.990,12.11); #comment
+            #comment
+            NKCompaq("   pc   1  ")#comment
+                result = (568, 990, "NKCompaq", "pc   1")
+            ---------------------------------------------
+
+    """
     if nodes_in_file == []:
         print("\033[93mNodes of topology not found in \033[0m", pjNetgui)
     else:
         for current_node in nodes_in_file:
-            if current_node[2].lower() == "nkhub":
-                properties = {
-                    "ports_mapping": []
-                }
-                nodes[current_node[3]] = MyNode(console_port=None, console_auto_start=False, console_type=None, name=current_node[3], type="ethernet_hub",
-                                                properties=properties, symbol=":/symbols/hub.svg", template_id="b4503ea9-d6b6-3695-9fe4-1db3b39290b0", x=int(current_node[0]), y=int(current_node[1]))
-            else:
-                properties = {
-                    "adapters": 0,
-                    "aux": MyNode.TCP_PORT + 1,
-                    "console_http_path": "/",
-                    "console_http_port": 80,
-                    "console_resolution": "800x600",
-                    "container_id": xeger(r'^[a-f0-9]{12,64}$'),
-                    "environment": "IPv6_Hosts=yes" if copy_hosts and get_etc_hosts(pjNetgui+current_node[3], IPv4=False, IPv6=True) != None else None,
-                    "extra_hosts": get_etc_hosts(pjNetgui+current_node[3]) if copy_hosts else None,
-                    "extra_volumes": None,
-                    "image": imgDocker,
-                    "start_command": None,
-                    "usage": ""
-                }
-                if current_node[2].lower() == "nkcompaq":
-                    properties["extra_volumes"] = [
-                        "/save/", "/etc/network", "/etc/default", "/root/"]
-                    symbol = ":/symbols/classic/computer.svg"
-                elif current_node[2].lower() == "nkrouter":
-                    properties["extra_volumes"] = ["/save", "/etc/network",
-                                                   "/etc/default", "/etc/dhcp", "/etc/frr", "/root/"]
-                    symbol = ":/symbols/classic/router.svg"
+            if not current_node[3] in nodes:
+                if current_node[2].lower() == "nkhub":
+                    # These are the properties of a hub type node.
+                    # Here the ports of the interfaces are mapped.
+                    properties = {
+                        "ports_mapping": []
+                    }
+                    nodes[current_node[3]] = MyNode(console_port=None, console_auto_start=False, console_type=None, name=current_node[3], type="ethernet_hub",
+                                                    properties=properties, symbol=":/symbols/hub.svg", template_id="b4503ea9-d6b6-3695-9fe4-1db3b39290b0", x=int(current_node[0]), y=int(current_node[1]))
                 else:
-                    properties["extra_volumes"] = [
-                        "/save/", "/etc/network", "/etc/default", "/root/"]
-                    symbol = ":/symbols/classic/ethernet_switch.svg"
-                nodes[current_node[3]] = MyNode(
-                    console_port=MyNode.TCP_PORT, console_auto_start=True, console_type="telnet", name=current_node[3], type="docker", properties=properties, symbol=symbol, template_id=template_id, x=int(current_node[0]), y=int(current_node[1]))
-                MyNode.TCP_PORT += 2
+                    # These are the properties of a docker type node.
+                    #   the IPv4 host names go in the EXTRA_HOSTS parameter (Only IPv4, no support IPv6)
+                    # The IPv6 Hosts variable is in case there is any IPv6 hostname, this variable will be used by the docker image to load the hostnames at startup
+                    properties = {
+                        "adapters": 0,
+                        "aux": MyNode.TCP_PORT + 1,
+                        "console_http_path": "/",
+                        "console_http_port": 80,
+                        "console_resolution": "800x600",
+                        "container_id": xeger(r'^[a-f0-9]{12,64}$'),
+                        "environment": "IPv6_Hosts=yes" if copy_hosts and get_etc_hosts(pjNetgui+current_node[3], IPv4=False, IPv6=True) != None else None,
+                        "extra_hosts": get_etc_hosts(pjNetgui+current_node[3]) if copy_hosts else None,
+                        "extra_volumes": None,
+                        "image": imgDocker,
+                        "start_command": None,
+                        "usage": ""
+                    }
+                    if current_node[2].lower() == "nkcompaq":
+                        properties["extra_volumes"] = [
+                            "/save/", "/etc/network", "/etc/default", "/root/"]
+                        symbol = ":/symbols/classic/computer.svg"
+                    elif current_node[2].lower() == "nkrouter":
+                        properties["extra_volumes"] = ["/save", "/etc/network",
+                                                       "/etc/default", "/etc/dhcp", "/etc/frr", "/root/"]
+                        symbol = ":/symbols/classic/router.svg"
+                    else:
+                        properties["extra_volumes"] = [
+                            "/save/", "/etc/network", "/etc/default", "/root/"]
+                        symbol = ":/symbols/classic/ethernet_switch.svg"
+                    nodes[current_node[3]] = MyNode(
+                        console_port=MyNode.TCP_PORT, console_auto_start=True, console_type="telnet", name=current_node[3], type="docker", properties=properties, symbol=symbol, template_id=template_id, x=int(current_node[0]), y=int(current_node[1]))
+                    MyNode.TCP_PORT += 2
 
-            project.append_node(nodes[current_node[3]])
+                project.append_node(nodes[current_node[3]])
+            else:
+                print("\033[91mError in convert topology, duplicate node\033[0m \"%s\"\033[93m\nNode names must be unique.\033[0m" %
+                      current_node[3])
+                exit(1)
 
         links_in_file = findall(
-            r"^\s*(?:Connect|To)\s*\(\s*\"(.+)\s*\"\s*\)\s*$", netgui_file, flags=IGNORECASE | MULTILINE)
+            r"^[\t ]*Connect[\t ]*\([\t ]*\"[\t ]*(.+?)[\t ]*\"[\t ]*\)(?:(?!Connect|To)[\w\W])*^[\t ]*To[\t ]*\([\t ]*\"[\t ]*(.+?)[\t ]*\"[\t ]*\).*$", netgui_file, flags=IGNORECASE | MULTILINE)
+        """
+            Since the syntax of a link is the following:
+                Connect(name_of_node)
+                To(name_of_node)
+                
+            This regex allows me to extract:
+            Group 0: Connection_from  (Without whitespace at the beginning or end)
+            Group 1: Connection_to    (Without whitespace at the beginning or end)
+            
+            In addition, it does not break with comments between the statements
+
+            Matches Example:
+
+                ----------------------------
+                Connect("pc1")
+                To("hub1")
+                result = ("pc1", "hub1")
+                ----------------------------
+
+                ----------------------------
+                Connect("pc2") #comment
+                #comment
+                #comment
+                To("    s    1    ")#comment
+                result = ("pc2", "s   1")
+                ----------------------------
+
+        """
 
         if links_in_file == []:
             print("\033[93mLinks of topology not found in \033[0m", pjNetgui)
         else:
-            for i in range(0, len(links_in_file), 2):
-
+            for node_in, node_out in links_in_file:
                 try:
-                    if links_in_file[i] == links_in_file[i+1]:
+                    if node_in == node_out:
                         print("\033[93mSkipping link from \033[0m\"%s\" \033[93mto\033[0m \"%s\"\033[91m cannot connect to itself\033[0m" % (
-                            links_in_file[i], links_in_file[i]))
+                            node_in, node_out))
                         continue
                     project.create_link(
-                        nodes[links_in_file[i]], nodes[links_in_file[i+1]])
-                except IndexError:
-                    print("\033[93mSkipping link from\033[0m \"%s\" \033[93mto\033[0m ??\033[91m unfinished link\033[0m" %
-                          links_in_file[i])
+                        nodes[node_in], nodes[node_out])
+                # except IndexError:
+                #    print("\033[93mSkipping link from\033[0m \"%s\" \033[93mto\033[0m ??\033[91m unfinished link\033[0m" %
+                #          node_in)
                 except KeyError as error:
-                    if error.args[0] != links_in_file[i]:
-                        from_ = links_in_file[i]
+                    if error.args[0] != node_in:
+                        from_ = node_out
                         to_ = error.args[0]
                     else:
                         from_ = error.args[0]
-                        to_ = links_in_file[1]
+                        to_ = node_out
 
                     print("\033[93mSkipping link from\033[0m \"%s\" \033[93mto\033[0m \"%s\"\033[91m not exists node\033[0m \"%s\"\033[91m in netgui topology\033[0m" %
                           (from_, to_, error.args[0]))
@@ -417,7 +533,7 @@ def convert_files(pjNetgui: str, pjOutput: str, netgui_file: str, nodes: dict = 
                 for i in all_match:
                     print(i)
                 print(
-                    "\033[0mPlease pass the full name of the project file as an argument\033[0m")
+                    "\033[91mPlease pass the full name of the project file as an argument\033[0m")
                 exit(1)
             else:
                 pjOutput = all_match[0]
@@ -445,7 +561,7 @@ def convert_files(pjNetgui: str, pjOutput: str, netgui_file: str, nodes: dict = 
     copy_successfull = False
     changes_detect = False
 
-    for i in findall(r"\s*(?:NKCompaq|NKRouter|NKSwitch)\s*\(\s*\"(.+)\s*\"\s*\)\s*$", netgui_file, flags=IGNORECASE | MULTILINE):
+    for i in findall(r"[\t ]*(?:NKCompaq|NKRouter|NKSwitch)[\t ]*\([\t ]*\"(.+)[\t ]*\"[\t ]*\)[\t ]*$", netgui_file, flags=IGNORECASE | MULTILINE):
         try:
             folder_base = path.dirname(pjOutput)+"/project-files/docker/" + \
                 nodes[i].node_id
@@ -461,7 +577,6 @@ def convert_files(pjNetgui: str, pjOutput: str, netgui_file: str, nodes: dict = 
                         path.dirname(folder_base)+"/"+i)
 
             if project != None:
-                print("false")
                 node_hosts_ipv6 = get_etc_hosts(
                     pjNetgui, IPv4=False, IPv6=True)
 
@@ -513,7 +628,7 @@ def convert_files(pjNetgui: str, pjOutput: str, netgui_file: str, nodes: dict = 
         print("\033[93mNo configuration files found\033[0m")
 
 
-def convert_project(pjNetgui: str, pjOutput: str, nameOutput: str = None, imgDocker: str = None, template_id: str = None, cfgRead: str = None, onlyConfig: str = False, onlyTopology: bool = False, gns3_version: str = None):
+def convert_project(pjNetgui: str, pjOutput: str, nameOutput: str = None, imgDocker: str = None, template_id: str = None, cfgRead: str = None, convertConfig: str = True, convertTopology: bool = True, gns3_version: str = None):
     if not path.exists(pjNetgui):
         print(pjNetgui + "\033[91m No such file or directory\033[0m")
         exit(1)
@@ -523,7 +638,7 @@ def convert_project(pjNetgui: str, pjOutput: str, nameOutput: str = None, imgDoc
             pjNetgui += "/"
         all_match = glob(pjNetgui+'*.nkp')
         if len(all_match) == 0:
-            print("\033[91mNot exists file *.nkp in\033[0m" + pjNetgui)
+            print("\033[91mNot exists file *.nkp in\033[0m " + pjNetgui)
             exit(1)
         elif len(all_match) > 1:
             print("\033[93mAmbiguous Directory\n\033[94mWhat is project?\033[0m")
@@ -564,16 +679,16 @@ def convert_project(pjNetgui: str, pjOutput: str, nameOutput: str = None, imgDoc
 
     nodes = None
 
-    if not onlyConfig:
+    if convertTopology:
         if nameOutput == "Netgui project name":
             nameOutput = path.basename(path.dirname(pjNetgui))
 
         nodes = convert_topology(pjNetgui=pjNetgui, pjOutput=pjOutput, nameOutput=nameOutput,
-                                 imgDocker=imgDocker, template_id=template_id,  cfgRead=cfgRead, netgui_file=netgui_file, gns3_version=gns3_version, copy_hosts=not onlyTopology)
-        if not onlyConfig:
+                                 imgDocker=imgDocker, template_id=template_id,  cfgRead=cfgRead, netgui_file=netgui_file, gns3_version=gns3_version, copy_hosts=convertConfig)
+        if convertConfig:
             pjOutput += "/"+nameOutput+"/"+nameOutput+".gns3"
 
-    if not onlyTopology:
+    if convertConfig:
         convert_files(pjNetgui=pjNetgui, pjOutput=pjOutput,
                       netgui_file=netgui_file, nodes=nodes)
 
@@ -662,7 +777,7 @@ if __name__ == '__main__':
                         pjOutput=path.abspath(args.output), nameOutput=args.name, imgDocker=args.image, template_id=args.template, cfgRead=path.abspath(args.read), gns3_version=gns3.__version__)
     elif args.command == "topology":
         convert_project(pjNetgui=path.abspath(args.Netgui_project_folder),
-                        pjOutput=path.abspath(args.output), nameOutput=args.name, imgDocker=args.image, template_id=args.template, cfgRead=path.abspath(args.read), onlyTopology=True, gns3_version=gns3.__version__)
+                        pjOutput=path.abspath(args.output), nameOutput=args.name, imgDocker=args.image, template_id=args.template, cfgRead=path.abspath(args.read), convertConfig=False, gns3_version=gns3.__version__)
     else:
         convert_project(pjNetgui=path.abspath(args.Netgui_project_folder),
-                        pjOutput=path.abspath(args.GNS3_project_folder), onlyConfig=True)
+                        pjOutput=path.abspath(args.GNS3_project_folder), convertTopology=False)
