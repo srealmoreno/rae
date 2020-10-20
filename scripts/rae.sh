@@ -327,7 +327,7 @@ create_template() {
 \"start_command\": \"\",
 \"name\": \"$name\",
 \"image\": \"srealmoreno/rae:latest\",
-\"adapters\": 1,
+\"adapters\": $adapters,
 \"custom_adapters\": [],
 \"environment\": \"\",
 \"console_type\": \"telnet\",
