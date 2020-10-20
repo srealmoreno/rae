@@ -54,7 +54,7 @@ get_os() {
             error_fatal "Este escript solo es compatible con Ubuntu y derivados"
         fi
         exito "Se detecto Sistema operativo $PRETTY_NAME ($VERSION_CODENAME)"
-        advertencia "Este es una implementación de rapida instalación de los paquetes: $LIST_PACKAGES\nSalvador no se hace responsable de ningún daño a tu maquina. :D"
+        advertencia "Este es una implementación de rapida instalación de los paquetes:\n$LIST_PACKAGES\nSalvador no se hace responsable de ningún daño a tu maquina. :D"
         read -n 1 -s -r -p "Presiona cualquier tecla para continuar"
         echo ""
 
@@ -407,6 +407,11 @@ install_packages() {
             fi
         check_group "wireshark" "wireshark-common"
         check_group "ubridge" "ubridge"
+        if [ ! -f "/home/$SUDO_USER/.config/GNS3/2.2/gns3_controller.conf" ];then
+            sudo -u $SUDO_USER gns3server >/dev/null &
+            sleep 1s
+            killall gns3server
+        fi
     fi
     if [ -n "$LIST_GROUP" ]; then
         info "Añadiendo $SUDO_USER a los grupos necesarios"
@@ -506,10 +511,6 @@ if [ -n "$docker" ]; then
     add_repository_docker
 fi
 
-if [ -n "$plantillas" ]; then
-    import_templates_gns3
-fi
-
 if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
     install_packages
 fi
@@ -518,6 +519,10 @@ if [ -n "$images" ]; then
     importar_a_docker "ubuntu" "ubuntu_rae.tar" "srealmoreno/rae"
     #Descomentar para instalar la imagen con interfaz gráfica
     #importar_a_docker "ubuntu_graphic" "ubuntu_rae_graphic.tar" "srealmoreno/rae_graphic"
+fi
+
+if [ -n "$plantillas" ]; then
+    import_templates_gns3
 fi
 
 if [ -n "$netgui" ]; then

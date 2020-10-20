@@ -120,6 +120,12 @@ install_gns3() {
         LIST_GROUP="${LIST_GROUP}libvirt,kvm,wireshark,ubridge"
         check_group "wireshark" "wireshark-common"
         check_group "ubridge" "ubridge"
+
+        if [ ! -f "/home/$SUDO_USER/.config/GNS3/2.2/gns3_controller.conf" ]; then
+            sudo -u $SUDO_USER gns3server >/dev/null &
+            sleep 1s
+            killall gns3server
+        fi
     else
         info "No se pudo instalar GNS3"
     fi
@@ -487,12 +493,12 @@ if [ -n "$images" ]; then
     #importar_a_docker "ubuntu_graphic" "ubuntu_rae_graphic.tar" "srealmoreno/rae_graphic"
 fi
 
-if [ -n "$netgui" ]; then
-    install_netgui
-fi
-
 if [ -n "$plantillas" ]; then
     import_templates_gns3
+fi
+
+if [ -n "$netgui" ]; then
+    install_netgui
 fi
 
 if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ]; then
