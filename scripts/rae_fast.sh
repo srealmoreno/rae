@@ -326,7 +326,7 @@ get_gns3_controller() {
         [ "$?" == "0" ] && echo $path >/tmp/get_gns3_controller
 
         if [[ ${log,,} =~ "connected to compute websocket" ]]; then
-            killall gns3server
+            kill -TERM $(pgrep gns3server) #Killall no es un binario predeterminado
             break
         fi
 
