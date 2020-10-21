@@ -239,7 +239,7 @@ install_netgui() {
 
             exito "NetGui instalado con exíto"
         else
-            error_fatal "autoinstall only works in Ubuntu >= 9.04 or Linux Mint >= 17, sorry"
+            error_fatal "La instalación automatica solo funciona en Ubuntu >= 9.04 o Linux Mint >= 17, lo siento"
         fi
     else
         exito "Netgui ya se encuentra instalado"
