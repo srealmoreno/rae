@@ -42,7 +42,6 @@ install_dependencies() {
         ca-certificates \
         curl \
         gnupg-agent \
-        jq \
         wget && exito "Dependencias instaladas con exíto" || error_fatal "Error al instalar las dependencias necesarias"
 }
 
@@ -319,10 +318,34 @@ create_template() {
 
 }
 
+get_gns3_controller() {
+    sudo -u $SUDO_USER gns3server 2>/dev/null | while read log; do
+
+        path=$(grep -oiP "Load controller configuration file \K.*" <<<$log)
+
+        [ "$?" == "0" ] && echo $path >/tmp/get_gns3_controller
+
+        if [[ ${log,,} =~ "connected to compute websocket" ]]; then
+            killall gns3server
+            break
+        fi
+
+    done
+    if [ -f /tmp/get_gns3_controller ]; then
+        cat /tmp/get_gns3_controller
+        rm /tmp/get_gns3_controller
+    fi
+}
+
 import_templates_gns3() {
     local gns3_config="/home/$SUDO_USER/.config/GNS3/2.2/gns3_controller.conf"
 
     info "Importando plantillas para GNS3"
+    apt install -y jq || error_fatal "Para importar las plantillas se necesita el binario 'jq', por favor instalelo manualmente"
+
+    if [ ! -f "/home/$SUDO_USER/.config/GNS3/2.2/gns3_controller.conf" ]; then
+        gns3_config=$(get_gns3_controller)
+    fi
 
     if [ -f "$gns3_config" ]; then
         gns3_controller=$(jq . $gns3_config)
@@ -338,7 +361,7 @@ import_templates_gns3() {
                     advertencia "La plantilla de computadora ya existe"
                 fi
             else
-                error_fatal "Ocurrio un error al leer el $gns3_config"
+                error_fatal "Ocurrio un error al leer el fichero $gns3_config"
             fi
             exits=$(jq ".templates[] | select(.template_id==\"${info_router[1]}\" or .name==\"${info_router[0]}\")" <<<$gns3_controller)
             if [ "$?" == 0 ]; then
@@ -351,7 +374,7 @@ import_templates_gns3() {
                     advertencia "La plantilla de router ya existe"
                 fi
             else
-                error_fatal "Ocurrio un error al leer el $gns3_config"
+                error_fatal "Ocurrio un error al leer el fichero $gns3_config"
             fi
 
             exits=$(jq ".templates[] | select(.template_id==\"${info_switch[1]}\" or .name ==\"${info_switch[0]}\")" <<<$gns3_controller)
@@ -365,7 +388,7 @@ import_templates_gns3() {
                     advertencia "La plantilla de switch ya existe"
                 fi
             else
-                error_fatal "Ocurrio un error al leer el $gns3_config"
+                error_fatal "Ocurrio un error al leer el fichero $gns3_config"
             fi
 
             if [ -n "$changes" ]; then
@@ -374,19 +397,19 @@ import_templates_gns3() {
                 chown $SUDO_USER:$SUDO_USER $gns3_config $gns3_config.backup
             fi
         else
-            error_fatal "Ocurrio un error al leer el $gns3_config"
+            error_fatal "Ocurrio un error al leer el fichero $gns3_config"
         fi
     else
-        error_fatal "No existe el fichero $gns3_config"
+        error_fatal "No existe se encontro el fichero GNS3 controlller"
     fi
 }
 
 install_packages() {
     local LIST_PACKAGES_INSTALLED=""
     for i in virtualbox gns3 docker; do
-        if [ -n "${!i}" ]; then
+        if [ -n "${!i}" ]; then #con ${!} Verifico si la variable existe
             [ "$LIST_PACKAGES_INSTALLED" != "" ] && LIST_PACKAGES_INSTALLED="$LIST_PACKAGES_INSTALLED, "
-            LIST_PACKAGES_INSTALLED="${LIST_PACKAGES_INSTALLED}${i^}"
+            LIST_PACKAGES_INSTALLED="${LIST_PACKAGES_INSTALLED}${i^}" #con ${^} Convierto a mayúscula la primera letra
         fi
     done
     info "Instalando $LIST_PACKAGES_INSTALLED"
@@ -407,11 +430,6 @@ install_packages() {
             fi
         check_group "wireshark" "wireshark-common"
         check_group "ubridge" "ubridge"
-        if [ ! -f "/home/$SUDO_USER/.config/GNS3/2.2/gns3_controller.conf" ];then
-            sudo -u $SUDO_USER gns3server >/dev/null &
-            sleep 1s
-            killall gns3server
-        fi
     fi
     if [ -n "$LIST_GROUP" ]; then
         info "Añadiendo $SUDO_USER a los grupos necesarios"
@@ -494,7 +512,7 @@ fi
 
 exito "Iniciando Script de instalación"
 
-if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" ] || [ -n "$plantillas" ]; then
+if [ -n "$docker" ] || [ -n "$gns3" ] || [ -n "$virtualbox" ] || [ -n "$netgui" ]; then
     get_os
     install_dependencies
 fi
