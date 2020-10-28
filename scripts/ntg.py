@@ -33,7 +33,7 @@ from re import findall, IGNORECASE, MULTILINE
 # MULTILINE multiline search
 from importlib.util import spec_from_file_location, module_from_spec
 # To import a .py file from the filesystem.
-from argparse import ArgumentParser, RawTextHelpFormatter
+from argparse import ArgumentParser, RawTextHelpFormatter, SUPPRESS
 # For the command line
 # RawTextHelpFormatter Allows me to add newlines "\ n" in the syntax
 
@@ -259,7 +259,7 @@ def copy_subfolder(src: str, dst: str):
                             # or not add the name-address if it already exists
                             regex = r"^[\t ]*" + \
                                 " ".join(i.split()).translate(
-                                    str.maketrans({'.': '\.', ' ': '[\t ]+'})) + "[\t ]*$"
+                                    str.maketrans({'.': '\\.', ' ': '[\\t ]+'})) + "[\\t ]*$"
                             with open(path.dirname(path.dirname(dst+i))+"/root/.etc/hosts", "a+") as hosts_file:
                                 hosts_file.seek(0)
                                 if findall(regex, "".join(hosts_file.readlines()), flags=MULTILINE) == []:
@@ -522,7 +522,6 @@ def convert_files(pjNetgui: str, pjOutput: str, netgui_file: str, nodes: dict = 
         if path.isdir(pjOutput):
             if not pjOutput.endswith("/"):
                 pjOutput += "/"
-            folder = pjOutput
             all_match = glob(pjOutput+'*.gns3')
             if len(all_match) == 0:
                 print("\033[91mNot exists file *.gns3 in\033[0m " + pjOutput)
@@ -709,75 +708,99 @@ if __name__ == '__main__':
     gns3_version = gns3.__version__
 
     # create the top-level parser
-    parser = ArgumentParser()
+    parser = ArgumentParser(
+        formatter_class=RawTextHelpFormatter, add_help=False, description="Convert Topology Netgui to GNS3 with Docker")
 
-    parser.description = "Convert Topology Netgui to GNS3 with Docker"
+    parser._positionals.title = "required argument"
+
+    parser.add_argument('-h', '--help', action='help', default=SUPPRESS,
+                        help='show this help message and exit\n ')
+
+    parser.add_argument('-v', '--version', action='version',
+                        help='show program version and exit', version='%(prog)s 1.0')
 
     subparsers = parser.add_subparsers(dest='command', required=True)
 
     # create the parser for the "all" command
 
     parser_a = subparsers.add_parser(
-        'all', help='Convert toplogy and config files', formatter_class=RawTextHelpFormatter)
+        'all', help='convert toplogy and config files', formatter_class=RawTextHelpFormatter, add_help=False, description='Convert toplogy and config files')
+
+    parser_a._positionals.title = "required argument"
+
     exclusive_a = parser_a.add_mutually_exclusive_group()
 
+    parser_a.add_argument('-h', '--help', action='help', default=SUPPRESS,
+                          help='show this help message and exit\n ')
+
     parser_a.add_argument('-i', '--image', type=str, default="srealmoreno/rae:latest",
-                          help='Base docker image to use\n  default: %(default)s\n ', metavar='')
+                          help='    base docker image to use\n\tdefault: %(default)s\n ', metavar='\b')
 
     parser_a.add_argument('-n', '--name', type=str, default="Netgui project name",
-                          help='GNS3 project name\n  default: %(default)s\n ', metavar='')
+                          help='    gns3 project name\n\tdefault: %(default)s\n ', metavar='\b')
 
     exclusive_a.add_argument('-t', '--template', type=str,
-                             help='Specifies the ID of the Docker template.\n ', metavar='')
+                             help='    specifies the ID of the Docker template.\n ', metavar='\b')
 
     exclusive_a.add_argument('-r', '--read', type=str, default=path.expanduser("~/.config/GNS3/"+version+"/gns3_controller.conf"),
-                             help='Path of GNS3 controller config, the template ID will\nbe searched here in case it is not specified (-t)\n  default: %(default)s\n ', metavar='')
+                             help='    path of GNS3 controller config. The template ID will\nbe searched here in case it is not specified (-t)\n\tdefault: %(default)s\n ', metavar='\b')
 
     parser_a.add_argument('-o', '--output', type=str, default=path.expanduser("~/GNS3/projects/"),
-                          help='Output folder\n  default: %(default)s', metavar='')
+                          help='    output folder\n\tdefault: %(default)s', metavar='\b')
 
-    parser_a.add_argument('Netgui_project_folder', type=str,
-                          help='Netgui project folder to convert')
+    parser_a.add_argument('netgui_project', type=str,
+                          help='netgui project folder to convert')
 
     # create the parser for the "topology" command
     parser_b = subparsers.add_parser(
-        'topology', help='Convert only topology', formatter_class=RawTextHelpFormatter)
+        'topology', help='convert only topology', formatter_class=RawTextHelpFormatter, add_help=False, description='Convert only topology')
+
+    parser_b._positionals.title = "required argument"
+
     exclusive_b = parser_b.add_mutually_exclusive_group()
 
+    parser_b.add_argument('-h', '--help', action='help', default=SUPPRESS,
+                          help='show this help message and exit\n ')
+
     parser_b.add_argument('-i', '--image', type=str, default="srealmoreno/rae:latest",
-                          help='Base docker image to use\n  default: %(default)s\n ', metavar='')
+                          help='    base docker image to use\n\tdefault: %(default)s\n ', metavar='\b')
 
     parser_b.add_argument('-n', '--name', type=str, default="Netgui project name",
-                          help='GNS3 project name\n  default: %(default)s\n ', metavar='')
+                          help='    gns3 project name\n\tdefault: %(default)s\n ', metavar='\b')
 
     exclusive_b.add_argument('-t', '--template', type=str,
-                             help='Specifies the ID of the Docker template.\n ', metavar='')
+                             help='    specifies the ID of the Docker template.\n ', metavar='\b')
 
     exclusive_b.add_argument('-r', '--read', type=str, default=path.expanduser("~/.config/GNS3/"+version+"/gns3_controller.conf"),
-                             help='Path of GNS3 controller config, the template ID will\nbe searched here in case it is not specified (-t)\n  default: %(default)s\n ', metavar='')
+                             help='    path of GNS3 controller config. The template ID will\nbe searched here in case it is not specified (-t)\n\tdefault: %(default)s\n ', metavar='\b')
 
     parser_b.add_argument('-o', '--output', type=str, default=path.expanduser("~/GNS3/projects/"),
-                          help='Output folder\n  default: %(default)s', metavar='')
+                          help='    output folder\n\tdefault: %(default)s', metavar='\b')
 
-    parser_b.add_argument('Netgui_project_folder', type=str,
-                          help='Netgui project folder to convert')
+    parser_b.add_argument('netgui_project', type=str,
+                          help='netgui project folder to convert')
 
     # create the parser for the "config" command
     parser_c = subparsers.add_parser(
-        'config', help='Convert only config files', formatter_class=RawTextHelpFormatter)
-    parser_c.add_argument('Netgui_project_folder', type=str,
-                          help='Netgui project folder to convert\n ')
-    parser_c.add_argument('GNS3_project_folder', type=str,
-                          help='\nGNS3 project folder to convert')
+        'config', help='convert only config files', formatter_class=RawTextHelpFormatter, description='Convert only config files')
+
+    parser_c._positionals.title = "required arguments"
+
+    parser_c._optionals.title = "optional argument"
+
+    parser_c.add_argument('netgui_project', type=str,
+                          help='netgui project folder to convert\n ')
+    parser_c.add_argument('gns3_project', type=str,
+                          help='gns3 project folder to convert')
 
     args = parser.parse_args()
 
     if args.command == "all":
-        convert_project(pjNetgui=path.abspath(args.Netgui_project_folder),
+        convert_project(pjNetgui=path.abspath(args.netgui_project),
                         pjOutput=path.abspath(args.output), nameOutput=args.name, imgDocker=args.image, template_id=args.template, cfgRead=path.abspath(args.read), gns3_version=gns3.__version__)
     elif args.command == "topology":
-        convert_project(pjNetgui=path.abspath(args.Netgui_project_folder),
+        convert_project(pjNetgui=path.abspath(args.netgui_project),
                         pjOutput=path.abspath(args.output), nameOutput=args.name, imgDocker=args.image, template_id=args.template, cfgRead=path.abspath(args.read), convertConfig=False, gns3_version=gns3.__version__)
     else:
-        convert_project(pjNetgui=path.abspath(args.Netgui_project_folder),
-                        pjOutput=path.abspath(args.GNS3_project_folder), convertTopology=False)
+        convert_project(pjNetgui=path.abspath(args.netgui_project),
+                        pjOutput=path.abspath(args.gns3_project), convertTopology=False)
